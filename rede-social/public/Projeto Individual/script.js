@@ -56,6 +56,9 @@ posts.forEach(post => {
     const postHeader = document.createElement('div');
     postHeader.classList.add('post-header');
 
+    const avatarMold = document.createElement('div');
+    avatarMold.classList.add('avatar-mold');
+
     // Avatar do usuário
     const avatar = document.createElement('img');
     avatar.src = post.avatar;
@@ -75,7 +78,8 @@ posts.forEach(post => {
     userInfo.appendChild(username);
     userInfo.appendChild(handle);
 
-    postHeader.appendChild(avatar);
+    postHeader.appendChild(avatarMold);
+    avatarMold.appendChild(avatar);
     postHeader.appendChild(userInfo);
     postDiv.appendChild(postHeader);
 
