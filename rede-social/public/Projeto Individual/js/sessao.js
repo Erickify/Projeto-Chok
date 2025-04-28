@@ -23,5 +23,3 @@ function aguardar() {
     divAguardar.style.display = "flex";
 }
 
-D:\git\Projeto-Chok\rede-social\public\Projeto Individual\cadastro.html
-
