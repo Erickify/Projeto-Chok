@@ -1,0 +1,240 @@
+:root{
+    /* Modo Claro*/
+    --var-cor-primaria: #731ccb;
+    --var-cor-secundaria: #c6b9f6;
+    --var-cor-terciaria: #171010;
+
+
+    /*Modo escuro*/
+     /* --var-cor-primaria: #cb1c1c;
+     --var-cor-secundaria: #171010;
+     --var-cor-terciaria: #ffff; */
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+
+
+body{
+    background-color: var(--var-cor-primaria);
+    color: #171010;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    height: 100vh;
+    
+}
+
+nav{
+    /* background-color: var(--var-cor-secundaria); */
+    color: var(--var-cor-primaria);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    min-width: 10vw;;
+    width: 19vw;
+    height: 99vh;
+    margin: 2px;
+}
+
+.div_nav_topo{
+    display: flex;
+    height: auto;
+    width: 100%;
+
+}
+
+.div_perfil1_nav_topo{
+    background: var(--var-cor-secundaria);
+    content: '';
+    width: 100px;
+    height: 100px;
+    /* clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0 0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z"); */
+    clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0,0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z");
+
+
+}
+
+.div_perfil2_nav_topo{
+    background: var(--var-cor-secundaria);
+    content: '';
+    flex-grow: 1;
+    height: 100px;
+    border-radius: 0 15px 0 0;
+}
+
+
+nav #sect_perfil_nav{
+
+    width: 100%;
+}
+
+
+nav section #img_perfil_nav {
+    min-width: 70px;
+    width: 70px;
+    border-radius: 50%;
+    position: absolute;
+    padding: 4px;
+}
+
+.div_nav{
+    background: var(--var-cor-secundaria);
+    height: 100%;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+}
+
+
+.nome_user{
+    padding: 0 0 0 5px;
+    height: 15%;
+    color: var(--var-cor-terciaria);
+    background: var(--var-cor-secundaria);
+}
+
+.nome_user p{
+
+    opacity: 80%;
+    font-weight: 500;
+
+}
+
+
+#lista_nav{
+    padding: 20px 0 20px 0;
+    height: 50%;
+    width: 100%;
+}
+
+#lista_nav li{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#lista_nav .icone_lista{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    color: var(--var-cor-terciaria);
+}
+
+#lista_nav li button{
+    /* color: var(--var-cor-primaria); */
+    color: var(--var-cor-terciaria);
+    background: none;
+    border: none;
+}
+
+
+main{
+
+    height: 90vh;
+    width: 60vw;
+    /* background-color: #171010; */
+}
+
+
+.div_main_topo{
+    display: flex;
+    height: auto;
+    width: 100%;
+    height: 180px;
+}
+
+.div_perfil1_main_topo{
+    background: var(--var-cor-secundaria);
+    position: absolute;
+    content: '';
+    width: 250px;
+    height: 180px;
+    /* clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0 0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z"); */
+    clip-path: path("M 0,100 A 15,15 0,0,1 15,100  A 15,15 0,0,0 230,15  A 15,15 0,0,1 230,0  L 250,0  L 250,250  L 0,250  L 0,210 Z");
+
+
+}
+
+.div_perfil2_main_topo{
+    background: var(--var-cor-secundaria);
+    content: '';
+    flex-grow: 1;
+    height: 180px;
+    border-radius: 0 15px 0 0;
+    color: var(--var-cor-terciaria);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#img_header_main{
+    width: 95%;
+    max-height: 150px;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+#nome_user_main{
+    padding: 10px;
+}
+
+
+main #sect_perfil_main{
+
+    width: 100%;
+}
+
+main #sect_bio{
+    background-color: var(--var-cor-secundaria);
+    color: var(--var-cor-terciaria);
+    border-radius: 0 0 15px 15px;
+    
+}
+
+main #sect_bio #p_bio{
+    padding: 20px;
+    font-weight: 500;
+}
+
+
+
+main section #img_perfil_main {
+    min-width: 210px;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    padding: 17px;
+    position: relative;
+    bottom: 65px;
+}
+
+main section #sect_seguidores{
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+main section #sect_seguidores #p_seguidores, #p_seguindo{
+
+    opacity: 50%;
+    font-weight: 600;
+
+}
+
+
+aside{
+    width: 20vw;
+    height: 99vh;
+    background: var(--var-cor-secundaria);
+    margin: 2px;
+    border-radius: 15px;
+}
+
