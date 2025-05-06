@@ -30,14 +30,6 @@
                          Assim que inserir vá para o script abaixo.
                      -->
           <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>User:</span>
-            <input id="user_input" type="text" placeholder="@user..." />
-          </div>
-          <div class="campo">
             <span>E-mail:</span>
             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
           </div>
@@ -45,11 +37,7 @@
             <span>Senha:</span>
             <input id="senha_input" type="password" placeholder="******" />
           </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
+          <button class="botao" onclick="autenticar()">Cadastrar</button>
         </div>
          
         <div id="div_erros_login"></div>
@@ -74,23 +62,18 @@
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   // let listaEmpresasCadastradas = [];
 
-  function cadastrar() {
+  function autenticar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
-    var userVar = user_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
     // Verificando se há algum campo em branco
     if (
-      nomeVar == "" ||
       emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""
+      senhaVar == "" 
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -116,7 +99,7 @@
     // }
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/usuarios/autenticar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,10 +107,8 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        userServer: userVar,
       }),
     })
       .then(function (resposta) {
@@ -137,16 +118,16 @@
           cardErro.style.display = "block";
 
           mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            "Login realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
-            window.location = "login.html";
+            window.location = "perfil.html";
           }, "2000");
 
           limparFormulario();
           finalizarAguardar();
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          throw "Houve um erro ao tentar realizar o login!";
         }
       })
       .catch(function (resposta) {
