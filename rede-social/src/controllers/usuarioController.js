@@ -5,36 +5,31 @@ function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     
-    if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está indefinida!");
-    } else {
 
-        usuarioModel.autenticar(email, senha)
-            .then(
-                function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-
-                    if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
-                    } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("dados incorretos");
-                    } else {
-                        res.status(403).send("Mais de um usuário com mesmas credenciais!");
-                    }
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+    if (!email || !senha) {
+        return res.status(400).json({ erro: "Preencha todos os campos!" });
     }
 
+    usuarioModel.autenticar(email, senha)
+        .then(function (resultado) {
+            if (resultado.length == 1) {
+                res.json({
+                    idUsuario: resultado[0].idUsuario,
+                    nome: resultado[0].nomeUsuario,
+                    user: resultado[0].userUsuario,
+                    email: resultado[0].emailUsuario,
+                    senha: resultado[0].senhaUsuario
+                });
+            } else {
+                res.status(403).json({ erro: "Email e/ou senha inválidos!" });
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao autenticar:", erro);
+            res.status(500).json({ erro: "Erro interno no servidor." });
+        });
 }
+
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html

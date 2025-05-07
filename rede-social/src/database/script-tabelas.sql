@@ -1,62 +1,78 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+-- 1) Criar DB
+CREATE DATABASE rede_social;
+USE rede_social;
 
-/*
-comandos para mysql server
-*/
-
-CREATE DATABASE aquatech;
-
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+-- 2) tbUsuario
+CREATE TABLE tbUsuario (
+  idUsuario       INT            NOT NULL AUTO_INCREMENT,
+  nomeUsuario     VARCHAR(20)    NOT NULL,
+  userUsuario     VARCHAR(20)    NOT NULL UNIQUE,
+  emailUsuario    VARCHAR(100)   NOT NULL UNIQUE,
+  senhaUsuario    VARCHAR(10)    NOT NULL,
+  bioUsuario      VARCHAR(100)   NULL,
+  fkSeguidor      INT            NULL,
+  pfpUsuario      LONGBLOB       NULL,
+  bannerUsuario   LONGBLOB       NULL,
+  PRIMARY KEY (idUsuario),
+  CONSTRAINT FK_Usuario_Seguidor
+    FOREIGN KEY (fkSeguidor)
+    REFERENCES tbUsuario(idUsuario)
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+-- 3) tbPost
+CREATE TABLE tbPost (
+  idPost         INT          NOT NULL AUTO_INCREMENT,
+  curtidasPost   INT          NOT NULL DEFAULT 0,
+  descPost       VARCHAR(300) NULL,
+  imagensPost    LONGBLOB     NULL,
+  fkUsuario      INT          NOT NULL,
+  PRIMARY KEY (idPost),
+  CONSTRAINT FK_Post_Usuario
+    FOREIGN KEY (fkUsuario)
+    REFERENCES tbUsuario(idUsuario)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+-- 4) tbComentario
+CREATE TABLE tbComentario (
+  idComentario      INT          NOT NULL AUTO_INCREMENT,
+  fkPost            INT          NOT NULL,
+  fkSubComentario   INT          NULL,
+  descComentario    VARCHAR(300) NULL,
+  fkUsuario         INT          NOT NULL,
+  PRIMARY KEY (idComentario),
+  CONSTRAINT FK_Comentario_Post
+    FOREIGN KEY (fkPost)
+    REFERENCES tbPost(idPost),
+  CONSTRAINT FK_Comentario_Usuario
+    FOREIGN KEY (fkUsuario)
+    REFERENCES tbUsuario(idUsuario),
+  CONSTRAINT FK_Comentario_Sub
+    FOREIGN KEY (fkSubComentario)
+    REFERENCES tbComentario(idComentario)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+-- 5) tbCurtidas
+CREATE TABLE tbCurtidas (
+  fkCurtidas         INT    NOT NULL AUTO_INCREMENT,
+  tbUsuario_idUsuario  INT  NOT NULL,
+  fkPost             INT    NOT NULL,
+  PRIMARY KEY (fkCurtidas),
+  CONSTRAINT FK_Curtida_Usuario
+    FOREIGN KEY (tbUsuario_idUsuario)
+    REFERENCES tbUsuario(idUsuario),
+  CONSTRAINT FK_Curtida_Post
+    FOREIGN KEY (fkPost)
+    REFERENCES tbPost(idPost)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+select * from tbUsuario;
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
+show tables;
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+use rede_social;
+ 
+show tables;
+
+select * from tbUsuario;
+
+show databases;

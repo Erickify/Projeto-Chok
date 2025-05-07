@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <!-- Link para o arquivo CSS -->
     <link rel="stylesheet" href="./css/styles-feed.css">
 </head>
-<body>
+
+<body onload="user()">
 
     <nav>
 
@@ -31,10 +33,10 @@
 
         <div class="div_nav">
 
-            <div class="nome_user">
+            <div class="nome_user" id="nome_user">
 
-                <h1>Roberto Carlos</h1>
-                <p>@robeertinho</p>
+                <h1 id="nomeUsuario">Roberto Carlos</h1>
+                <p id="userUsuario">@robeertinho</p>
 
             </div>
 
@@ -87,16 +89,39 @@
 
 
     </nav>
-    
+
     <main>
-    <!-- Contêiner onde o feed será inserido -->
-    <div id="feed-container"></div>
-    
-</main>
-    
-    
+        <!-- Contêiner onde o feed será inserido -->
+        <div id="feed-container"></div>
+
+    </main>
+
+
     <!-- Script JavaScript -->
-    
+
     <script src="./js/script-feed.js"></script>
 </body>
+
 </html>
+
+<script>
+
+    var nomeUsuario = sessionStorage.NOME_USUARIO
+    var emailUsuario = sessionStorage.EMAIL_USUARIO
+    var userUsuario = sessionStorage.USER_USUARIO
+    var idUsuario = sessionStorage.ID_USUARIO
+
+    function user() {
+
+        console.log(`Nome do usuario: ${nomeUsuario}`)
+
+        nome_user.innerHTML = `
+        
+        <h1 id="nomeUsuario">${nomeUsuario}</h1>
+        <p id="userUsuario">@${idUsuario}</p>
+               
+        `
+
+    }
+
+</script>
