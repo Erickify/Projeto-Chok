@@ -86,6 +86,8 @@ function autenticar() {
                         console.log(json);
                         console.log(JSON.stringify(json));
                         sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.USER_USUARIO = json.user;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
                         sessionStorage.NOME_USUARIO = json.nome;
 
                         alert(`Login bem sucedido`)

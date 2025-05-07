@@ -53,7 +53,7 @@ nav{
 .div_perfil1_nav_topo{
   background: var(--var-cor-secundaria);
   content: '';
-  width: 100px;
+  width: 99px;
   height: 100px;
   /* clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0 0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z"); */
   clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0,0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z");
@@ -76,7 +76,7 @@ nav #sect_perfil_nav{
 }
 
 
-nav section #img_perfil_nav {
+#img_perfil {
   min-width: 70px;
   width: 70px;
   border-radius: 50%;
@@ -99,7 +99,7 @@ nav section #img_perfil_nav {
   background: var(--var-cor-secundaria);
 }
 
-.nome_user p{
+#userUsuario{
 
   color: #ffffff76;
   font-weight: 500;
@@ -235,5 +235,37 @@ nav section #img_perfil_nav {
   height: 50%;
   border-radius: 10px;
   object-fit: cover;
+}
+
+
+#div_criar_chok{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 10%;
+  right: 20%;
+  /* left: 100px; */
+  width: 60px;
+  height: 60px;
+  background-color: var(--var-cor-secundaria);
+  border-radius: 50%;
+}
+
+#div_criar_chok button{
+  background: none;
+  border: none;
+  color: var(--var-cor-terciaria);
+}
+
+
+#div_pop{
+  background-color: rgba(0, 0, 0, 0.363);
+  position: fixed;
+  width: 50%;
+  height: 90%;
+  right: 25%;
+  bottom: 5%;
+  color: var(--var-cor-terciaria);
 }
 
