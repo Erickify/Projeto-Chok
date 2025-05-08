@@ -18,34 +18,6 @@
 //     images: [
 //       'https://i.pinimg.com/736x/fa/5e/eb/fa5eeb73ecefe13f3c6524f5c47dc0ce.jpg'
 //     ]
-<<<<<<< HEAD
-=======
-//   },
-//   {
-//     id: 3,
-//     username: 'The_Rudo_Kub',
-//     handle: '_rudo_Kub',
-//     avatar: 'https://i.pinimg.com/736x/e9/28/2b/e9282b4ef2eb2aebe6e498661c42c0c8.jpg',
-//     content: 'Post com 3 imagens. Mais um exemplo de postagem com múltiplas imagens.',
-//     images: [
-//       'https://i.pinimg.com/736x/fa/5e/eb/fa5eeb73ecefe13f3c6524f5c47dc0ce.jpg',
-//       'https://i.pinimg.com/736x/e9/28/2b/e9282b4ef2eb2aebe6e498661c42c0c8.jpg',
-//       'https://i.pinimg.com/736x/e9/28/2b/e9282b4ef2eb2aebe6e498661c42c0c8.jpg'
-//     ]
-//   },
-//   {
-//     id: 4,
-//     username: 'The_Rudo_Kub',
-//     handle: '_rudo_Kub',
-//     avatar: 'https://i.pinimg.com/736x/e9/28/2b/e9282b4ef2eb2aebe6e498661c42c0c8.jpg',
-//     content: `
-//     Post com 3 imagens. Mais um exemplo de postagem com múltiplas imagens.
-//     Post com 3 imagens. Mais um exemplo de postagem com múltiplas imagens.
-//     Post com 3 imagens. Mais um exemplo de postagem com múltiplas imagens.
-//     Post com 3 imagens. Mais um exemplo de postagem com múltiplas imagens.
-//     `,
-//     images: []
->>>>>>> 2dd4d82e030c8c971effe84450c0f212c9e5ea61
 //   }
 // ];
 
