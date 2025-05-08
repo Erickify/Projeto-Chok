@@ -8,7 +8,7 @@
     <title>Perfil | Choke</title>
 </head>
 
-<body>
+<body onload="user()">
 
     <nav>
 
@@ -17,8 +17,7 @@
             <div class="div_nav_topo">
 
 
-                <img src="./imgs/img_perfil-teste.jpg" alt=""
-                    id="img_perfil_nav">
+                <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav">
 
                 <div class="div_perfil1_nav_topo">
                 </div>
@@ -34,8 +33,8 @@
 
             <div class="nome_user">
 
-                <h1>Roberto Carlos</h1>
-                <p>@robeertinho</p>
+                <h1 class="nomeUsuario">Roberto Carlos</h1>
+                <p class="userUsuario">@robeertinho</p>
 
             </div>
 
@@ -96,16 +95,14 @@
             <div class="div_main_topo">
 
 
-                <img src="./imgs/img_perfil-teste.jpg" alt=""
-                    id="img_perfil_main">
+                <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_main">
 
                 <div class="div_perfil1_main_topo">
                 </div>
 
                 <div class="div_perfil2_main_topo">
 
-                    <img src="./imgs/img-header-teste.jpg" alt=""
-                        id="img_header_main">
+                    <img src="./imgs/img-header-teste.jpg" alt="" id="img_header_main">
 
 
                 </div>
@@ -118,28 +115,30 @@
 
             <div class="nome_user" id="nome_user_main">
 
-                <h1>Roberto Carlos</h1>
-                <p>@robeertinho</p>
+                <h1 class="nomeUsuario">Roberto Carlos</h1>
+                <p class="userUsuario">@robeertinho</p>
 
             </div>
 
             <p id="p_bio">
 
-                𝐗𝐕.   l     床单    ❀ꓼ     outono,    folhas.    lembro   de   quando seu    sorriso     soprou   ventos   de   calma em   mim.
+                𝐗𝐕. l 床单 ❀ꓼ outono, folhas. lembro de quando seu sorriso soprou ventos de calma em mim.
 
             </p>
 
             <section id="sect_seguidores">
 
-               <p>Seguidores</p><p id="p_seguidores">100</p>
-               <p>|</p>
-               <p>Seguindo</p><p id="p_seguindo">100</p>
+                <p>Seguidores</p>
+                <p id="p_seguidores">100</p>
+                <p>|</p>
+                <p>Seguindo</p>
+                <p id="p_seguindo">100</p>
 
             </section>
 
         </section>
 
-       
+
 
 
     </main>
@@ -157,3 +156,30 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 </style>
+
+<script>
+
+    var nomeUsuario = sessionStorage.NOME_USUARIO
+    var emailUsuario = sessionStorage.EMAIL_USUARIO
+    var userUsuario = sessionStorage.USER_USUARIO
+    var idUsuario = sessionStorage.ID_USUARIO
+
+    function user() {
+
+        console.log(`nome: ${nomeUsuario}`)
+        console.log(`email: ${emailUsuario}`)
+        console.log(`id: ${idUsuario}`)
+        console.log(`user: ${userUsuario}`)
+
+
+
+        document.querySelectorAll(".nomeUsuario").forEach(h1 => h1.innerHTML = nomeUsuario);
+        document.querySelectorAll(".userUsuario").forEach(p => p.innerHTML = `@${userUsuario}`);
+
+
+
+        userUsuario.innerHTML = `@${userUsuario}`
+
+    }
+
+</script>
