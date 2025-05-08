@@ -98,7 +98,11 @@ nav #sect_perfil_nav{
 }
 
 
+<<<<<<< HEAD
 #img_perfil_nav {
+=======
+#img_perfil {
+>>>>>>> 2dd4d82e030c8c971effe84450c0f212c9e5ea61
   min-width: 70px;
   width: 70px;
   border-radius: 50%;
@@ -121,7 +125,7 @@ nav #sect_perfil_nav{
   background: var(--var-cor-secundaria);
 }
 
-.nome_user p{
+#userUsuario{
 
   opacity: 60%;
   font-weight: 500;
@@ -230,6 +234,7 @@ aside{
   background-color: var(--var-cor-secundaria);
 }
 
+<<<<<<< HEAD
 .div_corpo_popup textarea{
   margin: 10px;
   padding: 5px;
@@ -258,3 +263,37 @@ aside{
   filter: brightness(50%);
   transition: 0.2s ease-in;
 }
+=======
+
+#div_criar_chok{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 10%;
+  right: 20%;
+  /* left: 100px; */
+  width: 60px;
+  height: 60px;
+  background-color: var(--var-cor-secundaria);
+  border-radius: 50%;
+}
+
+#div_criar_chok button{
+  background: none;
+  border: none;
+  color: var(--var-cor-terciaria);
+}
+
+
+#div_pop{
+  background-color: rgba(0, 0, 0, 0.363);
+  position: fixed;
+  width: 50%;
+  height: 90%;
+  right: 25%;
+  bottom: 5%;
+  color: var(--var-cor-terciaria);
+}
+
+>>>>>>> 2dd4d82e030c8c971effe84450c0f212c9e5ea61
