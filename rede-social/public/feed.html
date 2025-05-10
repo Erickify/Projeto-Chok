@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/styles-feed.css">
 </head>
 
-<body onload="user()">
+<body onload="user(), listarPosts()">
 
 
 
@@ -87,7 +87,56 @@
 
     <main id="main_feed">
         <!-- Contêiner onde o feed será inserido -->
-        <div id="feed-container"></div>
+        <div id="feed-container">
+
+
+
+        </div>
+
+        <div class="div_post">
+
+            <section id="sect_perfil_post">
+
+                <div class="div_post_topo">
+
+
+                    <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_post">
+
+                    <div class="div_perfil1_post_topo">
+                    </div>
+
+                    <div class="div_perfil2_post_topo">
+
+                        <div class="nome_user" id="nome_user">
+
+                            <h1 class="nomeUsuario">Roberto Carlos</h1>
+                            <p class="userUsuario">@robeertinho</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <div class="div_corpo_post">
+
+            <div class="div_post_desc">
+
+                <p id="desc_post">
+                    aaaaaaaaaaaaa
+                </p>
+
+            </div>
+
+            <div class="div_post_img">
+                <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_corpo_post">
+            </div>
+
+        </div>
 
     </main>
 
@@ -161,6 +210,23 @@
     var userUsuario = sessionStorage.USER_USUARIO
     var idUsuario = sessionStorage.ID_USUARIO
 
+    var dadosPostVar = []
+
+    var post_idPost = []
+    var post_descPost = []
+    var post_curtidasPost = []
+    var post_imgPost = []
+    var post_idUsuario = []
+    var post_nomeUsuario = []
+    var post_userUsuario = []
+    var post_emailUser = []
+
+    function atualizarPosts() {
+
+
+
+    }
+
     function user() {
 
         console.log(`nome: ${nomeUsuario}`)
@@ -221,8 +287,46 @@
 
     }
 
-    function pegar_posts(){
-        
+    function listarPosts() {
+
+        fetch("/post/listarPosts")
+
+            .then(response => response.json())
+
+            .then(dadosPost => {
+
+                dadosPost.forEach(resposta => {
+
+                    post_idPost.push(resposta.idPost)
+
+                    post_descPost.push(resposta.descPost)
+
+                    post_curtidasPost.push(resposta.curtidasPost)
+
+                    post_imgPost.push(resposta.imgPost)
+
+                    post_idUsuario.push(resposta.idUsuario)
+
+                    post_nomeUsuario.push(resposta.nomeUsuario)
+
+                    post_userUsuario.push(resposta.userUsuario)
+
+                    post_emailUser.push(resposta.emailUser)
+
+                })
+
+                dadosPost.forEach(resposta => {
+
+
+
+
+                })
+
+
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
     }
 
     function criar_popup() {
@@ -245,5 +349,7 @@
 
 
     }
+
+
 
 </script>

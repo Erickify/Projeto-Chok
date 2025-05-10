@@ -8,4 +8,8 @@ router.post("/postar", function (req, res) {
     postController.postar(req, res);
 })
 
+router.get("/listarPosts", function (req, res) {
+    postController.listarPosts(req, res);
+})
+
 module.exports = router;
