@@ -24,7 +24,7 @@
 }
 
 body {
-    background-color: var(--var-cor-primaria);
+    background-color: var(--var-cor-secundaria);
     color: #171010;
     /* display: flex;
   flex-direction: column;
@@ -54,6 +54,11 @@ nav #sec_login_register {
     margin: 20px;
 }
 
+main{
+
+    color: var(--var-cor-terciaria);
+
+}
 
 
 main #sec_banner {
