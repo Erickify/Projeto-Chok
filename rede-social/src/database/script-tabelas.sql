@@ -1,4 +1,5 @@
 -- 1) Criar DB
+DROP DATABASE rede_social;
 CREATE DATABASE rede_social;
 USE rede_social;
 
@@ -24,9 +25,9 @@ CREATE TABLE tbPost (
   idPost         INT          NOT NULL AUTO_INCREMENT,
   curtidasPost   INT          NOT NULL DEFAULT 0,
   descPost       VARCHAR(300) NULL,
-  imagensPost    LONGBLOB     NULL,
+  imagensPost    TEXT     NULL,
   fkUsuario      INT          NOT NULL,
-  PRIMARY KEY (idPost),
+  PRIMARY KEY (idPost, idPost),
   CONSTRAINT FK_Post_Usuario
     FOREIGN KEY (fkUsuario)
     REFERENCES tbUsuario(idUsuario)
@@ -73,6 +74,6 @@ use rede_social;
  
 show tables;
 
-select * from tbUsuario;
+select * from tbPost;
 
 show databases;

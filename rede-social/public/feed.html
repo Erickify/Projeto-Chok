@@ -185,7 +185,7 @@
         <div class="div_corpo_popup">
 
             <textarea name="" id="textarea_comentairo" placeholder="Faça seu Choke"></textarea>
-            <input type="file" name="" id="input_imagem">
+            <input type="file" name="foto" id="foto">
 
             <div class="div_btns_popup">
                 <button>+</button>
@@ -247,45 +247,29 @@
 
 
     function criar_post() {
+        const descPostVar = textarea_comentairo.value;
+        const imagem = foto.files[0];
 
-        descPostVar = textarea_comentairo.value
-        img = document.getElementById("input_imagem")
-        imgPostVar = img.files[0]
-
-        console.log(imgPostVar)
+        const formData = new FormData();
+        formData.append('foto', imagem);
+        formData.append('descPost', descPostVar);
+        formData.append('idUsuario', idUsuario);
 
         fetch("/post/postar", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-
-                idUsuarioServer: idUsuario,
-                descPostServer: descPostVar,
-                // imgPostServer: imgPostVar,
-
-            }),
+            body: formData
         })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-
-                    console.log("Post realizado com sucesso!")
-                    fechar_popup()
-
-
-
-                } else {
-                    throw "Houve um erro ao tentar realizar o post!";
-                }
+            .then(res => res.json())
+            .then(resposta => {
+                console.log("Post realizado com sucesso!");
+                fechar_popup();
+                listarPosts(); // recarregar feed
             })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
+            .catch(err => {
+                console.log(`#ERRO: ${err}`);
             });
-
     }
+
 
     function listarPosts() {
 
@@ -295,6 +279,7 @@
 
             .then(dadosPost => {
 
+                
                 dadosPost.forEach(resposta => {
 
                     post_idPost.push(resposta.idPost)
