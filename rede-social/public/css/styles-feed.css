@@ -42,8 +42,7 @@ main {
 
   height: 99vh;
   width: 59vw;
-  border: 3px solid var(--var-cor-secundaria);
-  border-radius: 15px;
+
 
 
   /* background-color: #171010; */
@@ -78,7 +77,7 @@ nav {
   width: 99px;
   height: 100px;
   /* clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0 0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z"); */
-  clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0,0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z");
+  clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0,0,1 70,0 L 110,0 L 110,110 L 0,110 L 0,70 Z");
 
 
 }
@@ -167,7 +166,9 @@ aside {
   align-items: center;
 }
 
-
+.div_post{
+  padding: 0 0 10px 0;
+}
 
 .div_post_topo {
   display: flex;
@@ -182,7 +183,7 @@ aside {
   width: 99px;
   height: 100px;
   /* clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0 0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z"); */
-  clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0,0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z");
+  clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0,0,1 70,0 L 110,0 L 110,110 L 0,110 L 0,70 Z");
 
 
 }
@@ -195,7 +196,7 @@ aside {
   border-radius: 0 15px 0 0;
 }
 
-#img_perfil_post {
+.img_perfil_post {
   min-width: 70px;
   width: 70px;
   border-radius: 50%;

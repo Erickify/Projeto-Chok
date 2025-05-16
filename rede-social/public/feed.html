@@ -92,7 +92,7 @@
 
 
         </div>
-
+<!-- 
         <div class="div_post">
 
             <section id="sect_perfil_post">
@@ -136,7 +136,7 @@
                 <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_corpo_post">
             </div>
 
-        </div>
+        </div> -->
 
     </main>
 
@@ -271,48 +271,89 @@
     }
 
 
-    function listarPosts() {
+        function listarPosts() {
+    fetch("/post/listarPosts")
+        .then(response => response.json())
+        .then(dadosPost => {
+            const feedContainer = document.getElementById("feed-container");
+            feedContainer.innerHTML = ""; 
 
-        fetch("/post/listarPosts")
+            dadosPost.forEach(post => {
+ 
+                const postDiv = document.createElement("div");
+                postDiv.className = "div_post";
 
-            .then(response => response.json())
+                const section = document.createElement("section");
+                section.className = "sect_perfil_post";
 
-            .then(dadosPost => {
+                const topo = document.createElement("div");
+                topo.className = "div_post_topo";
 
-                
-                dadosPost.forEach(resposta => {
+                const imgPerfil = document.createElement("img");
+                imgPerfil.src = "./imgs/img_perfil-teste.jpg";
+                imgPerfil.className = "img_perfil_post";
 
-                    post_idPost.push(resposta.idPost)
+                const div1 = document.createElement("div");
+                div1.className = "div_perfil1_post_topo";
 
-                    post_descPost.push(resposta.descPost)
+                const div2 = document.createElement("div");
+                div2.className = "div_perfil2_post_topo";
 
-                    post_curtidasPost.push(resposta.curtidasPost)
+                const nomeDiv = document.createElement("div");
+                nomeDiv.className = "nome_user";
 
-                    post_imgPost.push(resposta.imgPost)
+                const h1 = document.createElement("h1");
+                h1.className = "nomeUsuario";
+                h1.textContent = post.nomeUsuario;
 
-                    post_idUsuario.push(resposta.idUsuario)
+                const p = document.createElement("p");
+                p.className = "userUsuario";
+                p.textContent = `@${post.userUsuario}`;
 
-                    post_nomeUsuario.push(resposta.nomeUsuario)
+                nomeDiv.appendChild(h1);
+                nomeDiv.appendChild(p);
+                div2.appendChild(nomeDiv);
+                topo.appendChild(imgPerfil);
+                topo.appendChild(div1);
+                topo.appendChild(div2);
+                section.appendChild(topo);
 
-                    post_userUsuario.push(resposta.userUsuario)
+                // Corpo do post
+                const corpo = document.createElement("div");
+                corpo.className = "div_corpo_post";
 
-                    post_emailUser.push(resposta.emailUser)
+                const descDiv = document.createElement("div");
+                descDiv.className = "div_post_desc";
 
-                })
+                const descP = document.createElement("p");
+                descP.textContent = post.descPost;
 
-                dadosPost.forEach(resposta => {
+                descDiv.appendChild(descP);
+
+                const imgDiv = document.createElement("div");
+                imgDiv.className = "div_post_img";
+
+                const imgPost = document.createElement("img");
+                imgPost.id = "img_corpo_post";
+                imgPost.src = `assets/${post.imgPost}`;
 
 
 
+                imgDiv.appendChild(imgPost);
 
-                })
+                corpo.appendChild(descDiv);
+                corpo.appendChild(imgDiv);
 
+                postDiv.appendChild(section);
+                postDiv.appendChild(corpo);
 
-            }).catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
+                feedContainer.appendChild(postDiv);
             });
-
-    }
+        })
+        .catch(err => {
+            console.log(`#ERRO: ${err}`);
+        });
+}
 
     function criar_popup() {
 

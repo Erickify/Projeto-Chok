@@ -27,7 +27,7 @@ CREATE TABLE tbPost (
   descPost       VARCHAR(300) NULL,
   imagensPost    TEXT     NULL,
   fkUsuario      INT          NOT NULL,
-  PRIMARY KEY (idPost, idPost),
+  PRIMARY KEY (idPost, fkUsuario),
   CONSTRAINT FK_Post_Usuario
     FOREIGN KEY (fkUsuario)
     REFERENCES tbUsuario(idUsuario)
@@ -77,3 +77,5 @@ show tables;
 select * from tbPost;
 
 show databases;
+
+ INSERT INTO tbPost (descPost, imagensPost, fkUsuario) VALUES ('asdasd','7356762df3c8fb4da7c90e5ea4900749915bacee373aa0a66d5dd4d480b4b9c8ca0e5ef27b2708c4f564e1c202d983dbfcf526b6787bb0c7440918f1c3fa1915.jpg', 2 );
