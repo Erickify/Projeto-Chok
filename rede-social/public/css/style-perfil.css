@@ -1,18 +1,18 @@
-:root{
+:root {
     /* Modo Claro*/
-    --var-cor-primaria: #731ccb;
+    /* --var-cor-primaria: #731ccb;
     --var-cor-secundaria: #c6b9f6;
     --var-cor-terciaria: #171010;
-
+ */
 
     /*Modo escuro*/
-     /* --var-cor-primaria: #cb1c1c;
-     --var-cor-secundaria: #171010;
-     --var-cor-terciaria: #ffff; */
+    --var-cor-primaria: #cb1c1c;
+    --var-cor-secundaria: #171010;
+    --var-cor-terciaria: #ffff;
 
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
@@ -21,37 +21,43 @@
     font-style: normal;
 }
 
+a {
+    all: unset;
+    color: var(--var-cor-terciaria);
+}
 
-body{
+
+body {
     background-color: var(--var-cor-primaria);
     color: #171010;
     display: flex;
     justify-content: space-between;
     align-items: end;
     height: 100vh;
-    
+
 }
 
-nav{
+nav {
     /* background-color: var(--var-cor-secundaria); */
     color: var(--var-cor-primaria);
     display: flex;
     flex-direction: column;
     align-items: start;
-    min-width: 10vw;;
+    min-width: 10vw;
     width: 19vw;
     height: 99vh;
     margin: 2px;
+    position: fixed;
 }
 
-.div_nav_topo{
+.div_nav_topo {
     display: flex;
     height: auto;
     width: 100%;
 
 }
 
-.div_perfil1_nav_topo{
+.div_perfil1_nav_topo {
     background: var(--var-cor-secundaria);
     content: '';
     width: 100px;
@@ -62,7 +68,7 @@ nav{
 
 }
 
-.div_perfil2_nav_topo{
+.div_perfil2_nav_topo {
     background: var(--var-cor-secundaria);
     content: '';
     flex-grow: 1;
@@ -71,7 +77,7 @@ nav{
 }
 
 
-nav #sect_perfil_nav{
+nav #sect_perfil_nav {
 
     width: 100%;
 }
@@ -85,49 +91,51 @@ nav section #img_perfil_nav {
     padding: 4px;
 }
 
-.div_nav{
+.div_nav {
     background: var(--var-cor-secundaria);
     height: 100%;
     width: 100%;
     border-radius: 0 0 15px 15px;
 }
 
-
-.nome_user{
+.nome_user {
     padding: 0 0 0 5px;
     height: 15%;
     color: var(--var-cor-terciaria);
-    background: var(--var-cor-secundaria);
 }
 
-.nome_user p{
-
-    opacity: 80%;
+.nome_user p {
+    opacity: 60%;
     font-weight: 500;
+    padding: 0 10px 0 0;
+}
 
+.nomeUsuario {
+    padding: 10px 0 0px 0;
 }
 
 
-#lista_nav{
+
+#lista_nav {
     padding: 20px 0 20px 0;
     height: 50%;
     width: 100%;
 }
 
-#lista_nav li{
+#lista_nav li {
     height: 50px;
     display: flex;
     align-items: center;
 }
 
-#lista_nav .icone_lista{
+#lista_nav .icone_lista {
     width: 30px;
     height: 30px;
     margin: 10px;
     color: var(--var-cor-terciaria);
 }
 
-#lista_nav li button{
+#lista_nav li button {
     /* color: var(--var-cor-primaria); */
     color: var(--var-cor-terciaria);
     background: none;
@@ -135,38 +143,40 @@ nav section #img_perfil_nav {
 }
 
 
-main{
+main {
 
     height: 90vh;
     width: 59vw;
+    margin: 10px auto;
+
     /* background-color: #171010; */
 }
 
 
-.div_main_topo{
+.div_main_topo {
     display: flex;
     height: auto;
     width: 100%;
-    height: 180px;
+    height: 280px;
+    /*trocar*/
 }
 
-.div_perfil1_main_topo{
+.div_perfil1_main_topo {
     background: var(--var-cor-secundaria);
     position: absolute;
     content: '';
-    width: 250px;
-    height: 180px;
-    /* clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0 0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z"); */
-    clip-path: path("M 0,100 A 15,15 0,0,1 15,100  A 15,15 0,0,0 230,15  A 15,15 0,0,1 230,0  L 250,0  L 250,250  L 0,250  L 0,210 Z");
+    width: 350px;
+    height: 280px;
+    clip-path: path("M 0,155.5 A 20,90.2 0,0,1 10,155.5  A 21,23.33 0,0,0 322,23.33  A 21,23.33 0,0,1 322,0  L 350,0  L 350,388.75  L 0,388.75  L 0,326.55 Z");
 
 
 }
 
-.div_perfil2_main_topo{
+.div_perfil2_main_topo {
     background: var(--var-cor-secundaria);
     content: '';
     flex-grow: 1;
-    height: 180px;
+    height: 280px;
     border-radius: 0 15px 0 0;
     color: var(--var-cor-terciaria);
     display: flex;
@@ -175,66 +185,326 @@ main{
     justify-content: center;
 }
 
-#img_header_main{
+#img_header_main {
     width: 95%;
-    max-height: 150px;
+    max-height: 250px;
     padding: 10px;
     border-radius: 30px;
 }
 
-#nome_user_main{
-    padding: 10px;
+#nome_user_main {
+    font-size: 30px;
+    padding: 25px;
 }
 
 
-main #sect_perfil_main{
+main #sect_perfil_main {
 
     width: 100%;
 }
 
-main #sect_bio{
+main #sect_bio {
     background-color: var(--var-cor-secundaria);
     color: var(--var-cor-terciaria);
     border-radius: 0 0 15px 15px;
-    
+    margin: 0 0 10px;
+
 }
 
-main #sect_bio #p_bio{
+main #sect_bio #p_bio {
     padding: 20px;
     font-weight: 500;
+}
+
+.div_corpo_bio {
+    display: flex;
+}
+
+.div_editar {
+    width: 100%;
+    height: 100px;
+    padding: 15px;
+    display: flex;
+    justify-content: end;
+}
+
+.div_btn_editar {
+    text-align: center;
+    border: 2px solid var(--var-cor-terciaria);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 150px;
+    height: 50px;
+
+
+
+}
+
+.div_pfp {
+    min-width: 349px;
 }
 
 
 
 main section #img_perfil_main {
     min-width: 210px;
-    width: 210px;
-    height: 210px;
+    width: 310px;
+    height: 310px;
     border-radius: 50%;
-    padding: 17px;
     position: relative;
-    bottom: 65px;
+    bottom: 55px;
+    left: 9px;
 }
 
-main section #sect_seguidores{
+main section #sect_seguidores {
     padding: 20px;
     display: flex;
     gap: 10px;
 }
 
-main section #sect_seguidores #p_seguidores, #p_seguindo{
+main section #sect_seguidores #p_seguidores,
+#p_seguindo {
 
     opacity: 50%;
     font-weight: 600;
 
 }
 
-
-aside{
-    width: 20vw;
+aside {
+    width: 19vw;
     height: 99vh;
     background: var(--var-cor-secundaria);
     margin: 2px;
     border-radius: 15px;
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
+
+
+.div_post {
+    padding: 0 0 10px 0;
+}
+
+.div_post_topo {
+    display: flex;
+    height: auto;
+    width: 100%;
+
+}
+
+.div_perfil1_post_topo {
+    background: var(--var-cor-secundaria);
+    content: '';
+    width: 99px;
+    height: 100px;
+    /* clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0 0,1 70,0 L 100,0 L 100,100 L 0,100 L 0,70 Z"); */
+    clip-path: path("M 0,75 A 5,5 0,0,1 5,70 A 5,5 0,0,0 70,5 A 5,5 0,0,1 70,0 L 110,0 L 110,110 L 0,110 L 0,70 Z");
+
+
+}
+
+.div_perfil2_post_topo {
+    background: var(--var-cor-secundaria);
+    content: '';
+    flex-grow: 1;
+    height: 100px;
+    border-radius: 0 15px 0 0;
+}
+
+.img_perfil_post {
+    min-width: 70px;
+    width: 70px;
+    border-radius: 50%;
+    position: absolute;
+    padding: 4px;
+}
+
+
+.div_post_img {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.post #sect_perfil_post {
+
+    width: 100%;
+}
+
+.div_corpo_post {
+
+    background: var(--var-cor-secundaria);
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.div_post_desc {
+
+    width: 100%;
+    display: flex;
+    align-items: start;
+    height: 20%;
+
+}
+
+.p_descPost {
+    color: var(--var-cor-terciaria);
+    padding: 15px 50px 15px 50px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    width: 90%;
+    word-wrap: break-word;
+    margin: 0 0 38px 0;
+}
+
+.div_post_desc #desc_post {
+
+    color: var(--var-cor-terciaria);
+    padding: 10px;
+    font-weight: 500;
+    font-size: 25px;
+
+}
+
+#img_corpo_post {
+    min-width: 90%;
+    min-height: 90%;
+    max-width: 95%;
+    max-width: 95%;
+    margin: 10px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+
+
+/*Modals*/
+
+.div_modals {
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+
+}
+
+#sec_editarPerfil_modal {
+    position: fixed;
+    display: block;
+    top: 50%;
+    left: -50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--var-cor-secundaria);
+    border-radius: 15px;
+    width: 50%;
+    height: 95%;
+}
+
+
+
+#sec_editarPerfil_modal .div_editarPerfil_corpo_modal {
+
+    background: var(--var-cor-secundaria);
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    height: 500px;
+
+}
+
+#div_editarPerfil_banner_modal {
+    width: 100%;
+    height: 300px;
+    position: absolute;
+}
+
+#div_editarPerfil_pfp_modal {
+    width: 300px;
+    height: 300px;
+    border: 3px solid var(--var-cor-terciaria);
+    border-radius: 50%;
+    position: relative;
+    top: 150px;
+
+
+}
+
+
+.div_editarPerfil_topo_modal {
+    display: flex;
+    width: 100%;
+    color: var(--var-cor-terciaria);
+    background: var(--var-cor-secundaria);
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.div_editarPerfil_topo_modal .div_editarPerfil_fechar_modal {
+    width: 80%;
+}
+
+.div_editarPerfil_inputs_modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--var-cor-secundaria);
+    color: var(--var-cor-terciaria);
+    width: 100%;
+}
+
+.div_inputNome_inputs_modal textarea,
+.div_inputBio_inputs_modal textarea {
+
+    padding: 10px;
+    color: var(--var-cor-terciaria);
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: none;
+    border: solid 2px var(--var-cor-terciaria);
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    resize: none;
+
+}
+
+.div_inputNome_inputs_modal,
+.div_inputBio_inputs_modal {
+    width: 90%;
+    height: 150px;
+}
+
+#nome_usario_editar {
+    width: 100%;
+}
+
+
+
+
+button,
+.div_btn_editar,
+.div_btn_salvar,
+.div_editarPerfil_fechar_modal,
+#lista_nav li,
+#lista_nav li h3,
+#lista_nav li svg {
+    cursor: pointer;
+}

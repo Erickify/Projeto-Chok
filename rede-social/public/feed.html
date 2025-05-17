@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo de Feed</title>
+    <title>Choker`s</title>
     <!-- Link para o arquivo CSS -->
     <link rel="stylesheet" href="./css/styles-feed.css">
 </head>
@@ -92,7 +92,7 @@
 
 
         </div>
-<!-- 
+        <!-- 
         <div class="div_post">
 
             <section id="sect_perfil_post">
@@ -142,7 +142,11 @@
 
     <aside id="aside_feed">
 
-        <p></p>
+        <section id="sect_seguidores">
+
+
+
+        </section>
 
         <div id="div_criar_chok">
 
@@ -259,7 +263,7 @@
             method: "POST",
             body: formData
         })
-            .then(res => res.json())
+            // .then(res => res.json())
             .then(resposta => {
                 console.log("Post realizado com sucesso!");
                 fechar_popup();
@@ -271,90 +275,106 @@
     }
 
 
-        function listarPosts() {
-    fetch("/post/listarPosts")
-        .then(response => response.json())
-        .then(dadosPost => {
-            const feedContainer = document.getElementById("feed-container");
-            feedContainer.innerHTML = ""; 
+    function listarPosts() {
+        fetch("/post/listarPosts")
+            .then(response => response.json())
+            .then(dadosPost => {
+                const feedContainer = document.getElementById("feed-container");
+                feedContainer.innerHTML = "";
 
-            dadosPost.forEach(post => {
- 
-                const postDiv = document.createElement("div");
-                postDiv.className = "div_post";
+                dadosPost.forEach(post => {
 
-                const section = document.createElement("section");
-                section.className = "sect_perfil_post";
+                    const postDiv = document.createElement("div");
+                    postDiv.className = "div_post";
 
-                const topo = document.createElement("div");
-                topo.className = "div_post_topo";
+                    const section = document.createElement("section");
+                    section.className = "sect_perfil_post";
 
-                const imgPerfil = document.createElement("img");
-                imgPerfil.src = "./imgs/img_perfil-teste.jpg";
-                imgPerfil.className = "img_perfil_post";
+                    const topo = document.createElement("div");
+                    topo.className = "div_post_topo";
 
-                const div1 = document.createElement("div");
-                div1.className = "div_perfil1_post_topo";
+                    const imgPerfil = document.createElement("img");
+                    imgPerfil.src = "./imgs/img_perfil-teste.jpg";
+                    imgPerfil.className = "img_perfil_post";
 
-                const div2 = document.createElement("div");
-                div2.className = "div_perfil2_post_topo";
+                    const div1 = document.createElement("div");
+                    div1.className = "div_perfil1_post_topo";
 
-                const nomeDiv = document.createElement("div");
-                nomeDiv.className = "nome_user";
+                    const div2 = document.createElement("div");
+                    div2.className = "div_perfil2_post_topo";
 
-                const h1 = document.createElement("h1");
-                h1.className = "nomeUsuario";
-                h1.textContent = post.nomeUsuario;
+                    const nomeDiv = document.createElement("div");
+                    nomeDiv.className = "nome_user";
 
-                const p = document.createElement("p");
-                p.className = "userUsuario";
-                p.textContent = `@${post.userUsuario}`;
+                    const h1 = document.createElement("h1");
+                    h1.className = "nomeUsuario";
+                    h1.textContent = post.nomeUsuario;
 
-                nomeDiv.appendChild(h1);
-                nomeDiv.appendChild(p);
-                div2.appendChild(nomeDiv);
-                topo.appendChild(imgPerfil);
-                topo.appendChild(div1);
-                topo.appendChild(div2);
-                section.appendChild(topo);
+                    const p = document.createElement("p");
+                    p.className = "userUsuario";
+                    p.textContent = `@${post.userUsuario}`;
 
-                // Corpo do post
-                const corpo = document.createElement("div");
-                corpo.className = "div_corpo_post";
+                    nomeDiv.appendChild(h1);
+                    nomeDiv.appendChild(p);
+                    div2.appendChild(nomeDiv);
+                    topo.appendChild(imgPerfil);
+                    topo.appendChild(div1);
+                    topo.appendChild(div2);
+                    section.appendChild(topo);
 
-                const descDiv = document.createElement("div");
-                descDiv.className = "div_post_desc";
+                    // Corpo do post
+                    const corpo = document.createElement("div");
+                    corpo.className = "div_corpo_post";
 
-                const descP = document.createElement("p");
-                descP.className = "p_descPost"
-                descP.textContent = post.descPost;
+                    const descDiv = document.createElement("div");
+                    descDiv.className = "div_post_desc";
 
-                descDiv.appendChild(descP);
+                    const descP = document.createElement("p");
+                    descP.className = "p_descPost"
+                    descP.textContent = post.descPost;
 
-                const imgDiv = document.createElement("div");
-                imgDiv.className = "div_post_img";
+                    descDiv.appendChild(descP);
 
-                const imgPost = document.createElement("img");
-                imgPost.id = "img_corpo_post";
-                imgPost.src = `assets/${post.imgPost}`;
+                    if (post.imgPost != 'null') {
 
+                        const imgDiv = document.createElement("div");
+                        imgDiv.className = "div_post_img";
 
+                        const imgPost = document.createElement("img");
+                        imgPost.id = "img_corpo_post";
+                        imgPost.src = `assets/${post.imgPost}`;
 
-                imgDiv.appendChild(imgPost);
+                        imgDiv.appendChild(imgPost);
 
-                corpo.appendChild(descDiv);
-                corpo.appendChild(imgDiv);
+                        corpo.appendChild(imgDiv);
+                        
+                    }
+                    corpo.appendChild(descDiv);
+                    postDiv.appendChild(section);
+                    postDiv.appendChild(corpo);
 
-                postDiv.appendChild(section);
-                postDiv.appendChild(corpo);
-
-                feedContainer.appendChild(postDiv);
+                    feedContainer.appendChild(postDiv);
+                });
+            })
+            .catch(err => {
+                console.log(`#ERRO: ${err}`);
             });
-        })
-        .catch(err => {
-            console.log(`#ERRO: ${err}`);
-        });
-}
+    }
+
+    function listarAmigos() {
+        fetch("/user/listarAmigos")
+
+            .then(response => response.json())
+
+            .then(console.log('deu bom'))
+
+            .then(listaAmigos => {
+
+
+
+            })
+
+    }
 
     function criar_popup() {
 

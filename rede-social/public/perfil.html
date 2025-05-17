@@ -8,7 +8,7 @@
     <title>Perfil | Choke</title>
 </head>
 
-<body onload="user()">
+<body onload="user(), listarPostsUsuario()">
 
     <nav>
 
@@ -50,31 +50,22 @@
                         <h3>PERFIL</h3>
                     </button>
                 </li>
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="currentcolor" class="icone_lista">
-                        <path
-                            d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
-                    </svg>
-                    <button>
+                <a href="./feed.html">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="currentcolor" class="icone_lista">
+                            <path
+                                d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                        </svg>
                         <h3>HOME</h3>
-                    </button>
-                </li>
+
+                    </li>
+                </a>
                 <li>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="currentcolor" class="icone_lista">
                         <path
                             d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-                    </svg>
-                    <button>
-                        <h3>CHOK</h3>
-                    </button>
-                </li>
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="currentcolor" class="icone_lista">
-                        <path
-                            d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" />
                     </svg>
                     <button>
                         <h3>CONFIG</h3>
@@ -94,8 +85,11 @@
 
             <div class="div_main_topo">
 
+                <div class="div_pfp">
 
-                <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_main">
+                    <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_main">
+
+                </div>
 
                 <div class="div_perfil1_main_topo">
                 </div>
@@ -113,10 +107,30 @@
 
         <section id="sect_bio">
 
-            <div class="nome_user" id="nome_user_main">
+            <div class="div_corpo_bio">
 
-                <h1 class="nomeUsuario">Roberto Carlos</h1>
-                <p class="userUsuario">@robeertinho</p>
+                <div class="nome_user" id="nome_user_main">
+
+                    <h1 class="nomeUsuario">Roberto Carlos</h1>
+                    <p class="userUsuario">@robeertinho</p>
+
+                </div>
+
+                <div class="div_editar">
+
+                    <div class="div_btn_editar " onclick="abrirModal(modalEditarPerfil)">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="currentcolor" class="icone_lista">
+                            <path
+                                d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+                        </svg>
+
+                        <h1>EDITAR</h1>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -138,6 +152,12 @@
 
         </section>
 
+        <div id="feed-container">
+
+
+
+        </div>
+
 
 
 
@@ -149,6 +169,51 @@
 
     </aside>
 
+
+    <section id="sec_editarPerfil_modal">
+
+        <div class="div_editarPerfil_topo_modal">
+
+            <div class="div_editarPerfil_fechar_modal">
+
+                <h1>X</h1>
+
+            </div>
+
+
+
+            <h1>Perfil</h1>
+
+        </div>
+
+        <div class="div_editarPerfil_corpo_modal">
+
+
+            <img src="./imgs/img-header-teste.jpg" alt="" id="div_editarPerfil_banner_modal">
+
+
+            <img src="./imgs/img_perfil-teste.jpg" id="div_editarPerfil_pfp_modal">
+
+
+
+        </div>
+
+        <div class="div_editarPerfil_inputs_modal">
+            <div class="div_inputNome_inputs_modal">
+                <h1>Nome</h1>
+                <textarea name="" id="nome_usario_editar"></textarea>
+            </div>
+            <div class="div_inputBio_inputs_modal">
+                <h1>bio</h1>
+                <textarea name="" id="bio_usuario_editar"></textarea>
+            </div>
+            <div class="div_btn_salvar" onclick="salvarEdicao()">
+                <h1>Salvar</h1>
+            </div>
+        </div>
+
+    </section>
+
 </body>
 
 </html>
@@ -158,11 +223,15 @@
 </style>
 
 <script>
+    var modalAberto = false
 
     var nomeUsuario = sessionStorage.NOME_USUARIO
     var emailUsuario = sessionStorage.EMAIL_USUARIO
     var userUsuario = sessionStorage.USER_USUARIO
     var idUsuario = sessionStorage.ID_USUARIO
+
+    var modalEditarPerfil = "sec_editarPerfil_modal"
+
 
     function user() {
 
@@ -180,6 +249,127 @@
 
         userUsuario.innerHTML = `@${userUsuario}`
 
+    }
+
+    function abrirModal(modalId) {
+        console.log("tentando abrir o modal");
+
+        const modal = document.getElementById(modalId); // Corrigido
+
+        if (!modal) {
+            console.error("Modal não encontrado!");
+            return;
+        }
+
+        if (modalAberto) {
+            modal.style.display = "none";
+            modal.style.left = "-50%";
+            modalAberto = false;
+        } else {
+            modal.style.display = "block";
+            modal.style.left = "50%";
+            modalAberto = true;
+        }
+    }
+
+    function fecharModal(modal) {
+
+
+    }
+
+    function listarPostsUsuario() {
+
+        fetch(`/usuarios/${idUsuario}`, {
+
+        }).
+
+            then(response => response.json())
+
+            .then(dadosPost => {
+
+
+                const feedContainer = document.getElementById("feed-container");
+                feedContainer.innerHTML = "";
+
+                dadosPost.forEach(post => {
+
+                    const postDiv = document.createElement("div");
+                    postDiv.className = "div_post";
+
+                    const section = document.createElement("section");
+                    section.className = "sect_perfil_post";
+
+                    const topo = document.createElement("div");
+                    topo.className = "div_post_topo";
+
+                    const imgPerfil = document.createElement("img");
+                    imgPerfil.src = "./imgs/img_perfil-teste.jpg";
+                    imgPerfil.className = "img_perfil_post";
+
+                    const div1 = document.createElement("div");
+                    div1.className = "div_perfil1_post_topo";
+
+                    const div2 = document.createElement("div");
+                    div2.className = "div_perfil2_post_topo";
+
+                    const nomeDiv = document.createElement("div");
+                    nomeDiv.className = "nome_user";
+
+                    const h1 = document.createElement("h1");
+                    h1.className = "nomeUsuario";
+                    h1.textContent = post.nomeUsuario;
+
+                    const p = document.createElement("p");
+                    p.className = "userUsuario";
+                    p.textContent = `@${post.userUsuario}`;
+
+                    nomeDiv.appendChild(h1);
+                    nomeDiv.appendChild(p);
+                    div2.appendChild(nomeDiv);
+                    topo.appendChild(imgPerfil);
+                    topo.appendChild(div1);
+                    topo.appendChild(div2);
+                    section.appendChild(topo);
+
+                    // Corpo do post
+                    const corpo = document.createElement("div");
+                    corpo.className = "div_corpo_post";
+
+                    const descDiv = document.createElement("div");
+                    descDiv.className = "div_post_desc";
+
+                    const descP = document.createElement("p");
+                    descP.className = "p_descPost"
+                    descP.textContent = post.descPost;
+
+                    descDiv.appendChild(descP);
+
+
+                    if (post.imgPost != 'null') {
+
+                        const imgDiv = document.createElement("div");
+                        imgDiv.className = "div_post_img";
+
+                        const imgPost = document.createElement("img");
+                        imgPost.id = "img_corpo_post";
+                        imgPost.src = `assets/${post.imgPost}`;
+
+                        imgDiv.appendChild(imgPost);
+
+                        corpo.appendChild(imgDiv);
+
+                    }
+
+                    corpo.appendChild(descDiv);
+                    postDiv.appendChild(section);
+                    postDiv.appendChild(corpo);
+
+                    feedContainer.appendChild(postDiv);
+                });
+            })
+            .catch(err => {
+                console.log(`#ERRO: ${err}`);
+            });
     }
 
 </script>

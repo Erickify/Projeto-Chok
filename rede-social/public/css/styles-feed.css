@@ -12,6 +12,7 @@
 }
 
 * {
+
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
@@ -53,7 +54,6 @@ nav {
   flex-direction: column;
   align-items: start;
   min-width: 10vw;
-  ;
   width: 19vw;
   height: 99vh;
   margin: 2px;
@@ -248,6 +248,8 @@ aside {
 #img_corpo_post {
   min-width: 90%;
   min-height: 90%;
+  max-width: 95%;
+  max-width: 95%;
   margin: 10px;
   border-radius: 15px;
   text-align: center;
@@ -319,9 +321,12 @@ aside {
 
 .p_descPost {
   color: var(--var-cor-terciaria);
-  padding: 30px 50px 30px 50px;
+  padding: 15px 50px 15px 50px;
   font-size: 1.5rem;
   font-weight: 400;
+  width: 90%;
+  word-wrap: break-word;
+  margin: 0 0 38px 0;
 }
 
 .div_corpo_popup {
@@ -358,4 +363,12 @@ aside {
   filter: blur(2px);
   filter: brightness(50%);
   transition: 0.2s ease-in;
+}
+
+button, 
+.div_btn_editar, 
+.div_btn_salvar, 
+.div_editarPerfil_fechar_modal, 
+#lista_nav{
+    cursor: pointer;
 }

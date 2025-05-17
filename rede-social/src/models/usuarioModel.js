@@ -22,7 +22,47 @@ function cadastrar(nome, email, senha, user) {
     return database.executar(instrucaoSql);
 }
 
+function listarAmigos() {
+    console.log("ok")
+    var instrucaoSql = `
+    SELECT 
+
+        s.idUsuario as idSeguidor,
+        s.userUsuario as userSeguidor,
+        s.pfpUsuario as pfpSeguidor
+
+    FROM tbUsuario as u
+    JOIN tbUsuario as s ON u.fkSeguidor = s.idUsuario
+    ;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
+function listarPostsUsuario(idUsuario) {
+    console.log("ok")
+    var instrucaoSql = `
+    SELECT 
+        p.idPost as idPost,
+        p.descPost as descPost,
+        p.curtidasPost as curtidasPost,
+        p.imagensPost as imgPost,
+        u.idUsuario as idUsuario,
+        u.nomeUsuario as nomeUsuario,
+        u.userUsuario as userUsuario,
+        u.emailUsuario as emailUser
+    FROM tbPost as p
+    JOIN tbUsuario as u ON p.fkUsuario = u.idUsuario
+    WHERE u.idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listarAmigos,
+    listarPostsUsuario
 };

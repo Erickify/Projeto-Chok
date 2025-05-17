@@ -68,6 +68,7 @@ main #sec_banner {
     align-items: center;
     justify-content: center;
     background-color: var(--var-cor-secundaria);
+    height: 90%;
 }
 
 main .div_borda {
@@ -96,4 +97,21 @@ main .div_btn_flut {
     justify-content: center;
     border: solid 5px var(--var-cor-primaria);
 
+}
+
+main #sec_sobre{
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    padding: 5px 20px 0 0;
+    text-align: justify;
+}
+
+main p{
+    padding: 30px 30px  10px 30px;
+}
+
+main #sec_sobre img{
+    width: 30%;
+    margin: 0 40px;
 }

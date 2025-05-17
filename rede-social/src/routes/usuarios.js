@@ -12,4 +12,14 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/listarAmigos", function (req, res) {
+    usuarioController.listarAmigos(req, res);
+});
+
+router.get("/:id", function(req, res) {
+    usuarioController.listarPostsUsuario(req, res);
+});
+
+
+
 module.exports = router;

@@ -1,5 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
-// var aquarioModel = require("../models/aquarioModel");
+
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -18,7 +18,8 @@ function autenticar(req, res) {
                     nome: resultado[0].nomeUsuario,
                     user: resultado[0].userUsuario,
                     email: resultado[0].emailUsuario,
-                    senha: resultado[0].senhaUsuario
+                    senha: resultado[0].senhaUsuario,
+                    pfp: resultado[0].pfpUsuario
                 });
             } else {
                 res.status(403).json({ erro: "Email e/ou senha inválidos!" });
@@ -66,7 +67,45 @@ function cadastrar(req, res) {
     }
 }
 
+function listarAmigos(req, res){
+
+     usuarioModel.listarAmigos()
+            .then(
+                function (resultado) {
+    
+                    res.json(resultado)
+    
+                }).catch(function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao puxar os seguidores! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                });
+
+
+}
+
+function listarPostsUsuario(req, res){
+    var idUsuario = req.params.id;
+
+    usuarioModel.listarPostsUsuario(idUsuario)
+        .then(
+            function (resultado){
+                res.json(resultado)
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log('houve um erro as listar posts usuarios! Erro: ',
+                    erro.sqlMessage
+                )
+            })
+
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listarAmigos,
+    listarPostsUsuario
 }
