@@ -10,7 +10,7 @@
 
 <body onload="user(), listarPostsUsuario()">
 
-    <nav>
+    <nav id="nav_perfil">
 
         <section id="sect_perfil_nav">
 
@@ -79,7 +79,7 @@
 
     </nav>
 
-    <main>
+    <main id="main_perfil">
 
         <section id="sect_perfil_main">
 
@@ -163,7 +163,7 @@
 
     </main>
 
-    <aside>
+    <aside id="aside_perfil">
 
         <p></p>
 
@@ -174,7 +174,7 @@
 
         <div class="div_editarPerfil_topo_modal">
 
-            <div class="div_editarPerfil_fechar_modal">
+            <div class="div_editarPerfil_fechar_modal" onclick="abrirModal(modalEditarPerfil)">
 
                 <h1>X</h1>
 
@@ -192,8 +192,7 @@
             <img src="./imgs/img-header-teste.jpg" alt="" id="div_editarPerfil_banner_modal">
 
 
-            <img src="./imgs/img_perfil-teste.jpg" id="div_editarPerfil_pfp_modal">
-
+            <img src="./imgs/img_perfil-teste.jpg" id="div_editarPerfil_pfp_modal" onclick="inserir_img()">
 
 
         </div>
@@ -230,6 +229,10 @@
     var userUsuario = sessionStorage.USER_USUARIO
     var idUsuario = sessionStorage.ID_USUARIO
 
+    var pfpUsuario = []
+
+    //moldals
+
     var modalEditarPerfil = "sec_editarPerfil_modal"
 
 
@@ -256,24 +259,54 @@
 
         const modal = document.getElementById(modalId); // Corrigido
 
-        if (!modal) {
-            console.error("Modal não encontrado!");
-            return;
-        }
 
         if (modalAberto) {
-            modal.style.display = "none";
+
+            modal.style.display = "block";
             modal.style.left = "-50%";
             modalAberto = false;
+
+            nav_perfil.classList.remove("blur")
+            main_perfil.classList.remove("blur")
+            aside_perfil.classList.remove("blur")
+
+
         } else {
             modal.style.display = "block";
             modal.style.left = "50%";
             modalAberto = true;
+
+            nav_perfil.classList.add("blur")
+            main_perfil.classList.add("blur")
+            aside_perfil.classList.add("blur")
+
         }
     }
 
-    function fecharModal(modal) {
+    function salvarEdicao() {
 
+        var nomeVar = nome_usario_editar.value
+        var bioVar = bio_usuario_editar.value
+        const imagem = pfpUsuario;
+
+        const formData = new FormData();
+        formData.append('foto', imagem);
+        formData.append('nomeUsuario', nomeVar)
+        formData.append('bioUsuario', bioVar);
+        formData.append('idUsuario', idUsuario);
+
+        fetch("/usuarios/editar", {
+            method: "POST",
+            body: formData
+        })
+            // .then(res => res.json())
+            .then(resposta => {
+                console.log("Edição feita com sucesso com sucesso!");
+                abrirModal();
+            })
+            .catch(err => {
+                console.log(`#ERRO: ${err}`);
+            });
 
     }
 
@@ -371,5 +404,18 @@
                 console.log(`#ERRO: ${err}`);
             });
     }
+
+    function inserir_img() {
+        // Cria o input dinamicamente
+        const input = document.createElement('input');
+        input.type = 'file';
+        pfpUsuario = input.files[0];
+        console.log(pfpUsuario)
+
+
+
+        // Dispara o clique
+        input.click();
+    };
 
 </script>

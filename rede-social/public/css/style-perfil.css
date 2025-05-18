@@ -414,6 +414,7 @@ aside {
     border-radius: 15px;
     width: 50%;
     height: 95%;
+    transition: 0.5s all;
 }
 
 
@@ -441,7 +442,12 @@ aside {
     border-radius: 50%;
     position: relative;
     top: 150px;
+}
 
+#div_editarPerfil_pfp_modal:hover,
+#div_editarPerfil_banner_modal:hover {
+    transition: 0.5s;
+    filter: brightness(50%);
 
 }
 
@@ -451,13 +457,20 @@ aside {
     width: 100%;
     color: var(--var-cor-terciaria);
     background: var(--var-cor-secundaria);
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-radius: 10px 10px 0 0;
 }
 
+.div_editarPerfil_topo_modal h1 {
+    padding: 0 40px;
+}
+
 .div_editarPerfil_topo_modal .div_editarPerfil_fechar_modal {
-    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
 }
 
 .div_editarPerfil_inputs_modal {
@@ -492,12 +505,15 @@ aside {
     height: 150px;
 }
 
-#nome_usario_editar {
-    width: 100%;
-}
 
 
+/* #foto_pfp{
 
+    position: absolute;
+    top: 50%;
+    left: 63%;
+    transform: translate(-50%, -50%);
+} */
 
 button,
 .div_btn_editar,
@@ -505,6 +521,14 @@ button,
 .div_editarPerfil_fechar_modal,
 #lista_nav li,
 #lista_nav li h3,
-#lista_nav li svg {
+#lista_nav li svg,
+#div_editarPerfil_pfp_modal {
     cursor: pointer;
+
+}
+
+.blur {
+    filter: blur(2px);
+    filter: brightness(50%);
+    transition: 0.2s ease-in;
 }

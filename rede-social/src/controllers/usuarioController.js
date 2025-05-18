@@ -103,9 +103,12 @@ function listarPostsUsuario(req, res){
 
 }
 
+function editarUsuario(req, res){}
+
 module.exports = {
     autenticar,
     cadastrar,
     listarAmigos,
-    listarPostsUsuario
+    listarPostsUsuario,
+    editarUsuario
 }

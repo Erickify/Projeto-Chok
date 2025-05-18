@@ -1,4 +1,5 @@
 var express = require("express");
+const upload = require('../config/configUpload'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
 var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
@@ -18,6 +19,10 @@ router.get("/listarAmigos", function (req, res) {
 
 router.get("/:id", function(req, res) {
     usuarioController.listarPostsUsuario(req, res);
+});
+
+router.post("/editar", upload.single('foto'), (req, res) => {
+    usuarioController.editarUsuario(req, res);
 });
 
 
