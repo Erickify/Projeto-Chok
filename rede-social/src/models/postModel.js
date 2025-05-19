@@ -7,7 +7,7 @@ function postar(descPost, imagem, idUsuario ) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO tbPost (descPost, imagensPost, fkUsuario) VALUES ('${descPost}','${imagem}', ${idUsuario} );    `;
+        INSERT INTO tbPost (descPost, imagensPost, fkUsuario) VALUES ("${descPost}","${imagem}", "${idUsuario}" );    `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -25,7 +25,8 @@ function listarPosts() {
         u.userUsuario as userUsuario,
         u.emailUsuario as emailUser
     FROM tbPost as p
-    JOIN tbUsuario as u ON p.fkUsuario = u.idUsuario;
+    JOIN tbUsuario as u ON p.fkUsuario = u.idUsuario 
+    ORDER BY p.idPost DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

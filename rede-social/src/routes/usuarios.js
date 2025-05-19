@@ -25,6 +25,10 @@ router.post("/editar", upload.single('foto'), (req, res) => {
     usuarioController.editarUsuario(req, res);
 });
 
+router.get("/convidado/:id", function(req,res) {
+    usuarioController.convidado(req,res);
+});
+
 
 
 module.exports = router;

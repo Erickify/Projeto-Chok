@@ -188,8 +188,8 @@
 
         <div class="div_corpo_popup">
 
-            <textarea name="" id="textarea_comentairo" placeholder="Faça seu Choke"></textarea>
-            <input type="file" name="foto" id="foto">
+            <textarea name="" id="textarea_comentairo" placeholder="Faça seu Choke" ></textarea>
+            <input type="file" name="foto" id="foto" >
 
             <div class="div_btns_popup">
                 <button>+</button>
@@ -251,7 +251,7 @@
 
 
     function criar_post() {
-        
+
         const descPostVar = textarea_comentairo.value;
         const imagem = foto.files[0];
 
@@ -283,13 +283,18 @@
                 const feedContainer = document.getElementById("feed-container");
                 feedContainer.innerHTML = "";
 
+
                 dadosPost.forEach(post => {
 
+                    var idConvidado = post.idUsuario
                     const postDiv = document.createElement("div");
                     postDiv.className = "div_post";
+                    postDiv.id = post.idPost
+                    
+
 
                     const section = document.createElement("section");
-                    section.className = "sect_perfil_post";
+                    section.className = "sect_perfil_post"
 
                     const topo = document.createElement("div");
                     topo.className = "div_post_topo";
@@ -297,6 +302,8 @@
                     const imgPerfil = document.createElement("img");
                     imgPerfil.src = "./imgs/img_perfil-teste.jpg";
                     imgPerfil.className = "img_perfil_post";
+                    imgPerfil.onclick = () => buscarPerfil(idConvidado)
+
 
                     const div1 = document.createElement("div");
                     div1.className = "div_perfil1_post_topo";
@@ -310,6 +317,7 @@
                     const h1 = document.createElement("h1");
                     h1.className = "nomeUsuario";
                     h1.textContent = post.nomeUsuario;
+                    
 
                     const p = document.createElement("p");
                     p.className = "userUsuario";
@@ -348,7 +356,7 @@
                         imgDiv.appendChild(imgPost);
 
                         corpo.appendChild(imgDiv);
-                        
+
                     }
                     corpo.appendChild(descDiv);
                     postDiv.appendChild(section);
@@ -397,6 +405,17 @@
 
 
     }
+
+    function buscarPerfil(idConvidado){
+
+        console.log(idConvidado)
+
+        sessionStorage.ID_CONVIDADO = idConvidado
+
+        window.location = "perfilSeguidor.html"
+
+    }
+
 
 
 

@@ -111,24 +111,8 @@
 
                 <div class="nome_user" id="nome_user_main">
 
-                    <h1 class="nomeUsuario">Roberto Carlos</h1>
-                    <p class="userUsuario">@robeertinho</p>
-
-                </div>
-
-                <div class="div_editar">
-
-                    <div class="div_btn_editar " onclick="abrirModal(modalEditarPerfil)">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="currentcolor" class="icone_lista">
-                            <path
-                                d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-                        </svg>
-
-                        <h1>EDITAR</h1>
-
-                    </div>
+                    <h1 class="nomeConvidado">Roberto Carlos</h1>
+                    <p class="userConvidado">@robeertinho</p>
 
                 </div>
 
@@ -167,97 +151,12 @@
 
         <p></p>
 
-        <div id="div_criar_chok">
-
-            <button onclick="abrirModal(modalCriarChoke)">
-
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="currentcolor" class="icone_lista">
-                    <path
-                        d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-                </svg>
-                <h1>Postar</h1>
-
-            </button>
-        </div>
-
     </aside>
 
 
-    <section id="sec_editarPerfil_modal">
-
-        <div class="div_editarPerfil_topo_modal">
-
-            <div class="div_editarPerfil_fechar_modal" onclick="abrirModal(modalEditarPerfil)">
-
-                <h1>X</h1>
-
-            </div>
 
 
 
-            <h1>Perfil</h1>
-
-        </div>
-
-        <div class="div_editarPerfil_corpo_modal">
-
-            <label for="inpt_banner_editar">
-                <input type="file" accept="image/*" id="inpt_banner_editar" style="display: none;">
-                <img src="./imgs/img-header-teste.jpg" alt="" id="div_editarPerfil_banner_modal">
-
-            </label>
-
-            <label for="inpt_pfp_editar">
-
-                <input type="file" accept="image/*" id="inpt_pfp_editar" style="display: none;">
-
-                <img src="./imgs/img_perfil-teste.jpg" id="div_editarPerfil_pfp_modal" onclick="inserir_img()">
-
-            </label>
-
-
-
-        </div>
-
-
-        <div class="div_editarPerfil_inputs_modal">
-            <div class="div_inputNome_inputs_modal">
-                <h1>Nome</h1>
-                <textarea name="" id="nome_usario_editar"></textarea>
-            </div>
-            <div class="div_inputBio_inputs_modal">
-                <h1>bio</h1>
-                <textarea name="" id="bio_usuario_editar"></textarea>
-            </div>
-            <div class="div_btn_salvar" onclick="salvarEdicao()">
-                <h1>Salvar</h1>
-            </div>
-        </div>
-
-
-    </section>
-
-
-    <div id="div_popup">
-
-        <div class="div_nav_topo">
-
-
-            <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav">
-
-            <div class="div_perfil1_nav_topo">
-            </div>
-
-            <div class="div_perfil2_nav_topo">
-
-                <h1 class="nomeUsuario">aa</h1>
-                <p class="userUsuario"></p>
-
-            </div>
-
-        </div>
-    </div>
 
 </body>
 
@@ -274,7 +173,45 @@
     var emailUsuario = sessionStorage.EMAIL_USUARIO
     var userUsuario = sessionStorage.USER_USUARIO
     var idUsuario = sessionStorage.ID_USUARIO
-    var bioUsuario = sessionStorage.BIO_USUARIO
+
+    var idConvidado = sessionStorage.ID_CONVIDADO
+
+    var userConvidado = ""
+    var nomeConvidado = ""
+    var pfpConvidado = ""
+    var bannerConvidado = ""
+
+
+    function convidado(idConvidado) {
+
+        fetch(`/usuarios/convidado/${idConvidado}`, {
+        })
+
+            .then(res => res.json())
+            .then(convidado => {
+
+                console.log(convidado[0])
+
+                nomeConvidado = convidado[0].nomeUsuario
+                userConvidado = convidado[0].userUsuario
+                pfpConvidado = convidado[0].pfpUsuario
+                bannerConvidado = convidado[0].bannerUsuario
+
+
+                console.log(`nome: ${nomeConvidado}`)
+                console.log(`id: ${idConvidado}`)
+                console.log(`user: ${userConvidado}`)
+
+                document.querySelectorAll(".nomeConvidado").forEach(h1 => h1.innerHTML = nomeConvidado);
+                document.querySelectorAll(".userConvidado").forEach(p => p.innerHTML = `@${userConvidado}`);
+
+                userConvidado.innerHTML = `@${userConvidado}`
+
+
+            });
+
+    }
+
 
     var pfpUsuario = []
 
@@ -290,25 +227,16 @@
         console.log(`email: ${emailUsuario}`)
         console.log(`id: ${idUsuario}`)
         console.log(`user: ${userUsuario}`)
-        console.log(`Essa é a bio: ${bioUsuario}`)
 
-        nome_usario_editar.value = nomeUsuario
-        if (bioUsuario === "null") {
-
-            bio_usuario_editar.value = ""
-
-        } else {
-            bio_usuario_editar.value = bioUsuario
-        }
 
 
 
         document.querySelectorAll(".nomeUsuario").forEach(h1 => h1.innerHTML = nomeUsuario);
         document.querySelectorAll(".userUsuario").forEach(p => p.innerHTML = `@${userUsuario}`);
 
-
-
         userUsuario.innerHTML = `@${userUsuario}`
+
+        convidado(idConvidado)
 
     }
 
@@ -370,7 +298,7 @@
 
     function listarPostsUsuario() {
 
-        fetch(`/usuarios/${idUsuario}`, {
+        fetch(`/usuarios/${idConvidado}`, {
 
         }).
 

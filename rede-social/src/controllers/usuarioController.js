@@ -19,7 +19,8 @@ function autenticar(req, res) {
                     user: resultado[0].userUsuario,
                     email: resultado[0].emailUsuario,
                     senha: resultado[0].senhaUsuario,
-                    pfp: resultado[0].pfpUsuario
+                    pfp: resultado[0].pfpUsuario,
+                    bio: resultado[0].bioUsuario
                 });
             } else {
                 res.status(403).json({ erro: "Email e/ou senha inválidos!" });
@@ -103,6 +104,22 @@ function listarPostsUsuario(req, res){
 
 }
 
+function convidado(req,res){
+    var idConvidado = req.params.id;
+
+        usuarioModel.convidado(idConvidado)
+            .then(
+                function (resultado) {
+    
+                    res.json(resultado)
+    
+                }).catch(function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                });
+}
+
+
 function editarUsuario(req, res){}
 
 module.exports = {
@@ -110,5 +127,6 @@ module.exports = {
     cadastrar,
     listarAmigos,
     listarPostsUsuario,
-    editarUsuario
+    editarUsuario,
+    convidado
 }

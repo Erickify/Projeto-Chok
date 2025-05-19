@@ -201,6 +201,7 @@ aside {
   border-radius: 50%;
   position: absolute;
   padding: 4px;
+  cursor: pointer;
 }
 
 
