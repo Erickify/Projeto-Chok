@@ -4,7 +4,7 @@ var usuarioModel = require("../models/usuarioModel");
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    
+
 
     if (!email || !senha) {
         return res.status(400).json({ erro: "Preencha todos os campos!" });
@@ -47,7 +47,7 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    }else {
+    } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha, user)
@@ -68,32 +68,32 @@ function cadastrar(req, res) {
     }
 }
 
-function listarAmigos(req, res){
+function listarAmigos(req, res) {
 
-     usuarioModel.listarAmigos()
-            .then(
-                function (resultado) {
-    
-                    res.json(resultado)
-    
-                }).catch(function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao puxar os seguidores! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                });
+    usuarioModel.listarAmigos()
+        .then(
+            function (resultado) {
+
+                res.json(resultado)
+
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao puxar os seguidores! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
 
 
 }
 
-function listarPostsUsuario(req, res){
+function listarPostsUsuario(req, res) {
     var idUsuario = req.params.id;
 
     usuarioModel.listarPostsUsuario(idUsuario)
         .then(
-            function (resultado){
+            function (resultado) {
                 res.json(resultado)
             }).catch(function (erro) {
                 console.log(erro);
@@ -104,23 +104,40 @@ function listarPostsUsuario(req, res){
 
 }
 
-function convidado(req,res){
+function convidado(req, res) {
     var idConvidado = req.params.id;
 
-        usuarioModel.convidado(idConvidado)
-            .then(
-                function (resultado) {
-    
-                    res.json(resultado)
-    
-                }).catch(function (erro) {
-                    console.log(erro);
-                    res.status(500).json(erro.sqlMessage);
-                });
+    usuarioModel.convidado(idConvidado)
+        .then(
+            function (resultado) {
+
+                res.json(resultado)
+
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            });
 }
 
 
-function editarUsuario(req, res){}
+function editarUsuario(req, res) {
+
+    var nomeUsuario = req.body.nomeUsuarioServer;
+    var bioUsuario = req.body.bioUsuarioServer;
+    var idUsuario = req.body.idUsuarioServer;
+
+
+    usuarioModel.editarUsuario(idUsuario, nomeUsuario, bioUsuario)
+
+        .then(resultado => {
+            res.status(201).json({ mensagem: "edição feita com sucesso!", resultado });
+        }).catch(erro => {
+
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+      });
+    
+}
 
 module.exports = {
     autenticar,

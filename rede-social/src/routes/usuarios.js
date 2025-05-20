@@ -21,8 +21,8 @@ router.get("/:id", function(req, res) {
     usuarioController.listarPostsUsuario(req, res);
 });
 
-router.post("/editar", upload.single('foto'), (req, res) => {
-    usuarioController.editarUsuario(req, res);
+router.post("/editar", function (req, res) {
+        usuarioController.editarUsuario(req, res);    
 });
 
 router.get("/convidado/:id", function(req,res) {

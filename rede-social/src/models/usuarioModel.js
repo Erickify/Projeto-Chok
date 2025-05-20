@@ -16,8 +16,8 @@ function cadastrar(nome, email, senha, user) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario, userUsuario) VALUES (?,?,?,?);
-    `[nome, email, senha, user]
+        INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario, userUsuario) VALUES ("${nome}", "${email}", "${senha}", "${user}");
+    `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -72,10 +72,25 @@ function convidado(idConvidado) {
     return database.executar(instrucaoSql);
 }
 
+function editarUsuario( idUsuario, nomeUsuario, bioUsuario) {
+    
+    console.log("ok")
+    var instrucaoSql = `
+    UPDATE tbUsuario
+    SET nomeUsuario = "${nomeUsuario}",
+    bioUsuario =  "${bioUsuario}"
+    WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     listarAmigos,
     listarPostsUsuario,
-    convidado
+    convidado,
+    editarUsuario
 };

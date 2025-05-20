@@ -203,14 +203,14 @@
         <div class="div_editarPerfil_corpo_modal">
 
             <label for="inpt_banner_editar">
-                <input type="file" accept="image/*" id="inpt_banner_editar" style="display: none;">
+                <input type="file" accept="image/*" id="inpt_banner_editar" style="display: none;" name="bannerFoto">
                 <img src="./imgs/img-header-teste.jpg" alt="" id="div_editarPerfil_banner_modal">
 
             </label>
 
             <label for="inpt_pfp_editar">
 
-                <input type="file" accept="image/*" id="inpt_pfp_editar" style="display: none;">
+                <input type="file" accept="image/*" id="inpt_pfp_editar" style="display: none;" name="pfpFoto">
 
                 <img src="./imgs/img_perfil-teste.jpg" id="div_editarPerfil_pfp_modal" onclick="inserir_img()">
 
@@ -224,7 +224,7 @@
         <div class="div_editarPerfil_inputs_modal">
             <div class="div_inputNome_inputs_modal">
                 <h1>Nome</h1>
-                <textarea name="" id="nome_usario_editar"></textarea>
+                <textarea name="" id="nome_usuario_editar"></textarea>
             </div>
             <div class="div_inputBio_inputs_modal">
                 <h1>bio</h1>
@@ -292,7 +292,7 @@
         console.log(`user: ${userUsuario}`)
         console.log(`Essa é a bio: ${bioUsuario}`)
 
-        nome_usario_editar.value = nomeUsuario
+        nome_usuario_editar.value = nomeUsuario
         if (bioUsuario === "null") {
 
             bio_usuario_editar.value = ""
@@ -341,26 +341,43 @@
         }
     }
 
+    // function salvarEdicaoPfp() {
+
+    //     const pfpInput = inpt_pfp_editar.value
+    //     const imagem = foto.files[0];
+
+    //     const formData = new FormData();
+    //     formData.append('pfpFoto', pfpImagem);
+
+    // }
+
     function salvarEdicao() {
-
-        var nomeVar = nome_usario_editar.value
-        var bioVar = bio_usuario_editar.value
-        const imagem = pfpUsuario;
-
-        const formData = new FormData();
-        formData.append('foto', imagem);
-        formData.append('nomeUsuario', nomeVar)
-        formData.append('bioUsuario', bioVar);
-        formData.append('idUsuario', idUsuario);
 
         fetch("/usuarios/editar", {
             method: "POST",
-            body: formData
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+
+                nomeUsuarioServer: nome_usuario_editar.value,
+                bioUsuarioServer: bio_usuario_editar.value,
+                idUsuarioServer: idUsuario
+
+            }),
         })
-            // .then(res => res.json())
-            .then(resposta => {
-                console.log("Edição feita com sucesso com sucesso!");
-                abrirModal();
+            .then(resultado => resultado.json())
+
+            .then(resultado => {
+
+                console.log("Edição realizada com sucesso!");
+                console.log(resultado[0])
+
+                sessionStorage.NOME_USUARIO = resultado.nomeUsuario;
+
+                user()
+
+                abrirModal(modalEditarPerfil);
             })
             .catch(err => {
                 console.log(`#ERRO: ${err}`);
@@ -470,30 +487,30 @@
 
 
 
-    function criar_post() {
+    // function criar_post() {
 
-        const descPostVar = textarea_comentairo.value;
-        const imagem = foto.files[0];
+    //     const descPostVar = textarea_comentairo.value;
+    //     const imagem = foto.files[0];
 
-        const formData = new FormData();
-        formData.append('foto', imagem);
-        formData.append('descPost', descPostVar);
-        formData.append('idUsuario', idUsuario);
+    //     const formData = new FormData();
+    //     formData.append('foto', imagem);
+    //     formData.append('descPost', descPostVar);
+    //     formData.append('idUsuario', idUsuario);
 
-        fetch("/post/postar", {
-            method: "POST",
-            body: formData
-        })
-            // .then(res => res.json())
-            .then(resposta => {
-                console.log("Post realizado com sucesso!");
-                fechar_popup();
-                listarPosts(); // recarregar feed
-            })
-            .catch(err => {
-                console.log(`#ERRO: ${err}`);
-            });
-    }
+    //     fetch("/post/postar", {
+    //         method: "POST",
+    //         body: formData
+    //     })
+    //         // .then(res => res.json())
+    //         .then(resposta => {
+    //             console.log("Post realizado com sucesso!");
+    //             fechar_popup();
+    //             listarPosts(); // recarregar feed
+    //         })
+    //         .catch(err => {
+    //             console.log(`#ERRO: ${err}`);
+    //         });
+    // }
 
 
 </script>
