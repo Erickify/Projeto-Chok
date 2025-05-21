@@ -14,7 +14,7 @@
 
         <section id="sect_perfil_nav">
 
-            <div class="div_nav_topo">
+            <div class="div_nav_topo" id="div_nav_topo">
 
 
                 <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav">
@@ -85,7 +85,7 @@
 
             <div class="div_main_topo">
 
-                <div class="div_pfp">
+                <div class="div_pfp" id="div_pfp">
 
                     <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_main">
 
@@ -196,6 +196,13 @@
                 userConvidado = convidado[0].userUsuario
                 pfpConvidado = convidado[0].pfpUsuario
                 bannerConvidado = convidado[0].bannerUsuario
+
+                div_pfp.innerHTML = `
+
+   <img src="./assets/foto_perfil/${pfpConvidado}" alt="" id="img_perfil_main">
+                `
+
+
 
 
                 console.log(`nome: ${nomeConvidado}`)

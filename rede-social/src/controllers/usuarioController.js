@@ -135,9 +135,72 @@ function editarUsuario(req, res) {
 
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
-      });
-    
+        });
+
 }
+
+function enviarPfp(req, res) {
+
+    const imagem = req.file.filename
+    const idUsuario = req.body.idUsuario
+
+    if (imagem === undefined) {
+
+        console.log('Imagem indefinida')
+
+    } else {
+
+        usuarioModel.enviarPfp(idUsuario, imagem)
+            .then(resultado => {
+                res.status(201).json({ mensagem: "Post criado com sucesso!", resultado });
+            })
+            .catch(erro => {
+                console.error("Erro ao postar:", erro);
+                res.status(500).json({ erro: "Erro ao criar o post." });
+
+            });
+    }
+
+}
+
+function enviarBanner(req, res) {
+
+    const imagem = req.file.filename
+    const idUsuario = req.body.idUsuario
+
+    if (imagem === undefined) {
+
+        console.log('Imagem indefinida')
+
+    } else {
+
+        usuarioModel.enviarBanner(idUsuario, imagem)
+            .then(resultado => {
+                res.status(201).json({ mensagem: "edição criada com sucesso!", resultado });
+            })
+            .catch(erro => {
+                console.error("Erro ao postar:", erro);
+                res.status(500).json({ erro: "Erro ao efetuar edição." });
+
+            });
+    }
+}
+
+function atualizarUser(req, res) {
+    var idUsuario = req.params.id;
+
+    usuarioModel.atualizarUser(idUsuario)
+        .then(
+            function (resultado) {
+
+                res.json(resultado)
+
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            });
+}
+
 
 module.exports = {
     autenticar,
@@ -145,5 +208,8 @@ module.exports = {
     listarAmigos,
     listarPostsUsuario,
     editarUsuario,
-    convidado
+    convidado,
+    enviarPfp,
+    enviarBanner,
+    atualizarUser
 }

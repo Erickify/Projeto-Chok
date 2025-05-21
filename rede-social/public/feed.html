@@ -17,7 +17,7 @@
 
         <section id="sect_perfil_nav">
 
-            <div class="div_nav_topo">
+            <div class="div_nav_topo" id="nav_perfil">
 
 
                 <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav">
@@ -36,8 +36,8 @@
 
             <div class="nome_user" id="nome_user">
 
-                <h1 class="nomeUsuario">Roberto Carlos</h1>
-                <p class="userUsuario">@robeertinho</p>
+                <h1 class="nomeUsuario" id="nomeUsuarioNav">Roberto Carlos</h1>
+                <p class="userUsuario" id="userUsuarioNav">@robeertinho</p>
 
             </div>
 
@@ -177,7 +177,7 @@
 
             <div class="div_perfil2_nav_topo">
 
-                <h1 class="nomeUsuario">aa</h1>
+                <h1 class="nomeUsuario"></h1>
                 <p class="userUsuario"></p>
 
             </div>
@@ -188,11 +188,10 @@
 
         <div class="div_corpo_popup">
 
-            <textarea name="" id="textarea_comentairo" placeholder="Faça seu Choke" ></textarea>
-            <input type="file" name="foto" id="foto" >
+            <textarea name="" id="textarea_comentairo" placeholder="Faça seu Choke"></textarea>
+            <input type="file" name="foto" id="foto">
 
             <div class="div_btns_popup">
-                <button>+</button>
                 <button onclick="criar_post()">Postar</button>
             </div>
 
@@ -213,6 +212,8 @@
     var emailUsuario = sessionStorage.EMAIL_USUARIO
     var userUsuario = sessionStorage.USER_USUARIO
     var idUsuario = sessionStorage.ID_USUARIO
+    var bioUsuario = sessionStorage.BIO_USUARIO
+    var pfpUsuario = sessionStorage.PFP_USUARIO
 
     var dadosPostVar = []
 
@@ -239,13 +240,20 @@
         console.log(`user: ${userUsuario}`)
 
 
+        nomeUsuarioNav.innerHTML = nomeUsuario
+        userUsuarioNav.innerHTML = `@${userUsuario}`
+        nav_perfil.innerHTML = `
 
-        document.querySelectorAll(".nomeUsuario").forEach(h1 => h1.innerHTML = nomeUsuario);
-        document.querySelectorAll(".userUsuario").forEach(p => p.innerHTML = `@${userUsuario}`);
 
+                <img src="./assets/foto_perfil/${pfpUsuario}" alt="" id="img_perfil_nav">
 
+                <div class="div_perfil1_nav_topo">
+                </div>
 
-        userUsuario.innerHTML = `@${userUsuario}`
+                <div class="div_perfil2_nav_topo">
+                </div>
+`
+
 
     }
 
@@ -264,7 +272,7 @@
             method: "POST",
             body: formData
         })
-            
+
             .then(resposta => {
                 console.log("Post realizado com sucesso!");
                 fechar_popup();
@@ -290,7 +298,7 @@
                     const postDiv = document.createElement("div");
                     postDiv.className = "div_post";
                     postDiv.id = post.idPost
-                    
+
 
 
                     const section = document.createElement("section");
@@ -300,7 +308,7 @@
                     topo.className = "div_post_topo";
 
                     const imgPerfil = document.createElement("img");
-                    imgPerfil.src = "./imgs/img_perfil-teste.jpg";
+                    imgPerfil.src = `./assets/foto_perfil/${post.pfpUsuario}`;
                     imgPerfil.className = "img_perfil_post";
                     imgPerfil.onclick = () => buscarPerfil(idConvidado)
 
@@ -317,7 +325,7 @@
                     const h1 = document.createElement("h1");
                     h1.className = "nomeUsuario";
                     h1.textContent = post.nomeUsuario;
-                    
+
 
                     const p = document.createElement("p");
                     p.className = "userUsuario";
@@ -406,7 +414,7 @@
 
     }
 
-    function buscarPerfil(idConvidado){
+    function buscarPerfil(idConvidado) {
 
         console.log(idConvidado)
 

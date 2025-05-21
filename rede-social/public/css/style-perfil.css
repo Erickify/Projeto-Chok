@@ -77,18 +77,19 @@ nav {
 }
 
 
-nav #sect_perfil_nav {
+ #sect_perfil_nav {
 
     width: 100%;
 }
 
-
-nav section #img_perfil_nav {
-    min-width: 70px;
-    width: 70px;
-    border-radius: 50%;
-    position: absolute;
-    padding: 4px;
+#img_perfil_nav {
+  min-width: 70px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  padding: 4px;
+  object-fit: cover;
 }
 
 .div_nav {
@@ -256,6 +257,7 @@ main section #img_perfil_main {
     position: relative;
     bottom: 55px;
     left: 9px;
+    object-fit: cover;
 }
 
 main section #sect_seguidores {
@@ -321,9 +323,11 @@ aside {
 .img_perfil_post {
     min-width: 70px;
     width: 70px;
+    height: 70px;
     border-radius: 50%;
     position: absolute;
     padding: 4px;
+    object-fit: cover;
 }
 
 

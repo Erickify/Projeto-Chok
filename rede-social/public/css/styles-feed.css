@@ -98,9 +98,11 @@ nav #sect_perfil_nav {
 #img_perfil_nav {
   min-width: 70px;
   width: 70px;
+  height: 70px;
   border-radius: 50%;
   position: absolute;
   padding: 4px;
+  object-fit: cover;
 }
 
 .div_nav {
@@ -198,9 +200,11 @@ aside {
 .img_perfil_post {
   min-width: 70px;
   width: 70px;
+  height: 70px;
   border-radius: 50%;
   position: absolute;
   padding: 4px;
+  object-fit: cover;
   cursor: pointer;
 }
 

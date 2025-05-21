@@ -16,7 +16,7 @@ function cadastrar(nome, email, senha, user) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario, userUsuario) VALUES ("${nome}", "${email}", "${senha}", "${user}");
+        INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario, userUsuario, pfpUsuario) VALUES ("${nome}", "${email}", "${senha}", "${user}", "imagem_perfil_default.svg");
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -48,6 +48,7 @@ function listarPostsUsuario(idUsuario) {
         p.descPost as descPost,
         p.curtidasPost as curtidasPost,
         p.imagensPost as imgPost,
+        u.pfpUsuario as pfpUsuario,
         u.idUsuario as idUsuario,
         u.nomeUsuario as nomeUsuario,
         u.userUsuario as userUsuario,
@@ -72,8 +73,8 @@ function convidado(idConvidado) {
     return database.executar(instrucaoSql);
 }
 
-function editarUsuario( idUsuario, nomeUsuario, bioUsuario) {
-    
+function editarUsuario(idUsuario, nomeUsuario, bioUsuario) {
+
     console.log("ok")
     var instrucaoSql = `
     UPDATE tbUsuario
@@ -86,11 +87,50 @@ function editarUsuario( idUsuario, nomeUsuario, bioUsuario) {
 
 }
 
+function enviarPfp(idUsuario, imagem) {
+
+    var instrucaoSql = `
+    UPDATE tbUsuario
+    SET pfpUsuario = "${imagem}"
+    WHERE idUsuario = ${idUsuario};
+    `
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+
+}
+
+function enviarBanner(idUsuario, imagem) {
+
+    var instrucaoSql = `
+    UPDATE tbUsuario
+    SET bannerUsuario = "${imagem}"
+    WHERE idUsuario = ${idUsuario};
+    `
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+
+}
+
+function atualizarUser(idUsuario) {
+
+    var instrucaoSql = `
+    SELECT * FROM tbUsuario WHERE idUsuario = ${idUsuario}`
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     listarAmigos,
     listarPostsUsuario,
     convidado,
-    editarUsuario
+    editarUsuario,
+    enviarPfp,
+    enviarBanner,
+    atualizarUser
 };

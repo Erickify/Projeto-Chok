@@ -14,7 +14,7 @@
 
         <section id="sect_perfil_nav">
 
-            <div class="div_nav_topo">
+            <div class="div_nav_topo" id="div_nav_topo">
 
 
                 <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav">
@@ -33,8 +33,8 @@
 
             <div class="nome_user">
 
-                <h1 class="nomeUsuario">Roberto Carlos</h1>
-                <p class="userUsuario">@robeertinho</p>
+                <h1 class="nomeUsuario" id="nomeUsuarioNav">Roberto Carlos</h1>
+                <p class="userUsuario" id="userUsuarioNav">@robeertinho</p>
 
             </div>
 
@@ -85,7 +85,7 @@
 
             <div class="div_main_topo">
 
-                <div class="div_pfp">
+                <div class="div_pfp" id="main_pfp">
 
                     <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_main">
 
@@ -111,8 +111,8 @@
 
                 <div class="nome_user" id="nome_user_main">
 
-                    <h1 class="nomeUsuario">Roberto Carlos</h1>
-                    <p class="userUsuario">@robeertinho</p>
+                    <h1 class="nomeUsuario" id="nomeUsuarioPerfil">Roberto Carlos</h1>
+                    <p class="userUsuario" id="userUsuarioPerfil">@robeertinho</p>
 
                 </div>
 
@@ -202,17 +202,19 @@
 
         <div class="div_editarPerfil_corpo_modal">
 
-            <label for="inpt_banner_editar">
-                <input type="file" accept="image/*" id="inpt_banner_editar" style="display: none;" name="bannerFoto">
+            <label for="foto" id="banner">
+                <input type="file" accept="image/*" id="foto" style="display: none;" name="foto"
+                    onchange="enviarBanner()">
                 <img src="./imgs/img-header-teste.jpg" alt="" id="div_editarPerfil_banner_modal">
 
             </label>
 
-            <label for="inpt_pfp_editar">
+            <label for="foto1" id="pfp">
 
-                <input type="file" accept="image/*" id="inpt_pfp_editar" style="display: none;" name="pfpFoto">
+                <input type="file" accept="image/*" id="foto1" style="display: none;" name="foto1"
+                    onchange="enviarPfp()">
 
-                <img src="./imgs/img_perfil-teste.jpg" id="div_editarPerfil_pfp_modal" onclick="inserir_img()">
+                <img src="./imgs/img_perfil-teste.jpg" id="div_editarPerfil_pfp_modal">
 
             </label>
 
@@ -234,7 +236,6 @@
                 <h1>Salvar</h1>
             </div>
         </div>
-
 
     </section>
 
@@ -275,8 +276,7 @@
     var userUsuario = sessionStorage.USER_USUARIO
     var idUsuario = sessionStorage.ID_USUARIO
     var bioUsuario = sessionStorage.BIO_USUARIO
-
-    var pfpUsuario = []
+    var pfpUsuario = sessionStorage.PFP_USUARIO
 
     //moldals
 
@@ -293,6 +293,7 @@
         console.log(`Essa é a bio: ${bioUsuario}`)
 
         nome_usuario_editar.value = nomeUsuario
+
         if (bioUsuario === "null") {
 
             bio_usuario_editar.value = ""
@@ -301,14 +302,25 @@
             bio_usuario_editar.value = bioUsuario
         }
 
+        p_bio.innerHTML = bioUsuario
+        nomeUsuarioPerfil.innerHTML = nomeUsuario
+        userUsuarioPerfil.innerHTML = `@${userUsuario}`
+        nomeUsuarioNav.innerHTML = nomeUsuario
+        userUsuarioNav.innerHTML = `@${userUsuario}`
+        main_pfp.innerHTML = `<img src="./assets/foto_perfil/${pfpUsuario}" id="img_perfil_main">`
+        div_nav_topo.innerHTML = `
+        
+        
+                <img src="./assets/foto_perfil/${pfpUsuario}" alt="" id="img_perfil_nav">
 
+                <div class="div_perfil1_nav_topo">
+                </div>
 
-        document.querySelectorAll(".nomeUsuario").forEach(h1 => h1.innerHTML = nomeUsuario);
-        document.querySelectorAll(".userUsuario").forEach(p => p.innerHTML = `@${userUsuario}`);
+                <div class="div_perfil2_nav_topo">
+                </div>
 
+        `
 
-
-        userUsuario.innerHTML = `@${userUsuario}`
 
     }
 
@@ -341,15 +353,55 @@
         }
     }
 
-    // function salvarEdicaoPfp() {
+    function enviarPfp() {
 
-    //     const pfpInput = inpt_pfp_editar.value
-    //     const imagem = foto.files[0];
+        var imagem = foto1.files[0];
+        console.log(`Essa é a imagem de perfil ${imagem}`)
 
-    //     const formData = new FormData();
-    //     formData.append('pfpFoto', pfpImagem);
+        const formData = new FormData();
+        formData.append('foto', imagem);
+        formData.append('idUsuario', idUsuario);
 
-    // }
+
+        fetch("/usuarios/enviarPfp", {
+            method: "POST",
+            body: formData
+        })
+
+            .then(resposta => {
+                console.log("edição pfp realizada com sucesso!");
+                atualizarUser()
+            })
+            .catch(err => {
+                console.log(`#ERRO: ${err}`);
+            });
+    }
+
+    function enviarBanner() {
+
+        var imagem = foto.files[0];
+
+        console.log(`Esse é o banner ${imagem}`)
+
+        const formData = new FormData();
+        formData.append('foto', imagem);
+        formData.append('idUsuario', idUsuario);
+
+
+        fetch("/usuarios/enviarBanner", {
+            method: "POST",
+            body: formData
+        })
+
+            .then(resposta => {
+                console.log("edição banner realizada com sucesso!");
+            })
+            .catch(err => {
+                console.log(`#ERRO: ${err}`);
+            });
+    }
+
+
 
     function salvarEdicao() {
 
@@ -366,18 +418,19 @@
 
             }),
         })
-            .then(resultado => resultado.json())
-
             .then(resultado => {
 
                 console.log("Edição realizada com sucesso!");
-                console.log(resultado[0])
 
-                sessionStorage.NOME_USUARIO = resultado.nomeUsuario;
-
-                user()
+                sessionStorage.NOME_USUARIO = nome_usuario_editar.value;
+                sessionStorage.BIO_USUARIO = bio_usuario_editar.value;
 
                 abrirModal(modalEditarPerfil);
+
+                setTimeout(function () {
+                    location.reload()
+                }, 500)
+
             })
             .catch(err => {
                 console.log(`#ERRO: ${err}`);
@@ -411,7 +464,11 @@
                     topo.className = "div_post_topo";
 
                     const imgPerfil = document.createElement("img");
-                    imgPerfil.src = "./imgs/img_perfil-teste.jpg";
+                    imgPerfil.src = `./assets/foto_perfil/${post.pfpUsuario}`;
+
+
+                    console.log("imgPerfil" + post.pfpUsuario)
+
                     imgPerfil.className = "img_perfil_post";
 
                     const div1 = document.createElement("div");
@@ -480,37 +537,18 @@
             });
     }
 
-    function inserir_img() {
 
-    };
+    function atualizarUser() {
+        fetch(`/usuarios/atualizarUser/${idUsuario}`)
+            .then(res => res.json())
+            .then(dadosAtt => {
+                console.log(dadosAtt[0])
 
-
-
-
-    // function criar_post() {
-
-    //     const descPostVar = textarea_comentairo.value;
-    //     const imagem = foto.files[0];
-
-    //     const formData = new FormData();
-    //     formData.append('foto', imagem);
-    //     formData.append('descPost', descPostVar);
-    //     formData.append('idUsuario', idUsuario);
-
-    //     fetch("/post/postar", {
-    //         method: "POST",
-    //         body: formData
-    //     })
-    //         // .then(res => res.json())
-    //         .then(resposta => {
-    //             console.log("Post realizado com sucesso!");
-    //             fechar_popup();
-    //             listarPosts(); // recarregar feed
-    //         })
-    //         .catch(err => {
-    //             console.log(`#ERRO: ${err}`);
-    //         });
-    // }
+                sessionStorage.PFP_USUARIO = dadosAtt[0].pfpUsuario
+                pfpUsuario = sessionStorage.PFP_USUARIO
+                location.reload()
+            })
+    }
 
 
 </script>

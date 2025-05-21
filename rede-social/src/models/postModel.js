@@ -21,6 +21,7 @@ function listarPosts() {
         p.curtidasPost as curtidasPost,
         p.imagensPost as imgPost,
         u.idUsuario as idUsuario,
+        u.pfpUsuario as pfpUsuario,
         u.nomeUsuario as nomeUsuario,
         u.userUsuario as userUsuario,
         u.emailUsuario as emailUser
