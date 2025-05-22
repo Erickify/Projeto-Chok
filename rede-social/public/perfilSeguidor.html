@@ -94,7 +94,7 @@
                 <div class="div_perfil1_main_topo">
                 </div>
 
-                <div class="div_perfil2_main_topo">
+                <div class="div_perfil2_main_topo" id="div_banner">
 
                     <img src="./imgs/img-header-teste.jpg" alt="" id="img_header_main">
 
@@ -202,6 +202,9 @@
    <img src="./assets/foto_perfil/${pfpConvidado}" alt="" id="img_perfil_main">
                 `
 
+                div_banner.innerHTML = `<img src="./assets/foto_perfil/${bannerConvidado}" alt="" id="img_header_main">
+`
+
 
 
 
@@ -234,9 +237,6 @@
         console.log(`email: ${emailUsuario}`)
         console.log(`id: ${idUsuario}`)
         console.log(`user: ${userUsuario}`)
-
-
-
 
         document.querySelectorAll(".nomeUsuario").forEach(h1 => h1.innerHTML = nomeUsuario);
         document.querySelectorAll(".userUsuario").forEach(p => p.innerHTML = `@${userUsuario}`);
@@ -329,7 +329,7 @@
                     topo.className = "div_post_topo";
 
                     const imgPerfil = document.createElement("img");
-                    imgPerfil.src = "./imgs/img_perfil-teste.jpg";
+                    imgPerfil.src = `./assets/foto_perfil/${pfpConvidado}`;
                     imgPerfil.className = "img_perfil_post";
 
                     const div1 = document.createElement("div");

@@ -252,14 +252,61 @@ aside {
 
 #img_corpo_post {
   min-width: 90%;
-  min-height: 90%;
   max-width: 95%;
-  max-width: 95%;
+  height: 700px;
+  object-fit: contain;
   margin: 10px;
   border-radius: 15px;
+  background-color: #0c0c0c;
   text-align: center;
+  border: 1px solid #212121;
 }
 
+
+/*Comentario*/
+
+img#icone_comentario_post {
+  opacity: 30%;
+}
+
+.div_comentario {
+  color: white;
+  background-color: #0c0c0c;
+  margin: 30px;
+  border-radius: 15px;
+}
+
+
+.user_comentario_div {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  align-items: center;
+  justify-content: start;
+}
+
+.div_info_comentario {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.h1Comentario {
+  color: white;
+  padding: 0 20px;
+}
+
+
+.div_icons_post {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.div_desc_comentario {
+  padding: 10px 30px;
+}
 
 
 
@@ -350,10 +397,10 @@ aside {
   font-size: 1.2rem;
   font-weight: 400;
   background: none;
-  border: solid 2px rgba(0, 0, 0, 0.59);
+  border: solid 2px rgb(36, 36, 36);
   border-radius: 10px;
   width: 97%;
-  height: 200px;
+  height: 100px;
   resize: none;
 }
 
@@ -364,16 +411,53 @@ aside {
   box-shadow: 0px 0px 2px 1px var(--var-cor-primaria);
 }
 
+
+
+#sec_comentario_modal {
+  width: 50%;
+  height: 300px;
+  border-radius: 50%;
+  position: fixed;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  display: none;
+  color: var(--var-cor-terciaria);
+}
+
+.div_corpo_comentario_modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--var-cor-secundaria);
+  border-radius: 0 0 15px 15px;
+}
+
+#textarea_comentairo {
+  width: 95%;
+  margin: 10px;
+  padding: 5px;
+  color: var(--var-cor-terciaria);
+  font-size: 1.2rem;
+  font-weight: 400;
+  background: none;
+  border: solid 2px rgb(36, 36, 36);
+  border-radius: 10px;
+  height: 100px;
+  resize: none;
+}
+
 .blur {
   filter: blur(2px);
   filter: brightness(50%);
   transition: 0.2s ease-in;
 }
 
-button, 
-.div_btn_editar, 
-.div_btn_salvar, 
-.div_editarPerfil_fechar_modal, 
-#lista_nav{
-    cursor: pointer;
+button,
+.div_btn_editar,
+.div_btn_salvar,
+.div_editarPerfil_fechar_modal,
+#lista_nav {
+  cursor: pointer;
 }

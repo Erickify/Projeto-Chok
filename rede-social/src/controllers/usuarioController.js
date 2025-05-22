@@ -20,6 +20,7 @@ function autenticar(req, res) {
                     email: resultado[0].emailUsuario,
                     senha: resultado[0].senhaUsuario,
                     pfp: resultado[0].pfpUsuario,
+                    banner: resultado[0].bannerUsuario,
                     bio: resultado[0].bioUsuario
                 });
             } else {

@@ -177,8 +177,8 @@
 
             <div class="div_perfil2_nav_topo">
 
-                <h1 class="nomeUsuario"></h1>
-                <p class="userUsuario"></p>
+                <h1 class="nomeUsuario" id="nomeUsuario_popup"></h1>
+                <p class="userUsuario" id="userUsuario_popup"></p>
 
             </div>
 
@@ -198,10 +198,48 @@
         </div>
     </div>
 
+    <section id="sec_comentario_modal">
+
+        <div class="div_nav_topo">
+
+
+            <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav">
+
+            <div class="div_perfil1_nav_topo">
+            </div>
+
+            <div class="div_perfil2_nav_topo">
+
+                <div class="nome_user">
+
+                    <h1 class="nomeUsuario" id="nomeUsuario_comentario_modal"></h1>
+                    <p class="userUsuario" id="userUsuario_comentario_modal"></p>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="div_corpo_comentario_modal">
+
+            <textarea name="" id="textarea_comentairo" placeholder="Faça seu comentario"></textarea>
+
+            <div class="div_btns_comentario_modal">
+                <button onclick="comentar()">Comentar</button>
+            </div>
+
+        </div>
+
+    </section>
+
 
     <!-- Script JavaScript -->
 
     <script src="./js/script-feed.js"></script>
+
+
 </body>
 
 </html>
@@ -226,11 +264,12 @@
     var post_userUsuario = []
     var post_emailUser = []
 
-    function atualizarPosts() {
+    //modals
 
+    var modalAberto = false
 
+    modal_comentario = "sec_comentario_modal"
 
-    }
 
     function user() {
 
@@ -242,6 +281,10 @@
 
         nomeUsuarioNav.innerHTML = nomeUsuario
         userUsuarioNav.innerHTML = `@${userUsuario}`
+        nomeUsuario_popup.innerHTML = nomeUsuario
+        userUsuario_popup.innerHTML = `@${userUsuario}`
+        nomeUsuario_comentario_modal.innerHTML = `${nomeUsuario}`
+        userUsuario_comentario_modal.innerHTML = `@${userUsuario}`
         nav_perfil.innerHTML = `
 
 
@@ -366,9 +409,86 @@
                         corpo.appendChild(imgDiv);
 
                     }
+
+
                     corpo.appendChild(descDiv);
                     postDiv.appendChild(section);
                     postDiv.appendChild(corpo);
+
+                    const iconsDiv = document.createElement("div");
+                    iconsDiv.className = "div_icons_post";
+
+                    const iconComentario = document.createElement("img");
+                    iconComentario.id = "icone_comentario_post";
+                    iconComentario.src = `imgs/comentario.svg`;
+                    iconComentario.className = "img_post_comentario";
+                    iconComentario.onclick = () => abrirModal(modal_comentario)
+
+                    const iconCurtida = document.createElement("img");
+                    iconCurtida.id = "icone_curtida_post";
+                    iconCurtida.src = `imgs/curtida.svg`;
+                    iconCurtida.className = "img_post_curtida";
+
+                    iconsDiv.appendChild(iconComentario);
+                    iconsDiv.appendChild(iconCurtida);
+
+                    corpo.appendChild(iconsDiv)
+
+
+                    const comentarioDiv = document.createElement("div");
+                    comentarioDiv.className = "div_comentario";
+
+                    const h1Comentarios = document.createElement("h1");
+                    h1Comentarios.className = "h1Comentario";
+                    h1Comentarios.textContent = "Comentários";
+
+                    corpo.appendChild(h1Comentarios)
+
+                    const userComentarioDiv = document.createElement("div");
+                    userComentarioDiv.className = "user_comentario_div"
+
+                    const imagemUserComentarios = document.createElement("img")
+                    imagemUserComentarios.src = `./assets/foto_perfil/imagem_perfil_default.svg`;
+                    imagemUserComentarios.className = "img_perfil_comentario";
+                    // imagemUserComentarios.onclick = () => buscarPerfil(idConvidado)
+
+                    const nomeUsuarioComentarios = document.createElement("div");
+                    imagemUserComentarios.className = "div_info_comentario";
+
+
+                    const h1NomeComentario = document.createElement("h1");
+                    h1NomeComentario.className = "nomeUsuario";
+                    h1NomeComentario.textContent = post.nomeUsuario;
+
+
+                    const pUserComentario = document.createElement("p");
+                    pUserComentario.className = "userUsuario";
+                    pUserComentario.textContent = `@${post.userUsuario}`;
+
+                    nomeUsuarioComentarios.appendChild(h1NomeComentario);
+                    nomeUsuarioComentarios.appendChild(pUserComentario);
+                    userComentarioDiv.appendChild(imagemUserComentarios);
+                    userComentarioDiv.appendChild(nomeUsuarioComentarios);
+
+
+                    const descComentarioDiv = document.createElement("div")
+                    descComentarioDiv.className = "div_desc_comentario";
+
+                    const descComentario = document.createElement("p")
+                    descComentario.className = "p_desc_comentario";
+                    descComentario.textContent = `ajaskdadjls`
+
+                    descComentarioDiv.appendChild(descComentario)
+
+
+
+
+                    comentarioDiv.appendChild(userComentarioDiv)
+                    comentarioDiv.appendChild(descComentarioDiv)
+
+
+
+                    corpo.appendChild(comentarioDiv);
 
                     feedContainer.appendChild(postDiv);
                 });
@@ -424,7 +544,41 @@
 
     }
 
+    function abrirModal(modalId) {
+        console.log("tentando abrir o modal");
 
+        const modal = document.getElementById(modalId); // Corrigido
+
+
+        if (modalAberto) {
+
+            modal.style.display = "block";
+            modal.style.left = "-50%";
+            modalAberto = false;
+
+            nav_feed.classList.remove("blur")
+            main_feed.classList.remove("blur")
+            aside_feed.classList.remove("blur")
+
+
+        } else {
+            modal.style.display = "block";
+            modal.style.left = "50%";
+            modalAberto = true;
+
+            nav_feed.classList.add("blur")
+            main_feed.classList.add("blur")
+            aside_feed.classList.add("blur")
+
+        }
+    }
+
+    function comentar(idPost){
+
+        fetch(`post/comentar/:${}`)
+
+
+    }
 
 
 </script>

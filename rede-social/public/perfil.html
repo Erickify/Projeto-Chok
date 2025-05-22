@@ -94,7 +94,7 @@
                 <div class="div_perfil1_main_topo">
                 </div>
 
-                <div class="div_perfil2_main_topo">
+                <div class="div_perfil2_main_topo" id="banner_perfil">
 
                     <img src="./imgs/img-header-teste.jpg" alt="" id="img_header_main">
 
@@ -277,6 +277,7 @@
     var idUsuario = sessionStorage.ID_USUARIO
     var bioUsuario = sessionStorage.BIO_USUARIO
     var pfpUsuario = sessionStorage.PFP_USUARIO
+    var bannerUsuario = sessionStorage.BANNER_USUARIO
 
     //moldals
 
@@ -307,6 +308,13 @@
         userUsuarioPerfil.innerHTML = `@${userUsuario}`
         nomeUsuarioNav.innerHTML = nomeUsuario
         userUsuarioNav.innerHTML = `@${userUsuario}`
+
+        div_editarPerfil_pfp_modal.src = `./assets/foto_perfil/${pfpUsuario}`
+        div_editarPerfil_banner_modal.src = `./assets/foto_perfil/${bannerUsuario}`
+
+        banner_perfil.innerHTML = `<img src="./assets/foto_perfil/${bannerUsuario}" alt="" id="img_header_main">
+`
+
         main_pfp.innerHTML = `<img src="./assets/foto_perfil/${pfpUsuario}" id="img_perfil_main">`
         div_nav_topo.innerHTML = `
         
@@ -395,6 +403,8 @@
 
             .then(resposta => {
                 console.log("edição banner realizada com sucesso!");
+                atualizarUser()
+
             })
             .catch(err => {
                 console.log(`#ERRO: ${err}`);
@@ -546,6 +556,12 @@
 
                 sessionStorage.PFP_USUARIO = dadosAtt[0].pfpUsuario
                 pfpUsuario = sessionStorage.PFP_USUARIO
+
+
+                sessionStorage.BANNER_USUARIO = dadosAtt[0].bannerUsuario
+                bannerUsuario = sessionStorage.BANNER_USUARIO
+
+
                 location.reload()
             })
     }
