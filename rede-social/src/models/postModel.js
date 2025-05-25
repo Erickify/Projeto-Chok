@@ -34,7 +34,37 @@ function listarPosts() {
 
 }
 
+function comentar(idPost ,descComentario, idUsuario){
+
+    var instrucaoSql = `
+    
+        INSERT INTO tbComentario (fkPost, descComentario, fkUsuario) VALUES
+	        (${idPost}, "${descComentario}", ${idUsuario});
+    
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
+
+function listarComentarios(idPost) {
+    console.log("ok")
+    var instrucaoSql = `
+    SELECT * FROM tbComentario
+    WHERE fkPost = ${idPost}
+    ORDER BY idComentario DESC;`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
+
+
 module.exports = {
     postar,
-    listarPosts
+    listarPosts,
+    comentar,
+    listarComentarios
 };

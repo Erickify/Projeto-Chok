@@ -11,6 +11,7 @@ function postar(req, res) {
         return res.status(400).json({ erro: "Descrição e ID do usuário são obrigatórios." });
     }
 
+
     postModel.postar(descPost, imagem, idUsuario)
         .then(resultado => {
             res.status(201).json({ mensagem: "Post criado com sucesso!", resultado });
@@ -42,10 +43,57 @@ function listarPosts(req, res) {
 
 }
 
+function comentar(req,res){
+
+    const descComentario = req.body.descComentario;
+    const idUsuario = req.body.idUsuario;
+    var idPost = req.params.id
+
+    if (!idPost) {
+        return res.status(400).json({ erro: "Descrição e ID do usuário são obrigatórios." });
+    }
+
+
+    postModel.comentar( idPost, descComentario, idUsuario)
+        .then(resultado => {
+            res.status(201).json({ mensagem: "comentario criado com sucesso!", resultado });
+        })
+        .catch(erro => {
+            console.error("Erro ao postar:", erro);
+            res.status(500).json({ erro: "Erro ao comentar." });
+
+        });
+
+}
+
+function listarComentarios(req, res) {
+
+    const idPost = req.params.id
+
+    postModel.listarComentarios(idPost)
+        .then(
+            function (resultado) {
+
+                res.json(resultado)
+
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao puxar os comentarios! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
+
+}
+
+
 
 module.exports = {
     postar,
-    listarPosts
+    listarPosts,
+    comentar,
+    listarComentarios
 }
 
 

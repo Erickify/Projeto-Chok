@@ -188,7 +188,7 @@
 
         <div class="div_corpo_popup">
 
-            <textarea name="" id="textarea_comentairo" placeholder="Faça seu Choke"></textarea>
+            <textarea name="" id="textarea_descPost" placeholder="Faça seu Choke"></textarea>
             <input type="file" name="foto" id="foto">
 
             <div class="div_btns_popup">
@@ -268,6 +268,8 @@
 
     var modalAberto = false
 
+    var comentarioAberto = false
+
     modal_comentario = "sec_comentario_modal"
 
 
@@ -303,8 +305,11 @@
 
     function criar_post() {
 
-        const descPostVar = textarea_comentairo.value;
-        const imagem = foto.files[0];
+        var descPostVar = textarea_descPost.value;
+
+
+        var imagem = foto.files[0];
+
 
         const formData = new FormData();
         formData.append('foto', imagem);
@@ -320,11 +325,20 @@
                 console.log("Post realizado com sucesso!");
                 fechar_popup();
                 listarPosts(); // recarregar feed
+                foto.value = ''
+                descPostVar = undefined
+
             })
             .catch(err => {
                 console.log(`#ERRO: ${err}`);
+                foto.value = ''
+                descPostVar = undefined
+
             });
+
+
     }
+
 
 
     function listarPosts() {
@@ -333,7 +347,6 @@
             .then(dadosPost => {
                 const feedContainer = document.getElementById("feed-container");
                 feedContainer.innerHTML = "";
-
 
                 dadosPost.forEach(post => {
 
@@ -422,7 +435,9 @@
                     iconComentario.id = "icone_comentario_post";
                     iconComentario.src = `imgs/comentario.svg`;
                     iconComentario.className = "img_post_comentario";
-                    iconComentario.onclick = () => abrirModal(modal_comentario)
+                    iconComentario.onclick = () => listarComentarios(post.idPost)
+
+                    // abrirModal(modal_comentario, post.idPost)
 
                     const iconCurtida = document.createElement("img");
                     iconCurtida.id = "icone_curtida_post";
@@ -433,6 +448,8 @@
                     iconsDiv.appendChild(iconCurtida);
 
                     corpo.appendChild(iconsDiv)
+
+
 
 
                     const comentarioDiv = document.createElement("div");
@@ -490,12 +507,81 @@
 
                     corpo.appendChild(comentarioDiv);
 
+
                     feedContainer.appendChild(postDiv);
                 });
             })
             .catch(err => {
                 console.log(`#ERRO: ${err}`);
             });
+    }
+
+
+    function listarComentarios(idPost) {
+
+
+        if (!comentarioAberto) {
+
+            comentarioAberto = true
+
+
+            fetch(`post/listarComentarios/${idPost}`)
+                .then(response => response.json())
+                .then(comentarios => {
+
+                    const postDiv = document.getElementById(idPost);
+
+                    const comentarioDiv = document.createElement('div');
+                    comentarioDiv.className = "div_comentario";
+                    // comentariosContainer.id = "comentarios_container"
+
+                    
+                    
+                    const h1Comentarios = document.createElement("h1");
+                    h1Comentarios.className = "h1Comentario";
+                    h1Comentarios.textContent = "Comentários";
+
+                    corpo.appendChild(h1Comentarios)
+
+                    comentariosContainer.className = 'comentarios-container';
+                    postDiv.appendChild(comentariosContainer);
+
+                    comentarios.forEach(comentario => {
+                        const comentarioDiv = document.createElement('div');
+                        comentarioDiv.className = 'comentario';
+
+                        const autor = document.createElement('strong');
+                        autor.textContent = comentario.nomeUsuario;
+
+                        const texto = document.createElement('p');
+                        texto.textContent = comentario.descComentario;
+
+                        comentarioDiv.appendChild(autor);
+                        comentarioDiv.appendChild(texto);
+
+                        comentariosContainer.appendChild(comentarioDiv);
+
+
+
+
+                    });
+                })
+                .catch(err => {
+                    console.error('Erro ao listar comentários:', err);
+                });
+
+            comentarios_container.style.display = "block"
+
+
+        } else {
+
+            comentarios_container.style.display = "none"
+
+            comentarioAberto = true
+
+
+
+        }
     }
 
     function listarAmigos() {
@@ -544,10 +630,12 @@
 
     }
 
-    function abrirModal(modalId) {
+    function abrirModal(modalId, idPost) {
         console.log("tentando abrir o modal");
 
-        const modal = document.getElementById(modalId); // Corrigido
+        const modal = document.getElementById(modalId);
+
+        sessionStorage.ID_POST_ATUAL = idPost
 
 
         if (modalAberto) {
@@ -573,10 +661,26 @@
         }
     }
 
-    function comentar(idPost){
+    function comentar(idPost) {
 
-        fetch(`post/comentar/:${}`)
+        var descComentarioVar = textarea_comentairo.value
+        idPost = sessionStorage.ID_POST_ATUAL
 
+        fetch(`/post/comentar/${idPost}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                descComentario: descComentarioVar,
+                idUsuario: sessionStorage.ID_USUARIO,
+
+            }),
+        })
+
+        abrirModal(modal_comentario)
+
+        location.reload()
 
     }
 

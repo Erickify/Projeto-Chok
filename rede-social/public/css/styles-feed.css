@@ -423,6 +423,7 @@ img#icone_comentario_post {
   transform: translate(-50%);
   display: none;
   color: var(--var-cor-terciaria);
+  transition: 0.5s all;
 }
 
 .div_corpo_comentario_modal {
