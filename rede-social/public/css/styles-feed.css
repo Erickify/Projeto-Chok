@@ -265,8 +265,53 @@ aside {
 
 /*Comentario*/
 
-img#icone_comentario_post {
+#icone_comentario_post,
+#icone_curtida_post {
   opacity: 30%;
+  cursor: pointer;
+  transition: 0.5s;
+  /* color: var(--var-cor-terciaria); */
+}
+
+
+#icone_comentario_post:hover,
+#icone_curtida_post:hover {
+  opacity: 100%;
+  /* color: var(--var-cor-secundaria); */
+
+}
+
+
+
+.cabecario_comentario {
+  color: white;
+  display: none;
+  padding: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div_bntComentar {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  border: 2px solid var(--var-cor-terciaria);
+  color: var(--var-cor-terciaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+}
+
+.div_bntComentar:hover {
+  background: var(--var-cor-terciaria);
+  color: var(--var-cor-secundaria);
+}
+
+
+
+.div_bntComentar h1 {
+  font-size: 20px;
 }
 
 .div_comentario {
@@ -274,6 +319,7 @@ img#icone_comentario_post {
   background-color: #0c0c0c;
   margin: 30px;
   border-radius: 15px;
+  height: 100%;
 }
 
 
@@ -302,6 +348,7 @@ img#icone_comentario_post {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  color: var(--var-cor-terciaria);
 }
 
 .div_desc_comentario {
@@ -448,6 +495,22 @@ img#icone_comentario_post {
   height: 100px;
   resize: none;
 }
+
+/*Comentarios*/
+
+.img_perfil_comentario {
+
+  min-width: 70px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  padding: 4px;
+  object-fit: cover;
+  cursor: pointer;
+
+}
+
+
 
 .blur {
   filter: blur(2px);

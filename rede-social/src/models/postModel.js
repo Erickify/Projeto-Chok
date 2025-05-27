@@ -1,7 +1,7 @@
 var database = require("../database/config")
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function postar(descPost, imagem, idUsuario ) {
+function postar(descPost, imagem, idUsuario) {
     console.log("ACESSEI O post MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", descPost, idUsuario, imagem);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -34,7 +34,7 @@ function listarPosts() {
 
 }
 
-function comentar(idPost ,descComentario, idUsuario){
+function comentar(idPost, descComentario, idUsuario) {
 
     var instrucaoSql = `
     
@@ -52,9 +52,20 @@ function comentar(idPost ,descComentario, idUsuario){
 function listarComentarios(idPost) {
     console.log("ok")
     var instrucaoSql = `
-    SELECT * FROM tbComentario
-    WHERE fkPost = ${idPost}
-    ORDER BY idComentario DESC;`;
+SELECT 
+    c.idComentario,
+    c.fkPost,
+    c.fkSubComentario,
+    c.descComentario,
+    c.fkUsuario,
+    u.nomeUsuario,
+    u.userUsuario,
+    u.pfpUsuario,
+    u.emailUsuario
+FROM tbComentario AS c
+JOIN tbUsuario AS u ON c.fkUsuario = u.idUsuario
+WHERE c.fkPost = ${idPost}
+ORDER BY c.idComentario DESC;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 
