@@ -13,6 +13,18 @@ router.post("/comentar/:id", function (req, res) {
     postController.comentar(req, res);
 })
 
+router.post("/curtir/:id", function (req, res) {
+    postController.curtir(req, res);
+})
+
+router.post("/descurtir/:id", function (req, res) {
+    postController.descurtir(req, res);
+})
+
+router.get("/contarCurtida/:id", function (req, res) {
+    postController.contarCurtida(req, res);
+})
+
 router.get("/listarPosts", function (req, res) {
     postController.listarPosts(req, res);
 })

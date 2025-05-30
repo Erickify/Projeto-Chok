@@ -43,7 +43,7 @@ function listarPosts(req, res) {
 
 }
 
-function comentar(req,res){
+function comentar(req, res) {
 
     const descComentario = req.body.descComentario;
     const idUsuario = req.body.idUsuario;
@@ -54,7 +54,7 @@ function comentar(req,res){
     }
 
 
-    postModel.comentar( idPost, descComentario, idUsuario)
+    postModel.comentar(idPost, descComentario, idUsuario)
         .then(resultado => {
             res.status(201).json({ mensagem: "comentario criado com sucesso!", resultado });
         })
@@ -65,6 +65,71 @@ function comentar(req,res){
         });
 
 }
+
+function curtir(req, res) {
+
+    const idUsuario = req.body.idUsuario;
+    var idPost = req.params.id
+
+    if (!idPost) {
+        return res.status(400).json({ erro: "Descrição e ID do usuário são obrigatórios." });
+    }
+
+
+    postModel.curtir(idPost, idUsuario)
+        .then(resultado => {
+            res.status(201).json({ mensagem: "curtida feita com sucesso!", resultado });
+        })
+        .catch(erro => {
+            console.error("Erro ao curtir:", erro);
+            res.status(500).json({ erro: "Erro ao curtir." });
+
+        });
+
+}
+
+function descurtir(req, res) {
+
+    const idUsuario = req.body.idUsuario;
+    var idPost = req.params.id
+
+    if (!idPost) {
+        return res.status(400).json({ erro: "Descrição e ID do usuário são obrigatórios." });
+    }
+
+
+    postModel.descurtir(idPost, idUsuario)
+        .then(resultado => {
+            res.status(201).json({ mensagem: "descurtida feita com sucesso!", resultado });
+        })
+        .catch(erro => {
+            console.error("Erro ao descurtir:", erro);
+            res.status(500).json({ erro: "Erro ao descurtir." });
+
+        });
+}
+
+function contarCurtida(req, res) {
+
+    const idPost = req.params.id
+
+    postModel.contarCurtida(idPost)
+        .then(
+            function (resultado) {
+
+                res.json(resultado)
+
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao contar curtidads dos posts! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            });
+
+}
+
 
 function listarComentarios(req, res) {
 
@@ -93,7 +158,10 @@ module.exports = {
     postar,
     listarPosts,
     comentar,
-    listarComentarios
+    listarComentarios,
+    curtir,
+    descurtir,
+    contarCurtida
 }
 
 

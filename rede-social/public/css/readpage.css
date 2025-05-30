@@ -18,9 +18,19 @@
     padding: 0;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 900;
-    font-style: normal;
+    /* font-weight: 400;
+    font-style: normal; */
 
+}
+
+a, li {
+    all: unset;
+    color: var(--var-cor-terciaria);
+}
+
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -47,14 +57,21 @@ nav {
 
 nav #sec_login_register {
     display: flex;
-    align-items: center;
-    justify-content: end;
+    align-items: end;
+    justify-content: start;
     width: 100%;
     height: 100%;
-    margin: 20px;
+    margin: 40px;
+    font-weight: 900;
+    gap: 10px;
+    
 }
 
-main{
+nav #sec_login_register p {
+    cursor: pointer;
+}
+
+main {
 
     color: var(--var-cor-terciaria);
 
@@ -87,9 +104,9 @@ main .div_borda img {
 main .div_btn_flut {
     position: relative;
     color: var(--var-cor-primaria);
-    bottom: 70px;
-    height: 100px;
-    width: 100px;
+    bottom: 100px;
+    height: 150px;
+    width: 150px;
     background-color: var(--var-cor-secundaria);
     border-radius: 100%;
     display: flex;
@@ -99,7 +116,7 @@ main .div_btn_flut {
 
 }
 
-main #sec_sobre{
+main #sec_sobre {
     display: flex;
     font-size: 30px;
     justify-content: center;
@@ -107,11 +124,49 @@ main #sec_sobre{
     text-align: justify;
 }
 
-main p{
-    padding: 30px 30px  10px 30px;
+main p {
+    padding: 30px 30px 10px 30px;
 }
 
-main #sec_sobre img{
-    width: 30%;
+main #sec_sobre .div_img {
+    width: 5000px;
     margin: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main #sec_sobre .div_img  img{
+    width: 60%;
+    margin: 0 40px;
+}
+
+main #sec_contato{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.animation {
+
+    animation: animation 5s ease-in-out infinite;
+
+}
+
+@keyframes animation {
+
+    0% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(40px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+
 }

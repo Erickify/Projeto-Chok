@@ -1,10 +1,12 @@
-var express = require("express");
+const express = require("express");
 const upload = require('../config/configPerfilUpload'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
-var router = express.Router();
+const router = express.Router();
 
-var usuarioController = require("../controllers/usuarioController");
+const usuarioController = require("../controllers/usuarioController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
+router.get("/dashPostMaisCurtido/:id", function (req, res) {
+    usuarioController.dashPostMaisCurtido(req, res);
+});
 router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
@@ -36,6 +38,7 @@ router.post("/enviarPfp", upload.single('foto'), (req, res) => {
 router.post("/enviarBanner", upload.single('foto'), (req, res) => {
     usuarioController.enviarBanner(req, res);
 });
+
 
 router.get("/atualizarUser/:id", function (req, res) {
     usuarioController.atualizarUser(req, res);

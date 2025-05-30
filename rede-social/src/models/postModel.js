@@ -48,6 +48,47 @@ function comentar(idPost, descComentario, idUsuario) {
 
 }
 
+function curtir(idPost, idUsuario) {
+
+    var instrucaoSql = `
+    
+        INSERT INTO tbCurtidas (fkPost, fkUsuario) VALUES
+	        (${idPost}, ${idUsuario});
+    
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
+function descurtir(idPost, idUsuario) {
+
+    var instrucaoSql = `
+
+    DELETE FROM tbCurtidas WHERE fkUsuario = ${idUsuario}
+    
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
+function contarCurtida(idPost) {
+    console.log("ok")
+    var instrucaoSql = `
+SELECT 
+    COUNT(*) as qtdCurtidas from tbCurtidas 
+WHERE fkPost = ${idPost}
+
+
+`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
 
 function listarComentarios(idPost) {
     console.log("ok")
@@ -77,5 +118,8 @@ module.exports = {
     postar,
     listarPosts,
     comentar,
-    listarComentarios
+    listarComentarios,
+    curtir,
+    descurtir,
+    contarCurtida
 };

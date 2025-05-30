@@ -473,6 +473,23 @@ aside {
   transition: 0.5s all;
 }
 
+.curtidas_post{
+  display: flex;
+}
+
+#sec_comentar_modal {
+  width: 50%;
+  height: 300px;
+  border-radius: 50%;
+  position: fixed;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  display: none;
+  color: var(--var-cor-terciaria);
+  transition: 0.5s all;
+}
+
 .div_corpo_comentario_modal {
   display: flex;
   flex-direction: column;
