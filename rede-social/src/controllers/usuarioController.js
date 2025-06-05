@@ -156,6 +156,7 @@ function autenticar(req, res) {
 					pfp: resultado[0].pfpUsuario,
 					banner: resultado[0].bannerUsuario,
 					bio: resultado[0].bioUsuario,
+					dataInscricao: resultado[0].dataInscricao,
 				});
 			} else {
 				res.status(403).json({

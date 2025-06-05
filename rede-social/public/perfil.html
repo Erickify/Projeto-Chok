@@ -8,7 +8,7 @@
 		<title>Perfil | Choke</title>
 	</head>
 
-	<body onload="user(), listarPostsUsuario(), dashUsuario()">
+	<body onload="user(), listarPostsUsuario(), atualizarGraficos(idUsuario)">
 		<nav id="nav_perfil">
 			<section id="sect_perfil_nav">
 				<div class="div_nav_topo" id="div_nav_topo">
@@ -371,6 +371,9 @@
 	const modalEditarPerfil = "sec_editarPerfil_modal";
 	const modalCriarChoke = "div_criar_chok";
 	const modal_comentario = "sec_comentario_modal";
+
+
+
 
 	var comentarioAberto = false;
 
@@ -834,7 +837,7 @@
 		}
 	}
 
-	function atualizarUser() {
+	function atualizarUser(idUsuario) {
 		fetch(`/usuarios/atualizarUser/${idUsuario}`)
 			.then((res) => res.json())
 			.then((dadosAtt) => {
@@ -933,55 +936,214 @@ function buscarPerfil(idConvidado) {
 		window.location = "perfilSeguidor.html";
 }
 
+	var varTotal_curtidas = 0
+	var varTotal_com = 0
+	var varTotal_posts = 0
 
 
 function atualizarGraficos(){	
 
-	fetch(``)
+		
 
-	console.log("Lista curtida semana: " + lista_CurtidasSemana)
+	fetch(`/usuarios/dashPostMaisCurtido/${idUsuario}`)
+		.then((response) => response.json())
+		.then((dados) => {
+
+			var post_mais_curtidas = document.getElementById("post_mais_curtido")
+
+			const minipost = document.createElement("div");
+			minipost.className = "minipost";
+
+				const titulo = document.createElement("h1")
+				titulo.textContent = "Post mais curtido"
+
+				minipost.appendChild(titulo)
+				
+				const div_minipost_img = document.createElement("div")
+				div_minipost_img.className = "div_minipost_img"
+				
+				const minipost_img = document.createElement("img")
+				minipost_img.src = `assets/${dados[0].imagensPost}`
+				minipost_img.id = "img_corpo_minipost"
+				
+				div_minipost_img.appendChild(minipost_img)
+
+				minipost.appendChild(div_minipost_img)
+				
+				const div_qtd_curtidas = document.createElement("div")
+				div_qtd_curtidas.className = "div_qtd_curtidas_minipost"
+				div_qtd_curtidas.style.display = "flex"
+
+
+					const qtd_curtidas = document.createElement("h1")
+					qtd_curtidas.textContent = `Curtidas ${dados[0].totalCurtidas}`
+
+					div_qtd_curtidas.appendChild(qtd_curtidas)
+
+					div_qtd_curtidas.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="currentcolor" class="icone_dash"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>`
+					
+				minipost.appendChild(div_qtd_curtidas)
+
+				const tituloCurtidas = document.createElement("h1")
+				tituloCurtidas.textContent = `Quem curtiu`
+
+				minipost.appendChild(tituloCurtidas)
+
+				const div_curtidas_minipost = document.createElement("div")
+				div_curtidas_minipost.id = `div_pessoasCurtiu`
+
+					fetch(`usuarios/dashPostMaisCurtidosCurtidas/${dados[0].idPost}`)
+					.then((response) => response.json())
+					.then((curtidas) => {
+
+						curtidas.forEach((quemCurtiu) => {
+							
+							const div_curtiu_minipost = document.createElement('div')
+							div_curtiu_minipost.className = "div_quem_curtiu"
+
+								const img_curtiu = document.createElement("img")
+								img_curtiu.src = `assets/foto_perfil/${quemCurtiu.pfpUsuario}`
+								img_curtiu.className = `pfp_quem_curtiu`
+
+							div_curtiu_minipost.appendChild(img_curtiu)
+
+							const div_info_usuario = document.createElement("div")
+
+								const nome_usuario = document.createElement("h1")
+								nome_usuario.textContent = `${quemCurtiu.nomeQuemCurtiu}`
+
+								const user_usuario = document.createElement("p")
+								user_usuario.textContent = `${quemCurtiu.userQuemCurtiu}`
+
+								const data_curtiu = document.createElement("p")
+								data_curtiu.textContent = `${quemCurtiu.diaQuemCurtiu}`
+
+								div_info_usuario.appendChild(nome_usuario)
+								div_info_usuario.appendChild(user_usuario)
+								div_info_usuario.appendChild(data_curtiu)
+								
+							div_curtiu_minipost.appendChild(div_info_usuario)
+
+							div_curtidas_minipost.appendChild(div_curtiu_minipost)
+
+							
+
+						})
+
+
+					})
+					
+
+				minipost.appendChild(div_curtidas_minipost)
+
+
+
+
+
+			post_mais_curtidas.appendChild(minipost)
+
+		})
+		.catch(() => {
+			console.log("erro no atualizarGraficos")
+		})
+
+		fetch(`usuarios/dashTotalCurtidas/${idUsuario}`)
+		.then((response) => response.json())
+		.then((curtidas) => {
+
+			console.log(curtidas[0].total_curtidas)
+
+			varTotal_curtidas = curtidas[0].total_curtidas
+
+			total_curtidas.innerHTML = `${curtidas[0].total_curtidas}`
+
+		fetch(`usuarios/dashTotalComentarios/${idUsuario}`)
+		.then((response) => response.json())
+		.then((com) => {
+
+			console.log(com[0].total_com)
+
+			varTotal_com = com[0].total_com
+
+			total_comentarios.innerHTML = `${com[0].total_com}`
+
+		fetch(`usuarios/dashTotalPosts/${idUsuario}`)
+		.then((response) => response.json())
+		.then((post) => {
+
+			console.log(post[0].total_posts)
+
+			varTotal_posts = post[0].total_posts
+
+			total_posts.innerHTML = `${post[0].total_posts}`
+
+			grafico()
+		})
+
+		})
+
+		})
+
+
+
+		
+
+
+
+	// console.log("Lista curtida semana: " + lista_CurtidasSemana)
 	// console.log("lista curtida semana dia" + lista_CurtidasSemana_dia)
 	// console.log("lista comentario semana" + lista_comentariosSemana)
 	// console.log("lista comentatio semana dia" + lista_comentariosSemana_dia)
 
 
 
-	 var graficoL = document.getElementById('meuLineChart');
+	//  var graficoL = document.getElementById('meuLineChart');
 
-                    new Chart(graficoL, {
-                        type: "bar",
-                        data: {
-                            labels: lista_diaDaSemana,
-                            datasets: [
-                                {
-                                    label: "Curtidas",
-                                    data: lista_CurtidasSemana,
-									borderColor: "white",
-									backgroundColor: "#7D1128",
-                                    borderRadius: 5
+    //                 new Chart(graficoL, {
+    //                     type: "bar",
+    //                     data: {
+    //                         labels: lista_diaDaSemana,
+    //                         datasets: [
+    //                             {
+    //                                 label: "Curtidas",
+    //                                 data: lista_CurtidasSemana,
+	// 								borderColor: "white",
+	// 								backgroundColor: "#7D1128",
+    //                                 borderRadius: 5
 									
-                                },
-                                {
-                                    label: "Comentários",
-                                    data: lista_comentariosSemana,
-									borderColor: "white",
-									backgroundColor: "#2b2d42",
-                                    borderRadius: 5
+    //                             },
+    //                             {
+    //                                 label: "Comentários",
+    //                                 data: lista_comentariosSemana,
+	// 								borderColor: "white",
+	// 								backgroundColor: "#2b2d42",
+    //                                 borderRadius: 5
 									
-                                },
-								{
-                                    label: "Posts",
-                                    data: lista_postsSemana,
-									borderColor: "white",
-									backgroundColor: "#EDF2F4",
-                                    borderRadius: 5
+    //                             },
+	// 							{
+    //                                 label: "Posts",
+    //                                 data: lista_postsSemana,
+	// 								borderColor: "white",
+	// 								backgroundColor: "#EDF2F4",
+    //                                 borderRadius: 5
 									
-                                }
-                            ]
-                        },
-                    });
+    //                             }
+    //                         ]
+    //                     },
+    //                 });
 
-	 var graficoD = document.getElementById('meuPineChart');
+
+
+
+
+
+}
+
+
+		function grafico() {
+			// console.log(varTotal_posts)
+
+				 var graficoD = document.getElementById('meuPineChart');
 
                     new Chart(graficoD, {
                         type: "doughnut",
@@ -999,8 +1161,5 @@ function atualizarGraficos(){
                         },
                     });
 
-
-
-
-}
+		}
 </script>

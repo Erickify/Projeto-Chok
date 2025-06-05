@@ -1191,6 +1191,7 @@ aside {
 	background: var(--var-cor-secundaria);
 	border-radius: 15px;
 	padding: 10px;
+	color: var(--var-cor-terciaria);
 	/* padding: 10px; */
 	/* margin: 10px; */
 }
@@ -1226,6 +1227,7 @@ aside {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: var(--var-cor-terciaria);
 }
 
 .div_info_quem_curtiu > p {
