@@ -14,8 +14,8 @@ CREATE TABLE tbUsuario (
     senhaUsuario VARCHAR(10) NOT NULL,
     bioUsuario VARCHAR(100) NULL,
     fkSeguidor INT NULL,
-    pfpUsuario LONGBLOB NULL,
-    bannerUsuario LONGBLOB NULL,
+    pfpUsuario TEXT NULL,
+    bannerUsuario TEXT NULL,
     PRIMARY KEY (idUsuario),
     CONSTRAINT FK_Usuario_Seguidor FOREIGN KEY (fkSeguidor) REFERENCES tbUsuario (idUsuario)
 );
@@ -46,11 +46,11 @@ CREATE TABLE tbComentario (
 
 -- 5) tbCurtidas
 CREATE TABLE tbCurtidas (
-    fkCurtidas INT NOT NULL AUTO_INCREMENT,
-    tbUsuario_idUsuario INT NOT NULL,
+    fkUsuario INT NOT NULL,
     fkPost INT NOT NULL,
+    dataCurtida DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (fkCurtidas),
-    CONSTRAINT FK_Curtida_Usuario FOREIGN KEY (tbUsuario_idUsuario) REFERENCES tbUsuario (idUsuario),
+    CONSTRAINT FK_Curtida_Usuario FOREIGN KEY (fkUsuario) REFERENCES tbUsuario (idUsuario),
     CONSTRAINT FK_Curtida_Post FOREIGN KEY (fkPost) REFERENCES tbPost (idPost)
 );
 
@@ -84,3 +84,33 @@ VALUES (
         '7356762df3c8fb4da7c90e5ea4900749915bacee373aa0a66d5dd4d480b4b9c8ca0e5ef27b2708c4f564e1c202d983dbfcf526b6787bb0c7440918f1c3fa1915.jpg',
         2
     );
+
+SELECT
+    day(c.dataCurtida) AS data_cur,
+    COUNT(c.fkPost) AS total_cur,
+    COUNT(co.fkPost) AS total_com,
+    COUNT(p.idPost) AS total_post
+FROM
+    tbUsuario u
+    LEFT JOIN tbPost p ON u.idUsuario = p.fkUsuario
+    LEFT JOIN tbCurtidas c ON p.idPost = c.fkPost
+    LEFT JOIN tbComentario co ON p.idPost = co.fkPost
+WHERE
+    u.idUsuario = 2
+group by
+    data_cur
+UNION
+SELECT
+    day(c.dataCurtida) AS data_cur,
+    COUNT(c.fkPost) AS total_cur,
+    COUNT(co.fkPost) AS total_com,
+    COUNT(p.idPost) AS total_post
+FROM
+    tbUsuario u
+    LEFT JOIN tbPost p ON u.idUsuario = p.fkUsuario
+    LEFT JOIN tbCurtidas c ON p.idPost = c.fkPost
+    LEFT JOIN tbComentario co ON p.idPost = co.fkPost
+WHERE
+    u.idUsuario = 2
+group by
+    data_cur;

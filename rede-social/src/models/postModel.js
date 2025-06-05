@@ -18,7 +18,6 @@ function listarPosts() {
     SELECT 
         p.idPost as idPost,
         p.descPost as descPost,
-        p.curtidasPost as curtidasPost,
         p.imagensPost as imgPost,
         u.idUsuario as idUsuario,
         u.pfpUsuario as pfpUsuario,

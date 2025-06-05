@@ -10,6 +10,7 @@
 
   <script src="./js/sessao.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="stylesheet" href="./css/styles-cadas-login.css">
 </head>
 
 <body>
@@ -21,14 +22,14 @@
         <span id="mensagem_erro"></span>
       </div>
     </div>
+
+    <main>
+
     <div class="container">
+    
       <div class="card card-cadastro">
         <h2>Bem-vindo!</h2>
         <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
           <div class="campo">
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
@@ -52,19 +53,12 @@
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
          
-        <div id="div_erros_login"></div>
       </div>
     </div>
   </div>
 
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
-    </div>
-  </div>
-  <!--footer fim-->
+  </main>
+
 </body>
 
 </html>

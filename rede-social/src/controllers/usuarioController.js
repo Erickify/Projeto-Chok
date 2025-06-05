@@ -15,6 +15,124 @@ function dashPostMaisCurtido(req, res) {
 		});
 }
 
+function dashPostMaisCurtidosCurtidas(req, res) {
+
+	var idPost = req.params.id;
+
+	usuarioModel
+		.dashPostMaisCurtidosCurtidas(idPost)
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
+
+function dashTotalCurtidas(req, res) {
+
+	var idUsuario = req.params.id;
+	
+	console.log(idUsuario)
+
+	usuarioModel
+		.dashTotalCurtidas(idUsuario)
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
+function dashTotalComentarios(req, res) {
+
+	var idUsuario = req.params.id;
+
+	console.log(idUsuario)
+
+	usuarioModel
+		.dashTotalComentarios(idUsuario)
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
+function dashTotalPosts(req, res) {
+
+	var idUsuario = req.params.id;
+
+	console.log(idUsuario)
+
+	usuarioModel
+		.dashTotalPosts(idUsuario)
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
+function dashTotaCurtidasSemana(req, res) {
+
+	var idUsuario = req.params.id;
+
+	console.log(idUsuario)
+
+	usuarioModel
+		.dashTotaCurtidasSemana(idUsuario)
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
+function dashTotaComentariosSemana(req, res) {
+
+	var idUsuario = req.params.id;
+
+	console.log(idUsuario)
+
+	usuarioModel
+		.dashTotaComentariosSemana(idUsuario)
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
+function dashTotaPostsSemana(req, res) {
+
+	var idUsuario = req.params.id;
+
+	console.log(idUsuario)
+
+	usuarioModel
+		.dashTotaPostsSemana(idUsuario)
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
 function autenticar(req, res) {
 	var email = req.body.emailServer;
 	var senha = req.body.senhaServer;
@@ -223,5 +341,12 @@ module.exports = {
 	enviarPfp,
 	enviarBanner,
 	atualizarUser,
-	dashPostMaisCurtido
+	dashPostMaisCurtido,
+	dashTotalCurtidas,
+	dashTotalComentarios,
+	dashTotalPosts,
+	dashTotaCurtidasSemana,
+	dashTotaComentariosSemana,
+	dashTotaPostsSemana,
+	dashPostMaisCurtidosCurtidas
 };

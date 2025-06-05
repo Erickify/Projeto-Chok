@@ -1,430 +1,376 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/style-perfil.css" />
+		<title>Perfil | Choke</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style-perfil.css">
-    <title>Perfil | Choke</title>
-</head>
+	<body onload="user(), listarPostsUsuario()">
+		<nav id="nav_perfil">
+			<section id="sect_perfil_nav">
+				<div class="div_nav_topo" id="div_nav_topo">
+					<img
+						src="./imgs/img_perfil-teste.jpg"
+						alt=""
+						id="img_perfil_nav"
+					/>
 
-<body onload="user(), listarPostsUsuario()">
+					<div class="div_perfil1_nav_topo"></div>
 
-    <nav id="nav_perfil">
+					<div class="div_perfil2_nav_topo"></div>
+				</div>
+			</section>
 
-        <section id="sect_perfil_nav">
+			<div class="div_nav">
+				<div class="nome_user">
+					<h1 class="nomeUsuario">Roberto Carlos</h1>
+					<p class="userUsuario">@robeertinho</p>
+				</div>
 
-            <div class="div_nav_topo" id="div_nav_topo">
-
-
-                <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav">
-
-                <div class="div_perfil1_nav_topo">
-                </div>
-
-                <div class="div_perfil2_nav_topo">
-                </div>
-
-            </div>
-
-        </section>
-
-        <div class="div_nav">
-
-            <div class="nome_user">
-
-                <h1 class="nomeUsuario">Roberto Carlos</h1>
-                <p class="userUsuario">@robeertinho</p>
-
-            </div>
-
-
-            <ul id="lista_nav">
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="currentcolor" class="icone_lista">
-                        <path
-                            d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
-                    </svg>
-                    <button>
-                        <h3>PERFIL</h3>
-                    </button>
-                </li>
-                <a href="./feed.html">
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="currentcolor" class="icone_lista">
-                            <path
-                                d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
-                        </svg>
-                        <h3>HOME</h3>
-
-                    </li>
+				<ul id="lista_nav">
+                    <a href="./perfil.html">
+					<li>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							height="24px"
+							viewBox="0 -960 960 960"
+							width="24px"
+							fill="currentcolor"
+							class="icone_lista"
+						>
+							<path
+								d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
+							/>
+						</svg>
+						<button>
+							<h3>PERFIL</h3>
+						</button>
+					</li>
                 </a>
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="currentcolor" class="icone_lista">
-                        <path
-                            d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-                    </svg>
-                    <button>
-                        <h3>CONFIG</h3>
-                    </button>
-                </li>
-            </ul>
+					<a href="./feed.html">
+						<li>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								height="24px"
+								viewBox="0 -960 960 960"
+								width="24px"
+								fill="currentcolor"
+								class="icone_lista"
+							>
+								<path
+									d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"
+								/>
+							</svg>
+							<h3>HOME</h3>
+						</li>
+					</a>
+					<li>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							height="24px"
+							viewBox="0 -960 960 960"
+							width="24px"
+							fill="currentcolor"
+							class="icone_lista"
+						>
+							<path
+								d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"
+							/>
+						</svg>
+						<button>
+							<h3>CONFIG</h3>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</nav>
 
-        </div>
+		<main id="main_perfil">
+			<section id="sect_perfil_main">
+				<div class="div_main_topo">
+					<div class="div_pfp" id="div_pfp">
+						<img
+							src="./imgs/img_perfil-teste.jpg"
+							alt=""
+							id="img_perfil_main"
+						/>
+					</div>
 
+					<div class="div_perfil1_main_topo"></div>
 
+					<div class="div_perfil2_main_topo" id="div_banner">
+						<img
+							src="./imgs/img-header-teste.jpg"
+							alt=""
+							id="img_header_main"
+						/>
+					</div>
+				</div>
+			</section>
 
-    </nav>
+			<section id="sect_bio">
+				<div class="div_corpo_bio">
+					<div class="nome_user" id="nome_user_main">
+						<h1 class="nomeConvidado" id="nome_convidado">Roberto Carlos</h1>
+						<p class="userConvidado" id="user_convidado">@robeertinho</p>
+					</div>
+				</div>
 
-    <main id="main_perfil">
+				<p id="p_bio_convidado">
+					𝐗𝐕. l 床单 ❀ꓼ outono, folhas. lembro de quando seu sorriso soprou
+					ventos de calma em mim.
+				</p>
 
-        <section id="sect_perfil_main">
+			</section>
 
-            <div class="div_main_topo">
+			<div id="feed-container"></div>
+		</main>
 
-                <div class="div_pfp" id="div_pfp">
-
-                    <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_main">
-
-                </div>
-
-                <div class="div_perfil1_main_topo">
-                </div>
-
-                <div class="div_perfil2_main_topo" id="div_banner">
-
-                    <img src="./imgs/img-header-teste.jpg" alt="" id="img_header_main">
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section id="sect_bio">
-
-            <div class="div_corpo_bio">
-
-                <div class="nome_user" id="nome_user_main">
-
-                    <h1 class="nomeConvidado">Roberto Carlos</h1>
-                    <p class="userConvidado">@robeertinho</p>
-
-                </div>
-
-            </div>
-
-            <p id="p_bio">
-
-                𝐗𝐕. l 床单 ❀ꓼ outono, folhas. lembro de quando seu sorriso soprou ventos de calma em mim.
-
-            </p>
-
-            <section id="sect_seguidores">
-
-                <p>Seguidores</p>
-                <p id="p_seguidores">100</p>
-                <p>|</p>
-                <p>Seguindo</p>
-                <p id="p_seguindo">100</p>
-
-            </section>
-
-        </section>
-
-        <div id="feed-container">
-
-
-
-        </div>
-
-
-
-
-    </main>
-
-    <aside id="aside_perfil">
-
-        <p></p>
-
-    </aside>
-
-
-
-
-
-
-</body>
-
+		<aside id="aside_perfil">
+			<p></p>
+		</aside>
+	</body>
 </html>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+	@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 </style>
 
 <script>
-    var modalAberto = false
+	var modalAberto = false;
 
-    var nomeUsuario = sessionStorage.NOME_USUARIO
-    var emailUsuario = sessionStorage.EMAIL_USUARIO
-    var userUsuario = sessionStorage.USER_USUARIO
-    var idUsuario = sessionStorage.ID_USUARIO
+	var nomeUsuario = sessionStorage.NOME_USUARIO;
+	var emailUsuario = sessionStorage.EMAIL_USUARIO;
+	var userUsuario = sessionStorage.USER_USUARIO;
+	var idUsuario = sessionStorage.ID_USUARIO;
+	var pfpUsuario = sessionStorage.PFP_USUARIO;
 
-    var idConvidado = sessionStorage.ID_CONVIDADO
+	var idConvidado = sessionStorage.ID_CONVIDADO;
 
-    var userConvidado = ""
-    var nomeConvidado = ""
-    var pfpConvidado = ""
-    var bannerConvidado = ""
+	var userConvidado = "";
+	var nomeConvidado = "";
+	var pfpConvidado = "";
+	var bannerConvidado = "";
+	var bioConvidado = "";
 
+	function convidado(idConvidado) {
+		fetch(`/usuarios/convidado/${idConvidado}`, {})
+			.then((res) => res.json())
+			.then((convidado) => {
+				console.log(convidado[0]);
 
-    function convidado(idConvidado) {
+				nomeConvidado = convidado[0].nomeUsuario;
+				userConvidado = convidado[0].userUsuario;
+				pfpConvidado = convidado[0].pfpUsuario;
+				bannerConvidado = convidado[0].bannerUsuario;
+                bioConvidado = convidado[0].bioUsuario;
 
-        fetch(`/usuarios/convidado/${idConvidado}`, {
-        })
+                if (bioConvidado == null){
+                    bioConvidado = " "
+                }
 
-            .then(res => res.json())
-            .then(convidado => {
-
-                console.log(convidado[0])
-
-                nomeConvidado = convidado[0].nomeUsuario
-                userConvidado = convidado[0].userUsuario
-                pfpConvidado = convidado[0].pfpUsuario
-                bannerConvidado = convidado[0].bannerUsuario
-
-                div_pfp.innerHTML = `
+				div_pfp.innerHTML = `
 
    <img src="./assets/foto_perfil/${pfpConvidado}" alt="" id="img_perfil_main">
-                `
-
-                div_banner.innerHTML = `<img src="./assets/foto_perfil/${bannerConvidado}" alt="" id="img_header_main">
-`
-
-
-
-
-                console.log(`nome: ${nomeConvidado}`)
-                console.log(`id: ${idConvidado}`)
-                console.log(`user: ${userConvidado}`)
-
-                document.querySelectorAll(".nomeConvidado").forEach(h1 => h1.innerHTML = nomeConvidado);
-                document.querySelectorAll(".userConvidado").forEach(p => p.innerHTML = `@${userConvidado}`);
-
-                userConvidado.innerHTML = `@${userConvidado}`
-
-
-            });
-
-    }
-
-
-    var pfpUsuario = []
-
-    //moldals
-
-    var modalEditarPerfil = "sec_editarPerfil_modal"
-    var modalCriarChoke = "div_criar_chok"
-
-
-    function user() {
-
-        console.log(`nome: ${nomeUsuario}`)
-        console.log(`email: ${emailUsuario}`)
-        console.log(`id: ${idUsuario}`)
-        console.log(`user: ${userUsuario}`)
-
-        document.querySelectorAll(".nomeUsuario").forEach(h1 => h1.innerHTML = nomeUsuario);
-        document.querySelectorAll(".userUsuario").forEach(p => p.innerHTML = `@${userUsuario}`);
-
-        userUsuario.innerHTML = `@${userUsuario}`
-
-        convidado(idConvidado)
-
-    }
-
-    function abrirModal(modalId) {
-        console.log("tentando abrir o modal");
-
-        const modal = document.getElementById(modalId); // Corrigido
-
-
-        if (modalAberto) {
-
-            modal.style.display = "block";
-            modal.style.left = "-50%";
-            modalAberto = false;
-
-            nav_perfil.classList.remove("blur")
-            main_perfil.classList.remove("blur")
-            aside_perfil.classList.remove("blur")
-
-
-        } else {
-            modal.style.display = "block";
-            modal.style.left = "50%";
-            modalAberto = true;
-
-            nav_perfil.classList.add("blur")
-            main_perfil.classList.add("blur")
-            aside_perfil.classList.add("blur")
-
-        }
-    }
-
-    function salvarEdicao() {
-
-        var nomeVar = nome_usario_editar.value
-        var bioVar = bio_usuario_editar.value
-        const imagem = pfpUsuario;
-
-        const formData = new FormData();
-        formData.append('foto', imagem);
-        formData.append('nomeUsuario', nomeVar)
-        formData.append('bioUsuario', bioVar);
-        formData.append('idUsuario', idUsuario);
-
-        fetch("/usuarios/editar", {
-            method: "POST",
-            body: formData
-        })
-            // .then(res => res.json())
-            .then(resposta => {
-                console.log("Edição feita com sucesso com sucesso!");
-                abrirModal();
-            })
-            .catch(err => {
-                console.log(`#ERRO: ${err}`);
-            });
-
-    }
-
-    function listarPostsUsuario() {
-
-        fetch(`/usuarios/${idConvidado}`, {
-
-        }).
-
-            then(response => response.json())
-
-            .then(dadosPost => {
-
-
-                const feedContainer = document.getElementById("feed-container");
-                feedContainer.innerHTML = "";
-
-                dadosPost.forEach(post => {
-
-                    const postDiv = document.createElement("div");
-                    postDiv.className = "div_post";
-
-                    const section = document.createElement("section");
-                    section.className = "sect_perfil_post";
-
-                    const topo = document.createElement("div");
-                    topo.className = "div_post_topo";
-
-                    const imgPerfil = document.createElement("img");
-                    imgPerfil.src = `./assets/foto_perfil/${pfpConvidado}`;
-                    imgPerfil.className = "img_perfil_post";
-
-                    const div1 = document.createElement("div");
-                    div1.className = "div_perfil1_post_topo";
-
-                    const div2 = document.createElement("div");
-                    div2.className = "div_perfil2_post_topo";
-
-                    const nomeDiv = document.createElement("div");
-                    nomeDiv.className = "nome_user";
-
-                    const h1 = document.createElement("h1");
-                    h1.className = "nomeUsuario";
-                    h1.textContent = post.nomeUsuario;
-
-                    const p = document.createElement("p");
-                    p.className = "userUsuario";
-                    p.textContent = `@${post.userUsuario}`;
-
-                    nomeDiv.appendChild(h1);
-                    nomeDiv.appendChild(p);
-                    div2.appendChild(nomeDiv);
-                    topo.appendChild(imgPerfil);
-                    topo.appendChild(div1);
-                    topo.appendChild(div2);
-                    section.appendChild(topo);
-
-                    // Corpo do post
-                    const corpo = document.createElement("div");
-                    corpo.className = "div_corpo_post";
-
-                    const descDiv = document.createElement("div");
-                    descDiv.className = "div_post_desc";
-
-                    const descP = document.createElement("p");
-                    descP.className = "p_descPost"
-                    descP.textContent = post.descPost;
-
-                    descDiv.appendChild(descP);
-
-
-                    if (post.imgPost != 'null') {
-
-                        const imgDiv = document.createElement("div");
-                        imgDiv.className = "div_post_img";
-
-                        const imgPost = document.createElement("img");
-                        imgPost.id = "img_corpo_post";
-                        imgPost.src = `assets/${post.imgPost}`;
-
-                        imgDiv.appendChild(imgPost);
-
-                        corpo.appendChild(imgDiv);
-
-                    }
-
-                    corpo.appendChild(descDiv);
-                    postDiv.appendChild(section);
-                    postDiv.appendChild(corpo);
-
-                    feedContainer.appendChild(postDiv);
-                });
-            })
-            .catch(err => {
-                console.log(`#ERRO: ${err}`);
-            });
-    }
-
-
-
-
-    function criar_post() {
-
-        const descPostVar = textarea_comentairo.value;
-        const imagem = foto.files[0];
-
-        const formData = new FormData();
-        formData.append('foto', imagem);
-        formData.append('descPost', descPostVar);
-        formData.append('idUsuario', idUsuario);
-
-        fetch("/post/postar", {
-            method: "POST",
-            body: formData
-        })
-            // .then(res => res.json())
-            .then(resposta => {
-                console.log("Post realizado com sucesso!");
-                fechar_popup();
-                listarPosts(); // recarregar feed
-            })
-            .catch(err => {
-                console.log(`#ERRO: ${err}`);
-            });
-    }
-
-
+                `;
+
+				div_banner.innerHTML = `<img src="./assets/foto_perfil/${bannerConvidado}" alt="" id="img_header_main">
+`;
+				console.log(`nome: ${nomeConvidado}`);
+				console.log(`id: ${idConvidado}`);
+				console.log(`user: ${userConvidado}`);
+
+
+				userConvidado.innerHTML = `@${userConvidado}`
+                nome_convidado.innerHTML = `${nomeConvidado}`
+                user_convidado.innerHTML = `@${userConvidado}`
+                p_bio_convidado.innerHTML = `${bioConvidado}`
+			});
+	}
+
+
+	//moldals
+
+	var modalEditarPerfil = "sec_editarPerfil_modal";
+	var modalCriarChoke = "div_criar_chok";
+
+	function user() {
+		console.log(`nome: ${nomeUsuario}`);
+		console.log(`email: ${emailUsuario}`);
+		console.log(`id: ${idUsuario}`);
+		console.log(`user: ${userUsuario}`);
+
+		document
+			.querySelectorAll(".nomeUsuario")
+			.forEach((h1) => (h1.innerHTML = nomeUsuario));
+		document
+			.querySelectorAll(".userUsuario")
+			.forEach((p) => (p.innerHTML = `@${userUsuario}`));
+
+		userUsuario.innerHTML = `@${userUsuario}`;
+
+		img_perfil_nav.src = `./assets/foto_perfil/${pfpUsuario}`;
+
+		convidado(idConvidado);
+	}
+
+	function abrirModal(modalId) {
+		console.log("tentando abrir o modal");
+
+		const modal = document.getElementById(modalId); // Corrigido
+
+		if (modalAberto) {
+			modal.style.display = "block";
+			modal.style.left = "-50%";
+			modalAberto = false;
+
+			nav_perfil.classList.remove("blur");
+			main_perfil.classList.remove("blur");
+			aside_perfil.classList.remove("blur");
+		} else {
+			modal.style.display = "block";
+			modal.style.left = "50%";
+			modalAberto = true;
+
+			nav_perfil.classList.add("blur");
+			main_perfil.classList.add("blur");
+			aside_perfil.classList.add("blur");
+		}
+	}
+
+	function salvarEdicao() {
+		var nomeVar = nome_usario_editar.value;
+		var bioVar = bio_usuario_editar.value;
+		const imagem = pfpUsuario;
+
+		const formData = new FormData();
+		formData.append("foto", imagem);
+		formData.append("nomeUsuario", nomeVar);
+		formData.append("bioUsuario", bioVar);
+		formData.append("idUsuario", idUsuario);
+
+		fetch("/usuarios/editar", {
+			method: "POST",
+			body: formData,
+		})
+			// .then(res => res.json())
+			.then((resposta) => {
+				console.log("Edição feita com sucesso com sucesso!");
+				abrirModal();
+			})
+			.catch((err) => {
+				console.log(`#ERRO: ${err}`);
+			});
+	}
+
+	function listarPostsUsuario() {
+		fetch(`/usuarios/${idConvidado}`, {})
+			.then((response) => response.json())
+
+			.then((dadosPost) => {
+				const feedContainer = document.getElementById("feed-container");
+				feedContainer.innerHTML = "";
+
+				dadosPost.forEach((post) => {
+					const postDiv = document.createElement("div");
+					postDiv.className = "div_post";
+
+					const section = document.createElement("section");
+					section.className = "sect_perfil_post";
+
+					const topo = document.createElement("div");
+					topo.className = "div_post_topo";
+
+					const imgPerfil = document.createElement("img");
+					imgPerfil.src = `./assets/foto_perfil/${pfpConvidado}`;
+					imgPerfil.className = "img_perfil_post";
+
+					const div1 = document.createElement("div");
+					div1.className = "div_perfil1_post_topo";
+
+					const div2 = document.createElement("div");
+					div2.className = "div_perfil2_post_topo";
+
+					const nomeDiv = document.createElement("div");
+					nomeDiv.className = "nome_user";
+
+					const h1 = document.createElement("h1");
+					h1.className = "nomeUsuario";
+					h1.textContent = post.nomeUsuario;
+
+					const p = document.createElement("p");
+					p.className = "userUsuario";
+					p.textContent = `@${post.userUsuario}`;
+
+					nomeDiv.appendChild(h1);
+					nomeDiv.appendChild(p);
+					div2.appendChild(nomeDiv);
+					topo.appendChild(imgPerfil);
+					topo.appendChild(div1);
+					topo.appendChild(div2);
+					section.appendChild(topo);
+
+					// Corpo do post
+					const corpo = document.createElement("div");
+					corpo.className = "div_corpo_post";
+
+					const descDiv = document.createElement("div");
+					descDiv.className = "div_post_desc";
+
+					const descP = document.createElement("p");
+					descP.className = "p_descPost";
+					descP.textContent = post.descPost;
+
+					descDiv.appendChild(descP);
+
+					if (post.imgPost != "null") {
+						const imgDiv = document.createElement("div");
+						imgDiv.className = "div_post_img";
+
+						const imgPost = document.createElement("img");
+						imgPost.id = "img_corpo_post";
+						imgPost.src = `assets/${post.imgPost}`;
+
+						imgDiv.appendChild(imgPost);
+
+						corpo.appendChild(imgDiv);
+					}
+
+					corpo.appendChild(descDiv);
+					postDiv.appendChild(section);
+					postDiv.appendChild(corpo);
+
+					feedContainer.appendChild(postDiv);
+				});
+			})
+			.catch((err) => {
+				console.log(`#ERRO: ${err}`);
+			});
+	}
+
+	function criar_post() {
+		const descPostVar = textarea_comentairo.value;
+		const imagem = foto.files[0];
+
+		const formData = new FormData();
+		formData.append("foto", imagem);
+		formData.append("descPost", descPostVar);
+		formData.append("idUsuario", idUsuario);
+
+		fetch("/post/postar", {
+			method: "POST",
+			body: formData,
+		})
+			// .then(res => res.json())
+			.then((resposta) => {
+				console.log("Post realizado com sucesso!");
+				fechar_popup();
+				listarPosts(); // recarregar feed
+			})
+			.catch((err) => {
+				console.log(`#ERRO: ${err}`);
+			});
+	}
 </script>

@@ -52,7 +52,6 @@ function listarPostsUsuario(idUsuario) {
     SELECT 
         p.idPost as idPost,
         p.descPost as descPost,
-        p.curtidasPost as curtidasPost,
         p.imagensPost as imgPost,
         u.pfpUsuario as pfpUsuario,
         u.idUsuario as idUsuario,
@@ -124,30 +123,127 @@ function atualizarUser(idUsuario) {
 function dashPostMaisCurtido(idUsuario) {
 	console.log("ok");
 	var instrucaoSql = `
-   SELECT 
+SELECT 
     p.idPost,
     p.descPost,
     p.imagensPost,
-    COUNT(c.fkUsuario) AS totalCurtidas,
+    COUNT(c.fkUsuario) AS totalCurtidas
+FROM tbPost p
+LEFT JOIN tbCurtidas c ON p.idPost = c.fkPost
+WHERE p.fkUsuario = ${idUsuario}
+GROUP BY p.idPost
+ORDER BY totalCurtidas DESC
+LIMIT 1;;
+
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+function dashPostMaisCurtidosCurtidas(idPost) {
+	console.log("ok");
+	var instrucaoSql = `
+SELECT 
     u.idUsuario AS idQuemCurtiu,
     u.nomeUsuario AS nomeQuemCurtiu,
     u.userUsuario AS userQuemCurtiu,
     u.pfpUsuario,
-    c.dataCurtida
-FROM tbPost AS p
-JOIN tbCurtidas AS c ON p.idPost = c.fkPost
-JOIN tbUsuario AS u ON c.fkUsuario = u.idUsuario
-WHERE p.idPost = (
+    DATE_FORMAT(c.dataCurtida, '%d-%m-%Y') as diaQuemCurtiu
+FROM tbCurtidas c
+JOIN tbUsuario u ON c.fkUsuario = u.idUsuario
+WHERE c.fkPost = ${idPost};
+
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+function dashTotalCurtidas(idUsuario) {
+	console.log("ok");
+	var instrucaoSql = `
+      SELECT 
+        COUNT(c.fkPost) AS total_curtidas
+    FROM tbUsuario u
+    LEFT JOIN tbPost p ON u.idUsuario = p.fkUsuario
+    LEFT JOIN tbCurtidas c ON p.idPost = c.fkPost
+    WHERE u.idUsuario = ${idUsuario};
+
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+function dashTotaCurtidasSemana(idUsuario) {
+	console.log("ok");
+	var instrucaoSql = `
     SELECT 
-        p2.idPost
-    FROM tbPost AS p2
-    JOIN tbCurtidas AS c2 ON p2.idPost = c2.fkPost
-    WHERE p2.fkUsuario = ${idUsuario}
-    GROUP BY p2.idPost
-    ORDER BY COUNT(c2.fkPost) DESC
-    LIMIT 1
-)
-GROUP BY p.idPost, p.descPost, p.imagensPost, u.idUsuario, u.nomeUsuario, u.userUsuario, u.pfpUsuario, c.dataCurtida;;
+        DAY(c.dataCurtida) AS dia,
+        COUNT(c.fkPost) AS total_cur
+    FROM tbCurtidas c
+    JOIN tbPost p ON c.fkPost = p.idPost
+    WHERE p.fkUsuario = ${idUsuario}
+      AND c.dataCurtida >= CURDATE() - INTERVAL 7 DAY
+    GROUP BY DAY(c.dataCurtida)
+    ORDER BY dia ASC;
+
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+function dashTotaPostsSemana(idUsuario) {
+	console.log("ok");
+	var instrucaoSql = `
+   SELECT 
+    DAY(dataPosts) AS dia,
+    COUNT(idPost) AS total_post
+FROM tbPost
+WHERE fkUsuario = ${idUsuario}
+  AND dataPosts >= CURDATE() - INTERVAL 7 DAY
+GROUP BY DAY(dataPosts)
+ORDER BY dia ASC;
+
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+function dashTotaComentariosSemana(idUsuario) {
+	console.log("ok");
+	var instrucaoSql = `
+ SELECT 
+	DAY(c.dataComentario) AS dia,
+	COUNT(c.fkPost) AS total_com
+FROM tbComentario c
+JOIN tbPost p ON c.fkPost = p.idPost
+WHERE p.fkUsuario = ${idUsuario}
+	AND c.dataComentario >= CURDATE() - INTERVAL 7 DAY
+GROUP BY DAY(c.dataComentario)
+ORDER BY dia ASC;
+
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+function dashTotalComentarios(idUsuario) {
+	console.log("ok");
+	var instrucaoSql = `
+      SELECT COUNT(idComentario) AS total_com
+        FROM tbComentario
+        WHERE fkUsuario = ${idUsuario}; 
+
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+function dashTotalPosts(idUsuario) {
+	console.log("ok");
+	var instrucaoSql = `
+    SELECT COUNT(idPost) AS total_posts
+    FROM tbPost
+    WHERE fkUsuario = ${idUsuario};
 
     `;
 	console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -165,4 +261,11 @@ module.exports = {
 	enviarBanner,
 	atualizarUser,
 	dashPostMaisCurtido,
+	dashTotalCurtidas,
+	dashTotalComentarios,
+	dashTotalPosts,
+	dashTotaCurtidasSemana,
+    dashTotaComentariosSemana,
+    dashTotaPostsSemana,
+    dashPostMaisCurtidosCurtidas
 };

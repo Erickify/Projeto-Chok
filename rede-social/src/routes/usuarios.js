@@ -1,5 +1,5 @@
 const express = require("express");
-const upload = require('../config/configPerfilUpload'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
+const upload = require('../config/configPerfilUpload'); 
 const router = express.Router();
 
 const usuarioController = require("../controllers/usuarioController");
@@ -7,6 +7,35 @@ const usuarioController = require("../controllers/usuarioController");
 router.get("/dashPostMaisCurtido/:id", function (req, res) {
     usuarioController.dashPostMaisCurtido(req, res);
 });
+
+router.get("/dashPostMaisCurtidosCurtidas/:id", function (req,res){
+    usuarioController.dashPostMaisCurtidosCurtidas(req, res);
+});
+
+router.get("/dashTotalCurtidas/:id", function (req, res) {
+    usuarioController.dashTotalCurtidas(req, res);
+});
+
+router.get("/dashTotalComentarios/:id", function (req, res) {
+    usuarioController.dashTotalComentarios(req, res);
+});
+
+router.get("/dashTotalPosts/:id", function (req, res) {
+    usuarioController.dashTotalPosts(req, res);
+});
+
+router.get("/dashTotaCurtidasSemana/:id", function (req, res) {
+    usuarioController.dashTotaCurtidasSemana(req, res);
+});
+
+router.get("/dashTotaComentariosSemana/:id", function (req, res) {
+    usuarioController.dashTotaComentariosSemana(req, res);
+});
+
+router.get("/dashTotaPostsSemana/:id", function (req, res) {
+    usuarioController.dashTotaPostsSemana(req, res);
+});
+
 router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
