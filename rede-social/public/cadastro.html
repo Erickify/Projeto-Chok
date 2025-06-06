@@ -28,7 +28,7 @@
            
               <span>Nome:</span>
            
-              <input id="nome_input" type="text" placeholder="Seu nome" />
+              <input id="nome_input" type="text" placeholder="Seu nome" autocomplete="off" value="Kabru"/>
            
             </div>
            
@@ -36,22 +36,22 @@
            
               <span>User:</span>
            
-              <input id="user_input" type="text" placeholder="@user..." />
+              <input id="user_input" type="text" placeholder="@user..." autocomplete="off" value="KabruDoMal2" oninput="verificarUser()"/>
            
             </div>
           
           </div>
           <div class="campo">
             <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+            <input id="email_input" type="text" placeholder="meuemail@provedor.com" autocomplete="off" value="kabru@sptech.school" oninput="verificarUser()" />
           </div>
           <div class="campo">
             <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
+            <input id="senha_input" type="password" placeholder="******" autocomplete="off" />
           </div>
           <div class="campo">
             <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
+            <input id="confirmacao_senha_input" type="password" placeholder="******" autocomplete="off"/>
           </div>
         </div>
         <button class="botao" onclick="cadastrar()">Cadastrar</button>
@@ -67,6 +67,64 @@
 
 <script>
 
+  var userExiste = false
+
+  var emailExiste = false
+
+  function verificarUser(){
+
+    var user = user_input.value
+    
+    var email = email_input.value
+
+    fetch(`/usuarios/verificarUser`)
+    .then((response) => response.json())
+    .then((users) => {
+
+
+      for(let i = 0; i < users.length; i++) {
+
+        if(users[i].userUsuario.toUpperCase() == user.toUpperCase()){
+
+        userExiste = true
+
+        break
+
+        }else{
+
+            userExiste = false
+
+        }
+      }
+
+      for(let i = 0; i < users.length; i++) {
+
+        if(users[i].emailUsuario.toUpperCase() == email.toUpperCase()){
+          
+
+        emailExiste = true
+
+        break
+
+        }else{
+
+            emailExiste = false
+
+        }
+        
+      };
+
+
+
+    })
+    .catch(() => {
+
+      console.log("erro : user n está em uso")
+
+    })
+
+  }
+
 
   function cadastrar() {
 
@@ -81,6 +139,7 @@
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
+      userVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
       alert("Preencha todos os campos")
@@ -88,11 +147,26 @@
     }else if(!emailVar.includes("@")){
 
       alert("Insira um email válido")
+      return false;
+    }else if(!(senhaVar.length >= 5)){
 
-    }else if(!){
+      alert("A senha deve conter ao menos 5 caracteres")
+      return false;
+    }else if(senhaVar != confirmacaoSenhaVar){
 
-
-
+      alert("As confirmação de senha está errada")
+      return false;
+    
+    }else if(userExiste){
+      
+      alert("User já existe")
+      return false
+    
+    }else if(emailExiste){
+    
+      alert("email já existe")
+      return false
+    
     }
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -115,16 +189,14 @@
         if (resposta.ok) {
 
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
           setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
+            window.location = "./login.html";
+          }, 2000);
 
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
+
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
@@ -132,20 +204,8 @@
 
     return false;
   }
+  
 
-  // sessão
-function validarSessao() {
-    var email = sessionStorage.EMAIL_USUARIO;
-    var nome = sessionStorage.NOME_USUARIO;
-
-    var b_usuario = document.getElementById("b_usuario");
-
-    if (email != null && nome != null) {
-        b_usuario.innerHTML = nome;
-    } else {
-        window.location = "../login.html";
-    }
-}
 
 
 </script>

@@ -48,6 +48,20 @@ function dashTotalCurtidas(req, res) {
 		});
 }
 
+function verificarUser(req, res) {
+	
+
+	usuarioModel
+		.verificarUser()
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
 function dashTotalComentarios(req, res) {
 
 	var idUsuario = req.params.id;
@@ -349,5 +363,6 @@ module.exports = {
 	dashTotaCurtidasSemana,
 	dashTotaComentariosSemana,
 	dashTotaPostsSemana,
-	dashPostMaisCurtidosCurtidas
+	dashPostMaisCurtidosCurtidas,
+	verificarUser
 };

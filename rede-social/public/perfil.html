@@ -8,7 +8,7 @@
 		<title>Perfil | Choke</title>
 	</head>
 
-	<body onload="user(), listarPostsUsuario(), atualizarGraficos(idUsuario)">
+	<body onload="user(), listarPostsUsuario()">
 		<nav id="nav_perfil">
 			<section id="sect_perfil_nav">
 				<div class="div_nav_topo" id="div_nav_topo">
@@ -30,7 +30,7 @@
 					<p class="userUsuario" id="userUsuarioNav">@robeertinho</p>
 				</div>
 
-				<ul id="lista_nav">
+				<ul id="lista_nav" >
 					<li>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -39,13 +39,14 @@
 							width="24px"
 							fill="currentcolor"
 							class="icone_lista"
+							id="pagina_atual"
 						>
 							<path
 								d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
 							/>
 						</svg>
 						<button>
-							<h3>PERFIL</h3>
+							<h3 id="pagina_atual">PERFIL</h3>
 						</button>
 					</li>
 					<a href="./feed.html">
@@ -65,7 +66,7 @@
 							<h3>HOME</h3>
 						</li>
 					</a>
-					<li>
+					<li onclick="abrirModal(modal_dash), atualizarGraficos(idUsuario)">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							height="24px"
@@ -296,11 +297,46 @@
 
 		<section id="sec_dash_modal">
 			<div class="div_main_grafico_dash">
-				<h1>Suas interações</h1>
+				<div class="div_top-minipost">
+					<div class="div_fechar">
+					<h1 onclick="abrirModal(modal_dash)" class="">X</h1>
+					</div>
+					<h1 class="titulo_dash">Suas interações</h1>
+				</div>
+				
 				<div class="div_grafico_dash">
 
-					
-						<canvas id="meuLineChart" width="1" height="1"></canvas>
+					<div class="div_util">
+
+						<h1 class="h1_titulo_info">Informções do usuario:</h1>
+
+					<div id="div_info_user">
+
+						<p id="info_user"></p>
+						<p id="info_email"></p>
+						<p id="info_data"></p>
+						
+
+					</div>
+
+					<div class="div_trocar_cor">
+
+						<label for="cor">
+							<input type="color" name="cor" id="inp_cor" onchange="trocarCor()">
+						</label>
+<!-- 
+						<button id="btn_alterar_modo"></button> -->
+
+						<div id="alterar_modo_btn" onclick="alterar_modo()">
+							
+							<div class="alterar_modo_bolinha">0</div>
+
+						</div>
+
+					</div>
+
+					</div>
+						<!-- <canvas id="meuLineChart" width="1" height="1"></canvas> -->
 						<canvas id="meuPineChart" width="1" height="1"></canvas>
 				
 					</div>
@@ -358,6 +394,10 @@
 <script>
 	var modalAberto = false;
 
+	var usuarioSemInterações = true
+
+	var modo = "claro"
+
 	var nomeUsuario = sessionStorage.NOME_USUARIO;
 	var emailUsuario = sessionStorage.EMAIL_USUARIO;
 	var userUsuario = sessionStorage.USER_USUARIO;
@@ -365,12 +405,16 @@
 	var bioUsuario = sessionStorage.BIO_USUARIO;
 	var pfpUsuario = sessionStorage.PFP_USUARIO;
 	var bannerUsuario = sessionStorage.BANNER_USUARIO;
+	var dataUsuario = sessionStorage.DATAI_USUARIO
+
+	var dataInscricaoUser = new Date(dataUsuario).toLocaleDateString('pt-BR')
 
 	//moldals
 
 	const modalEditarPerfil = "sec_editarPerfil_modal";
 	const modalCriarChoke = "div_criar_chok";
 	const modal_comentario = "sec_comentario_modal";
+	const modal_dash = "sec_dash_modal"
 
 
 
@@ -396,9 +440,13 @@
 		nomeUsuarioPerfil.innerHTML = nomeUsuario;
 		userUsuarioPerfil.innerHTML = `@${userUsuario}`;
 		nomeUsuarioNav.innerHTML = nomeUsuario;
-		// nomeUsuario_comentario_modal.innerHTML = `${nomeUsuario}`
-		// userUsuario_comentario_modal.innerHTML = `@${userUsuario}`
-		div_nav_topo_comentario.innerHTML = `   <img src="./assets/foto_perfil/${pfpUsuario}" alt="" id="img_perfil_nav">
+		
+		info_user.innerHTML = `user: @${userUsuario}`
+		info_email.innerHTML = `Email: ${emailUsuario}`
+		info_data.innerHTML = `Data de Incrição: ${dataInscricaoUser}`
+
+
+		div_nav_topo_comentario.innerHTML = `<img src="./assets/foto_perfil/${pfpUsuario}" alt="" id="img_perfil_nav">
 
 	            <div class="div_perfil1_nav_topo">
 	            </div>
@@ -518,7 +566,7 @@
 		})
 			.then((resposta) => {
 				console.log("edição pfp realizada com sucesso!");
-				atualizarUser();
+				atualizarUser(idUsuario);
 			})
 			.catch((err) => {
 				console.log(`#ERRO: ${err}`);
@@ -613,7 +661,7 @@
 		})
 			.then((resposta) => {
 				console.log("edição banner realizada com sucesso!");
-				atualizarUser();
+				atualizarUser(idUsuario);
 			})
 			.catch((err) => {
 				console.log(`#ERRO: ${err}`);
@@ -656,6 +704,13 @@
 			.then((dadosPost) => {
 				const feedContainer = document.getElementById("feed-container");
 				feedContainer.innerHTML = "";
+
+				if(!(dadosPost.length == 0)){
+					console.log("vc n tem posts")
+
+					usuarioSemInterações = false
+				}
+
 
 				dadosPost.forEach((post) => {
 					var idPost = post.idPost;
@@ -837,7 +892,7 @@
 		}
 	}
 
-	function atualizarUser(idUsuario) {
+	function atualizarUser() {
 		fetch(`/usuarios/atualizarUser/${idUsuario}`)
 			.then((res) => res.json())
 			.then((dadosAtt) => {
@@ -940,16 +995,36 @@ function buscarPerfil(idConvidado) {
 	var varTotal_com = 0
 	var varTotal_posts = 0
 
+	var minipostExiste = false
 
 function atualizarGraficos(){	
 
-		
+	sec_dash_modal.style.display = "flex"
+
+	if(usuarioSemInterações){
+
+		alert('faça suas primeiras interações')
+
+	}else{
+
+	
 
 	fetch(`/usuarios/dashPostMaisCurtido/${idUsuario}`)
 		.then((response) => response.json())
 		.then((dados) => {
 
+			if(!minipostExiste){
+
+			minipostExiste = true
+
 			var post_mais_curtidas = document.getElementById("post_mais_curtido")
+			
+			var sec_dash_modal = document.getElementById("sec_dash_modal")
+
+				// post_mais_curtidas.style.display = "block"
+
+				// sec_dash_modal.style.justifyContent = "space-between"
+
 
 			const minipost = document.createElement("div");
 			minipost.className = "minipost";
@@ -958,7 +1033,11 @@ function atualizarGraficos(){
 				titulo.textContent = "Post mais curtido"
 
 				minipost.appendChild(titulo)
-				
+
+				console.log("qtd imagns" + dados[0].imagensPost.length)
+
+				if(dados[0].imagensPost != "null"){
+
 				const div_minipost_img = document.createElement("div")
 				div_minipost_img.className = "div_minipost_img"
 				
@@ -969,6 +1048,23 @@ function atualizarGraficos(){
 				div_minipost_img.appendChild(minipost_img)
 
 				minipost.appendChild(div_minipost_img)
+
+
+				}
+
+				if(dados[0].descPost != "null"){
+
+				const div_desc_minipost = document.createElement("div")
+				div_desc_minipost.className = "div_desc_minipost"
+
+					const desc_minipost = document.createElement("p")
+					desc_minipost.textContent = `${dados[0].descPost}`
+
+					div_desc_minipost.appendChild(desc_minipost)
+
+				minipost.appendChild(div_desc_minipost)
+				
+				}
 				
 				const div_qtd_curtidas = document.createElement("div")
 				div_qtd_curtidas.className = "div_qtd_curtidas_minipost"
@@ -1032,15 +1128,18 @@ function atualizarGraficos(){
 
 
 					})
+
+				
 					
 
 				minipost.appendChild(div_curtidas_minipost)
 
-
+				
 
 
 
 			post_mais_curtidas.appendChild(minipost)
+				}
 
 		})
 		.catch(() => {
@@ -1086,64 +1185,19 @@ function atualizarGraficos(){
 
 
 
-		
-
-
-
-	// console.log("Lista curtida semana: " + lista_CurtidasSemana)
-	// console.log("lista curtida semana dia" + lista_CurtidasSemana_dia)
-	// console.log("lista comentario semana" + lista_comentariosSemana)
-	// console.log("lista comentatio semana dia" + lista_comentariosSemana_dia)
-
-
-
-	//  var graficoL = document.getElementById('meuLineChart');
-
-    //                 new Chart(graficoL, {
-    //                     type: "bar",
-    //                     data: {
-    //                         labels: lista_diaDaSemana,
-    //                         datasets: [
-    //                             {
-    //                                 label: "Curtidas",
-    //                                 data: lista_CurtidasSemana,
-	// 								borderColor: "white",
-	// 								backgroundColor: "#7D1128",
-    //                                 borderRadius: 5
-									
-    //                             },
-    //                             {
-    //                                 label: "Comentários",
-    //                                 data: lista_comentariosSemana,
-	// 								borderColor: "white",
-	// 								backgroundColor: "#2b2d42",
-    //                                 borderRadius: 5
-									
-    //                             },
-	// 							{
-    //                                 label: "Posts",
-    //                                 data: lista_postsSemana,
-	// 								borderColor: "white",
-	// 								backgroundColor: "#EDF2F4",
-    //                                 borderRadius: 5
-									
-    //                             }
-    //                         ]
-    //                     },
-    //                 });
-
-
-
-
-
+	}
 
 }
+
+var cortexto = "#ffffff"
 
 
 		function grafico() {
 			// console.log(varTotal_posts)
+			
+			var graficoD = document.getElementById('meuPineChart');
 
-				 var graficoD = document.getElementById('meuPineChart');
+
 
                     new Chart(graficoD, {
                         type: "doughnut",
@@ -1158,8 +1212,74 @@ function atualizarGraficos(){
 									
                                 },
                             ]
-                        },
+                        },    
+						options: {
+    					
+							plugins: {
+    							title: {
+    					      	display: true,
+    					      	text: 'Suas Interações',
+    					      	font: {
+    					        	size: 18
+    					      		},
+								color: cortexto,
+    					      	padding: {
+    					        	top: 10,
+    					        	bottom: 30
+    					      	}
+							}
+						}
+}
                     });
 
+					// graficoD.update();
 		}
+
+		function alterar_modo(){
+
+			if(modo == "claro"){
+
+				let corSec =  "#171010"
+
+				document.documentElement.style.setProperty('--var-cor-secundaria', corSec);
+
+				
+				document.documentElement.style.setProperty('--var-cor-terciaria', 'white');
+
+				modo = "escuro"
+				
+				cortexto = "#ffffff"
+
+				grafico()
+
+			}else{
+
+				let corSec =  "#f7e6ff"
+
+				document.documentElement.style.setProperty('--var-cor-secundaria', corSec);
+
+				
+				document.documentElement.style.setProperty('--var-cor-terciaria', 'black');
+
+				modo = "claro"
+
+				cortexto = "#000000"
+
+				grafico()
+			}
+
+			
+
+		}
+
+
+
+		function trocarCor(){
+
+
+			const corPri = inp_cor.value;
+      		document.documentElement.style.setProperty('--var-cor-primaria', corPri);
+
+		}
+
 </script>

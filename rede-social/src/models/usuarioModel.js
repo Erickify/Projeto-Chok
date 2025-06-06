@@ -78,6 +78,16 @@ function convidado(idConvidado) {
 	return database.executar(instrucaoSql);
 }
 
+function verificarUser() {
+	console.log("ok");
+	var instrucaoSql = `
+    SELECT userUsuario, emailUsuario
+    FROM tbUsuario;
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
 function editarUsuario(idUsuario, nomeUsuario, bioUsuario) {
 	console.log("ok");
 	var instrucaoSql = `
@@ -267,5 +277,6 @@ module.exports = {
 	dashTotaCurtidasSemana,
     dashTotaComentariosSemana,
     dashTotaPostsSemana,
-    dashPostMaisCurtidosCurtidas
+    dashPostMaisCurtidosCurtidas,
+	verificarUser,
 };

@@ -8,6 +8,10 @@ router.get("/dashPostMaisCurtido/:id", function (req, res) {
     usuarioController.dashPostMaisCurtido(req, res);
 });
 
+router.get("/verificarUser", function (req, res) {
+    usuarioController.verificarUser(req, res);
+});
+
 router.get("/dashPostMaisCurtidosCurtidas/:id", function (req,res){
     usuarioController.dashPostMaisCurtidosCurtidas(req, res);
 });

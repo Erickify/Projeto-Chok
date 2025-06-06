@@ -162,12 +162,19 @@ nav #sect_perfil_nav {
 	width: 30px;
 	height: 30px;
 	margin: 10px;
-	color: var(--var-cor-terciaria);
+	/* color: var(--var-cor-terciaria); */
+
 }
+
+
 
 #lista_nav li {
 	/* color: var(--var-cor-primaria); */
 	color: var(--var-cor-terciaria);
+}
+
+.pagina_atual{
+	color: var(--var-cor-primaria);
 }
 
 aside {
@@ -314,6 +321,7 @@ aside {
 	font-size: 20px;
 }
 
+
 .div_comentario {
 	color: white;
 	background-color: #0c0c0c;
@@ -380,7 +388,11 @@ aside {
 #div_criar_chok .icone_lista {
 	width: 30px;
 	height: 30px;
-	color: var(--var-cor-secundaria);
+}
+
+
+#pagina_atual{
+	color: var(--var-cor-primaria);
 }
 
 #div_popup {

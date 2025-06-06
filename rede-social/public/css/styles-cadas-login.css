@@ -120,12 +120,14 @@ main .container {
 	transition: 0.3s;
 	/* place-content: var(--var-cor-primaria); */
 	font-size: 30px;
+	text-decoration: none;
 }
 
 input:focus{
 
 	box-shadow: 0px 7px var(--var-cor-primaria);
 	outline: none;
+	background: none;
 
 }
 
