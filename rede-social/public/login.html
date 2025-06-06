@@ -1,190 +1,166 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>cadastro</title>
 
-  <title>cadastro</title>
+		<script src="./js/sessao.js"></script>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link rel="stylesheet" href="./css/styles-cadas-login.css" />
+	</head>
 
-  <script src="./js/sessao.js"></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-</head>
+	<body>
+		<div class="container">
+			<div class="formulario">
+				<div class="campo">
+					<span>E-mail:</span>
+					<input
+						id="email_input"
+						type="text"
+						placeholder="meuemail@provedor.com"
+					/>
+				</div>
+				<div class="campo">
+					<span>Senha:</span>
+					<input id="senha_input" type="password" placeholder="******" />
+				</div>
+				<button class="botao" onclick="autenticar()">Logar</button>
+			</div>
+		</div>
 
-<body>
-
-
-  <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="autenticar()">Logar</button>
-        </div>
-
-        <div id="div_erros_login"></div>
-      </div>
-    </div>
-  </div>
-
-  <!--footer inicio-->
-  <div class="footer">
-  </div>
-  <!--footer fim-->
-</body>
-
+		<!--footer inicio-->
+		<div class="footer"></div>
+		<!--footer fim-->
+	</body>
 </html>
 
 <script>
+	function autenticar() {
+		//Coleta de dados das inputs
+		var email = email_input.value;
+		var senha = senha_input.value;
 
+		// Validações
+		if (email == `` || senha == ``) {
+			alert(`Preencha todos os campos`);
+			div_mensagem = `Preencha todos os campos`;
+		} else {
+			fetch("/usuarios/autenticar", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					emailServer: email,
+					senhaServer: senha,
+				}),
+			})
+				.then(function (resposta) {
+					console.log("ESTOU NO THEN DO entrar()!");
 
-function autenticar() {
-        //Coleta de dados das inputs
-        var email = email_input.value
-        var senha = senha_input.value
+					if (resposta.ok) {
+						console.log(resposta);
 
-        // Validações
-        if (email == `` || senha == ``) {
-            alert(`Preencha todos os campos`)
-            div_mensagem = `Preencha todos os campos`
-        } else {
+						resposta.json().then((json) => {
+							console.log(json);
+							console.log(JSON.stringify(json));
 
-            fetch("/usuarios/autenticar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    emailServer: email,
-                    senhaServer: senha
-                })
-            }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO entrar()!")
+							sessionStorage.EMAIL_USUARIO = json.email;
+							sessionStorage.NOME_USUARIO = json.nome;
+							sessionStorage.ID_USUARIO = json.idUsuario;
+							sessionStorage.USER_USUARIO = json.user;
+							sessionStorage.PFP_USUARIO = json.pfp;
+							sessionStorage.BANNER_USUARIO = json.banner;
+							sessionStorage.BIO_USUARIO = json.bio;
+							sessionStorage.DATAI_USUARIO = json.dataInscricao;
 
-                if (resposta.ok) {
-                    console.log(resposta);
+							alert(`Login bem sucedido`);
+							window.location = "feed.html";
+						});
+					} else {
+						console.log("Houve um erro ao tentar realizar o login!");
 
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
+						resposta.text().then((texto) => {
+							console.error(texto);
+						});
+					}
+				})
+				.catch(function (erro) {
+					console.log(erro);
+				});
 
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.ID_USUARIO = json.idUsuario;
-                        sessionStorage.USER_USUARIO = json.user;
-                        sessionStorage.PFP_USUARIO = json.pfp;
-                        sessionStorage.BANNER_USUARIO = json.banner;
-                        sessionStorage.BIO_USUARIO = json.bio;
-                        sessionStorage.DATAI_USUARIO = json.dataInscricao;
+			return false;
+		}
+	}
 
-                        alert(`Login bem sucedido`)
-                        window.location = "feed.html"
-                    });
+	// Array para armazenar empresas cadastradas para validação de código de ativação
+	// let listaEmpresasCadastradas = [];
 
-                } else {
+	// function autenticar() {
+	//   // aguardar();
 
-                    console.log("Houve um erro ao tentar realizar o login!")
+	//   //Recupere o valor da nova input pelo nome do id
+	//   // Agora vá para o método fetch logo abaixo
+	//   var email = email_input.value;
+	//   var senha = senha_input.value;
 
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                    });
-                }
+	//   // Verificando se há algum campo em branco
+	//   if (
+	//     email == "" ||
+	//     senha == ""
+	//   ) {
+	//     alert(`Mensagem de erro para todos os campos em branco`);
+	//     return false;
+	//   } else {
 
-            }).catch(function (erro) {
-                console.log(erro);
-            })
+	//     fetch("/usuarios/autenticar", {
+	//       method: "POST",
+	//       headers: {
+	//         "Content-Type": "application/json"
+	//       },
+	//       body: JSON.stringify({
+	//         emailServer: email,
+	//         senhaServer: senha
+	//       })
+	//     }).then(function (resposta) {
+	//       console.log("ESTOU NO THEN DO entrar()!")
 
-            return false;
-        }
+	//       if (resposta.ok) {
+	//         console.log("ESTOU NO id da THEN DO entrar()!")
+	//         console.log(resposta);
 
-    }
+	//         res.json().then(json => {
+	//           console.log(json);
+	//           console.log(JSON.stringify(json));
+	//           sessionStorage.EMAIL_USUARIO = json.email;
+	//           sessionStorage.NOME_USUARIO = json.nome;
+	//           sessionStorage.ID_USUARIO = json.idUsuario;
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  // let listaEmpresasCadastradas = [];
+	//           alert(`Login bem sucedido`)
+	//           window.location = "feed.html"
+	//         });
 
-  // function autenticar() {
-  //   // aguardar();
+	//       } else {
 
-  //   //Recupere o valor da nova input pelo nome do id
-  //   // Agora vá para o método fetch logo abaixo
-  //   var email = email_input.value;
-  //   var senha = senha_input.value;
+	//         console.log("Houve um erro ao tentar realizar o login!")
 
-  //   // Verificando se há algum campo em branco
-  //   if (
-  //     email == "" ||
-  //     senha == ""
-  //   ) {
-  //     alert(`Mensagem de erro para todos os campos em branco`);
-  //     return false;
-  //   } else {
+	//         resposta.text().then(texto => {
+	//           console.error(texto);
+	//         });
+	//       }
 
-  //     fetch("/usuarios/autenticar", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({
-  //         emailServer: email,
-  //         senhaServer: senha
-  //       })
-  //     }).then(function (resposta) {
-  //       console.log("ESTOU NO THEN DO entrar()!")
+	//     }).catch(function (erro) {
+	//       console.log(erro);
+	//     })
 
-  //       if (resposta.ok) {
-  //         console.log("ESTOU NO id da THEN DO entrar()!")
-  //         console.log(resposta);
+	//     return false;
+	//   }
 
-  //         res.json().then(json => {
-  //           console.log(json);
-  //           console.log(JSON.stringify(json));
-  //           sessionStorage.EMAIL_USUARIO = json.email;
-  //           sessionStorage.NOME_USUARIO = json.nome;
-  //           sessionStorage.ID_USUARIO = json.idUsuario;
-
-  //           alert(`Login bem sucedido`)
-  //           window.location = "feed.html"
-  //         });
-
-  //       } else {
-
-  //         console.log("Houve um erro ao tentar realizar o login!")
-
-  //         resposta.text().then(texto => {
-  //           console.error(texto);
-  //         });
-  //       }
-
-  //     }).catch(function (erro) {
-  //       console.log(erro);
-  //     })
-
-  //     return false;
-  //   }
-
-  //   function sumirMensagem() {
-  //     cardErro.style.display = "none";
-  //   }
-  // }
-
-
-
+	//   function sumirMensagem() {
+	//     cardErro.style.display = "none";
+	//   }
+	// }
 </script>

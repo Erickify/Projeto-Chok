@@ -16,27 +16,30 @@
 <body>
 
 
-  <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
-
     <main>
 
     <div class="container">
     
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
+      
         <div class="formulario">
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>User:</span>
-            <input id="user_input" type="text" placeholder="@user..." />
+          <div class="div_nome_user">
+          
+            <div class="campo">
+           
+              <span>Nome:</span>
+           
+              <input id="nome_input" type="text" placeholder="Seu nome" />
+           
+            </div>
+           
+            <div class="campo">
+           
+              <span>User:</span>
+           
+              <input id="user_input" type="text" placeholder="@user..." />
+           
+            </div>
+          
           </div>
           <div class="campo">
             <span>E-mail:</span>
@@ -50,10 +53,9 @@
             <span>Confirmação da Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
+        <button class="botao" onclick="cadastrar()">Cadastrar</button>
          
-      </div>
     </div>
   </div>
 
@@ -81,10 +83,16 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
+      alert("Preencha todos os campos")
       return false;
+    }else if(!emailVar.includes("@")){
+
+      alert("Insira um email válido")
+
+    }else if(!){
+
+
+
     }
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
