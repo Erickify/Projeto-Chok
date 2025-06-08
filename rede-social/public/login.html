@@ -12,10 +12,9 @@
 		<link rel="stylesheet" href="./css/styles-cadas-login.css" />
 	</head>
 
-	
-		<aside>
-			<section>
-				<a href="./index.html">
+	<aside>
+		<section>
+			<a href="./index.html">
 				<div class="div_voltar">
 					<p>VOLTAR</p>
 					<div class="div_icone_voltar">
@@ -32,9 +31,9 @@
 						</svg>
 					</div>
 				</div>
-				</a>
-			</section>
-		</aside>
+			</a>
+		</section>
+	</aside>
 
 	<body id="logas">
 		<main id="main_logas">
@@ -65,7 +64,6 @@
 				</div>
 			</div>
 		</main>
-
 	</body>
 </html>
 
@@ -108,11 +106,30 @@
 							sessionStorage.BANNER_USUARIO = json.banner;
 							sessionStorage.BIO_USUARIO = json.bio;
 							sessionStorage.DATAI_USUARIO = json.dataInscricao;
-							
-							sessionStorage.CORPRI = "#cb1c1c"
 
-							alert(`Login bem sucedido`);
-							window.location = "feed.html";
+							sessionStorage.CORPRI = json.corpri;
+
+							sessionStorage.CORSEC = "#171010";
+							sessionStorage.CORTERC = "white";
+							sessionStorage.CORSECE = "#0f0f0f";
+
+							fetch(`/usuarios/status/${json.idUsuario}`, {
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json",
+								},
+								body: JSON.stringify({
+
+									statusUsuario: 1,
+
+								}),
+							}).then(function (resposta) {
+								console.log("resposta: ", resposta);
+
+								alert(`Login bem sucedido`);
+								window.location = "feed.html";
+
+							});
 						});
 					} else {
 						console.log("Houve um erro ao tentar realizar o login!");

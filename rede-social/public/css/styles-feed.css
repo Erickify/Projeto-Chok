@@ -187,10 +187,10 @@ nav #sect_perfil_nav {
 	color: var(--var-cor-primaria);
 
 }
-
+/* 
 .pagina_atual{
 	color: var(--var-cor-primaria);
-}
+} */
 
 aside {
 	width: 19vw;
@@ -407,8 +407,11 @@ aside {
 
 
 #pagina_atual{
-	color: var(--var-cor-primaria);
+
+	opacity: 50%;
+	/* color: var(--var-cor-terciaria); */
 }
+
 
 #div_popup {
 	display: none;

@@ -34,22 +34,28 @@ body {
 	height: 100vh;
 }
 
-#lista_nav li h3{
+#lista_nav li h3 {
 	font-size: 1.5rem;
 }
 
-
-#lista_nav li:hover{
-
+#lista_nav li:hover {
 	transform: scale(1.05);
 	color: var(--var-cor-primaria);
-
 }
 
 #lista_nav li button {
 	color: var(--var-cor-terciaria);
 	background: none;
 	border: none;
+}
+
+#lista_nav li button:hover {
+	transform: scale(1.05);
+	color: var(--var-cor-primaria);
+}
+
+#span_sair {
+	height: 100%;
 }
 
 main {
@@ -656,7 +662,7 @@ nav #sect_perfil_nav {
 
 #lista_nav {
 	padding: 20px 0 20px 0;
-	height: 50%;
+	height: 100%;
 	width: 100%;
 }
 
@@ -676,8 +682,15 @@ nav #sect_perfil_nav {
 	color: var(--var-cor-terciaria);
 }
 
+#span_sair {
+	height: 62%;
+	display: flex;
+	align-items: end;
+}
+
 #pagina_atual {
-	color: var(--var-cor-primaria);
+	/* color: var(--var-cor-primaria); */
+	opacity: 50%;
 }
 
 .div_corpo_popup {

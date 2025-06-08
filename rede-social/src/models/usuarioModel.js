@@ -23,7 +23,19 @@ function cadastrar(nome, email, senha, user) {
 	);
 
 	var instrucaoSql = `
-        INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario, userUsuario, pfpUsuario, bannerUsuario) VALUES ("${nome}", "${email}", "${senha}", "${user}", "imagem_perfil_default.svg", "imagem_banner_default.svg");
+        INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario, userUsuario, pfpUsuario, bannerUsuario, corUsuario) VALUES ("${nome}", "${email}", "${senha}", "${user}", "imagem_perfil_default.svg", "imagem_banner_default.svg", "#cb1c1c");
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+function status(idUsuario, status) {
+	console.log(
+		"ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function status():",
+	);
+
+	var instrucaoSql = `
+        update tbUsuario set statusUsuario = ${status} where idUsuario = ${idUsuario}; 
     `;
 	console.log("Executando a instrução SQL: \n" + instrucaoSql);
 	return database.executar(instrucaoSql);
@@ -100,6 +112,17 @@ function editarUsuario(idUsuario, nomeUsuario, bioUsuario) {
 	return database.executar(instrucaoSql);
 }
 
+function trocarCor(idUsuario, corPri) {
+	console.log("ok");
+	var instrucaoSql = `
+    UPDATE tbUsuario
+    SET corUsuario = "${corPri}"
+    WHERE idUsuario = ${idUsuario};
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
 function enviarPfp(idUsuario, imagem) {
 	var instrucaoSql = `
     UPDATE tbUsuario
@@ -150,18 +173,17 @@ LIMIT 1;;
 	return database.executar(instrucaoSql);
 }
 
-function dashPostMaisCurtidosCurtidas(idPost) {
+function listarPessoasOnline(idUsuario) {
 	console.log("ok");
 	var instrucaoSql = `
 SELECT 
-    u.idUsuario AS idQuemCurtiu,
-    u.nomeUsuario AS nomeQuemCurtiu,
-    u.userUsuario AS userQuemCurtiu,
-    u.pfpUsuario,
-    DATE_FORMAT(c.dataCurtida, '%d-%m-%Y') as diaQuemCurtiu
-FROM tbCurtidas c
-JOIN tbUsuario u ON c.fkUsuario = u.idUsuario
-WHERE c.fkPost = ${idPost};
+    idUsuario AS idOnline,
+    nomeUsuario AS nomeOnline,
+    userUsuario AS userOnline,
+    pfpUsuario as pfpQuemOnline,
+	bannerUsuario as bannerQuemCurtiu
+FROM tbUser
+WHERE idUsuario != ${idUsuario} AND statusUsuario = 1;
 
     `;
 	console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -279,4 +301,7 @@ module.exports = {
     dashTotaPostsSemana,
     dashPostMaisCurtidosCurtidas,
 	verificarUser,
+	trocarCor,
+	status,
+	listarPessoasOnline,
 };

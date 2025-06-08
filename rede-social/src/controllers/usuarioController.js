@@ -30,6 +30,21 @@ function dashPostMaisCurtidosCurtidas(req, res) {
 		});
 }
 
+function listarPessoasOnline(req, res) {
+
+	var idUsuario = req.params.id;
+
+	usuarioModel
+		.listarPessoasOnline(idUsuario)
+		.then(function (resultado) {
+			res.json(resultado);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
 
 function dashTotalCurtidas(req, res) {
 
@@ -171,6 +186,7 @@ function autenticar(req, res) {
 					banner: resultado[0].bannerUsuario,
 					bio: resultado[0].bioUsuario,
 					dataInscricao: resultado[0].dataInscricao,
+					corpri: resultado[0].corUsuario,
 				});
 			} else {
 				res.status(403).json({
@@ -216,6 +232,28 @@ function cadastrar(req, res) {
 				res.status(500).json(erro.sqlMessage);
 			});
 	}
+}
+
+function status(req, res) {
+
+	var status = req.body.statusUsuario;
+	var idUsuario = req.params.id
+
+
+		usuarioModel
+			.status(idUsuario, status)
+			.then(function (resultado) {
+				res.json(resultado);
+			})
+			.catch(function (erro) {
+				console.log(erro);
+				console.log(
+					"\nHouve um erro ao realizar o status! Erro: ",
+					erro.sqlMessage
+				);
+				res.status(500).json(erro.sqlMessage);
+			});
+	
 }
 
 function listarAmigos(req, res) {
@@ -275,6 +313,25 @@ function editarUsuario(req, res) {
 		.then((resultado) => {
 			res.status(201).json({
 				mensagem: "edição feita com sucesso!",
+				resultado,
+			});
+		})
+		.catch((erro) => {
+			console.log(erro);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
+function trocarCor(req, res) {
+	var idUsuario = req.params.id
+	var corPri = req.body.cor;
+
+	usuarioModel
+		.trocarCor(idUsuario, corPri)
+
+		.then((resultado) => {
+			res.status(201).json({
+				mensagem: "edição de cor feita com sucesso!",
 				resultado,
 			});
 		})
@@ -364,5 +421,8 @@ module.exports = {
 	dashTotaComentariosSemana,
 	dashTotaPostsSemana,
 	dashPostMaisCurtidosCurtidas,
-	verificarUser
+	verificarUser,
+	trocarCor,
+	status,
+	listarPessoasOnline
 };

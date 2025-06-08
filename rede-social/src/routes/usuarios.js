@@ -20,6 +20,10 @@ router.get("/dashTotalCurtidas/:id", function (req, res) {
     usuarioController.dashTotalCurtidas(req, res);
 });
 
+router.get("/listarPessoasOnline/:id", function (req, res) {
+    usuarioController.listarPessoasOnline(req, res);
+});
+
 router.get("/dashTotalComentarios/:id", function (req, res) {
     usuarioController.dashTotalComentarios(req, res);
 });
@@ -42,6 +46,10 @@ router.get("/dashTotaPostsSemana/:id", function (req, res) {
 
 router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
+})
+
+router.post("/status/:id", function (req, res) {
+    usuarioController.status(req, res);
 })
 
 router.post("/autenticar", function (req, res) {
@@ -70,6 +78,10 @@ router.post("/enviarPfp", upload.single('foto'), (req, res) => {
 
 router.post("/enviarBanner", upload.single('foto'), (req, res) => {
     usuarioController.enviarBanner(req, res);
+});
+
+router.post("/trocarCor/:id", upload.single('foto'), (req, res) => {
+    usuarioController.trocarCor(req, res);
 });
 
 
