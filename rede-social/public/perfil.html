@@ -83,7 +83,27 @@
 							<h3>CONFIG</h3>
 						</button>
 					</li>
+
 				</ul>
+									<span>
+						<a href="index.html">
+							<li>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									height="24px"
+									viewBox="0 -960 960 960"
+									width="24px"
+									fill="currentcolor"
+									class="icone_lista"
+								>
+									<path
+										d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"
+									/>
+								</svg>
+								<h3>SAIR</h3>
+							</li>
+						</a>
+					</span>
 			</div>
 		</nav>
 
@@ -427,6 +447,24 @@
 		console.log(`id: ${idUsuario}`);
 		console.log(`user: ${userUsuario}`);
 		console.log(`Essa é a bio: ${bioUsuario}`);
+
+		document.documentElement.style.setProperty('--var-cor-primaria', sessionStorage.CORPRI);
+
+
+		document.documentElement.style.setProperty(
+			"--var-cor-secundaria",
+			sessionStorage.CORSEC
+		);
+
+		document.documentElement.style.setProperty(
+			"--var-cor-terciaria",
+			sessionStorage.CORTERC
+		);
+
+		document.documentElement.style.setProperty(
+			"--var-cor-secundaria-escura",
+			sessionStorage.CORSECE
+		);
 
 		nome_usuario_editar.value = nomeUsuario;
 
@@ -1242,9 +1280,16 @@ var cortexto = "#ffffff"
 				let corSec =  "#171010"
 
 				document.documentElement.style.setProperty('--var-cor-secundaria', corSec);
-
 				
 				document.documentElement.style.setProperty('--var-cor-terciaria', 'white');
+				
+				document.documentElement.style.setProperty('--var-cor-secundaria-escura', '#0f0f0f');
+
+				sessionStorage.CORSEC = corSec
+				
+				sessionStorage.CORTERC = "white"
+				
+				sessionStorage.CORSECE = "#0f0f0f"
 
 				modo = "escuro"
 				
@@ -1260,6 +1305,16 @@ var cortexto = "#ffffff"
 
 				
 				document.documentElement.style.setProperty('--var-cor-terciaria', 'black');
+
+				
+				document.documentElement.style.setProperty('--var-cor-secundaria-escura', '#ba9fc7');
+
+				
+				sessionStorage.CORSEC = corSec
+				
+				sessionStorage.CORTERC = "black"
+				
+				sessionStorage.CORSECE = "#ba9fc7"
 
 				modo = "claro"
 
@@ -1280,6 +1335,7 @@ var cortexto = "#ffffff"
 			const corPri = inp_cor.value;
       		document.documentElement.style.setProperty('--var-cor-primaria', corPri);
 
+			sessionStorage.CORPRI = corPri
 		}
 
 </script>

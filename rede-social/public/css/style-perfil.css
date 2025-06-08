@@ -1,13 +1,13 @@
 :root {
 	/* Modo Claro*/
-	--var-cor-primaria: #731ccb;
+	/* --var-cor-primaria: #731ccb; */
 	--var-cor-secundaria: #f7e6ff;
 	--var-cor-terciaria: #171010;
 	--var-cor-secundaria-escura: #ba9fc7;
 	/* --var-cor-secundaria-escura: #0f0f0f; */
 	/*Modo escuro*/
-	/* --var-cor-primaria: rgb(203, 28, 28);
-	--var-cor-secundaria: #171010;
+	--var-cor-primaria: #cb1c1c;
+	/* --var-cor-secundaria: #171010;
 	--var-cor-terciaria: rgb(255, 255, 255); */
 }
 
@@ -32,6 +32,18 @@ body {
 	justify-content: space-between;
 	align-items: end;
 	height: 100vh;
+}
+
+#lista_nav li h3{
+	font-size: 1.5rem;
+}
+
+
+#lista_nav li:hover{
+
+	transform: scale(1.05);
+	color: var(--var-cor-primaria);
+
 }
 
 #lista_nav li button {
@@ -82,6 +94,7 @@ main {
 	max-height: 250px;
 	padding: 10px;
 	border-radius: 30px;
+	object-fit: cover;
 }
 
 #nome_user_main {
@@ -488,7 +501,7 @@ aside {
 }
 
 .cabecario_comentario {
-	color: white;
+	color: var(--var-cor-terciaria);
 	display: none;
 	padding: 30px;
 	justify-content: space-between;
@@ -517,7 +530,7 @@ aside {
 }
 
 .div_comentario {
-	color: white;
+	color: var(--var-cor-terciaria);
 	background-color: var(--var-cor-secundaria-escura);
 	margin: 30px;
 	border-radius: 15px;
@@ -564,6 +577,7 @@ button,
 #lista_nav li svg,
 #div_editarPerfil_pfp_modal {
 	cursor: pointer;
+	transition: 0.5s;
 }
 
 .blur {
