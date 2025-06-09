@@ -41,9 +41,9 @@
 
 a {
 	all: unset;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
@@ -106,8 +106,6 @@ nav #sect_perfil_nav {
 	width: 100%;
 }
 
-
-
 #img_perfil_nav {
 	min-width: 70px;
 	width: 70px;
@@ -167,25 +165,20 @@ nav #sect_perfil_nav {
 	height: 50px;
 	margin: 10px;
 	/* color: var(--var-cor-terciaria); */
-
 }
-
-
 
 #lista_nav li {
 	/* color: var(--var-cor-primaria); */
 	color: var(--var-cor-terciaria);
 }
 
-#lista_nav li h3{
+#lista_nav li h3 {
 	font-size: 1.5rem;
 }
 
-#lista_nav li:hover{
-
+#lista_nav li:hover {
 	transform: scale(1.05);
 	color: var(--var-cor-primaria);
-
 }
 /* 
 .pagina_atual{
@@ -336,7 +329,6 @@ aside {
 	font-size: 20px;
 }
 
-
 .div_comentario {
 	color: var(--var-cor-terciaria);
 	background-color: var(--var-cor-secundaria-escura);
@@ -405,13 +397,10 @@ aside {
 	height: 30px;
 }
 
-
-#pagina_atual{
-
+#pagina_atual {
 	opacity: 50%;
 	/* color: var(--var-cor-terciaria); */
 }
-
 
 #div_popup {
 	display: none;
@@ -482,7 +471,7 @@ aside {
 	resize: none;
 }
 
-.div_corpo_popup textarea:focus {
+textarea:focus {
 	border: none;
 	outline: var(--var-cor-primaria);
 	box-shadow: 0px 0px 2px 1px var(--var-cor-primaria);
@@ -579,10 +568,140 @@ aside {
 	transition: 0.2s ease-in;
 }
 
+.div_btns_popup  {
+	background: var(--var-cor-primaria);
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	position: relative;
+	left: 43%;
+	bottom: 85px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+.div_btns_popup button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	color: var(--var-cor-secundaria);
+
+}
+
+.div_corpo_popup label {
+    position: relative;
+    left: 35%;
+    /* left: 43%; */
+    bottom: 35px;
+	cursor: pointer;
+}
+
+
+.div_btns_comentario_modal  {
+	background: var(--var-cor-primaria);
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	position: relative;
+	left: 43%;
+	bottom: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+.div_btns_comentario_modal button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	color: var(--var-cor-secundaria);
+
+}
+
+.div_btns{
+	display: flex;
+}
+.div_add_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--var-cor-primaria);
+    border-radius: 100%;
+	color: var(--var-cor-secundaria);
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+
 button,
 .div_btn_editar,
 .div_btn_salvar,
 .div_editarPerfil_fechar_modal,
 #lista_nav {
 	cursor: pointer;
+	background: none;
+	outline: none;
+	border: none;
+	
+}
+
+/* online */
+
+section#sec_pessoas_online {
+	color: var(--var-cor-terciaria);
+	width: 100%;
+	height: 90%;
+
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
+.div_quem_online {
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.div_info_quem_online {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--var-cor-terciaria);
+}
+
+.div_info_online > p {
+	font-weight: 400;
+	opacity: 50%;
+}
+
+.pfp_quem_online {
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+}
+
+.div_topo_online {
+	display: flex;
+	gap: 10px;
+}
+
+.div_banner_online img {
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 15px;
+}
+
+h1#titulo_online {
+	width: 95%;
+	text-align: center;
+	padding: 10px;
+	font-size: 1.5rem;
 }

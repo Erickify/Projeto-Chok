@@ -9,7 +9,7 @@
 	<title>Perfil | Choke</title>
 </head>
 
-<body onload="user(), listarPostsUsuario()">
+<body onload="user(), listarPostsUsuario(), listarPessoasOnline()">
 	<nav id="nav_perfil">
 		<section id="sect_perfil_nav">
 			<div class="div_nav_topo" id="div_nav_topo">
@@ -124,9 +124,14 @@
 	</main>
 
 	<aside id="aside_perfil">
-		<p></p>
+
+
 
 		<section id="sec_pessoas_online">
+
+			<h1 id="titulo_online">Usuarios online</h1>
+
+
 
 		</section>
 
@@ -183,25 +188,45 @@
 
 	<div id="div_popup">
 		<div class="div_nav_topo">
-			<img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav" />
+			<img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav_chok" />
 
 			<div class="div_perfil1_nav_topo"></div>
 
 			<div class="div_perfil2_nav_topo">
-				<h1 class="nomeUsuario" id="nomeUsuario_popup"></h1>
-				<p class="userUsuario" id="userUsuario_popup"></p>
+				<span>
+					<h1 class="nomeUsuario" id="nomeUsuario_popup"></h1>
+					<p class="userUsuario" id="userUsuario_popup"></p>
+				</span>
+
+				<div class="div_fechar" onclick="fechar_popup()">
+					<p>X</p>
+				</div>
 			</div>
 		</div>
 
 		<div class="div_corpo_popup">
 			<textarea name="" id="textarea_descPost" placeholder="Faça seu Choke"></textarea>
-			<input type="file" name="foto" id="foto" />
+			<label for="foto">
+				<div class="div_add_img">
+					<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+						fill="currentcolor">
+						<path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+					</svg>
+				</div>
+				<input type="file" name="foto" id="foto" style="display: none;" />
+			</label>
 
 			<div class="div_btns_popup">
-				<button onclick="criar_post()">Postar</button>
+				<button onclick="criar_post()">
+					<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+						fill="currentcolor">
+						<path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z" />
+					</svg>
+				</button>
 			</div>
 		</div>
 	</div>
+
 
 	<section id="sec_comentario_modal">
 		<div class="div_nav_topo" id="div_nav_topo_comentario">
@@ -225,7 +250,12 @@
 			<textarea name="" id="textarea_comentairo" placeholder="Faça seu comentario"></textarea>
 
 			<div class="div_btns_comentario_modal">
-				<button onclick="comentar()">Comentar</button>
+				<button onclick="comentar()">
+					<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+						fill="currentcolor">
+						<path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z" />
+					</svg>
+				</button>
 			</div>
 		</div>
 	</section>
@@ -233,38 +263,50 @@
 	<section id="sec_dash_modal">
 		<div class="div_main_grafico_dash">
 			<div class="div_top-minipost">
+				<h1 class="titulo_dash">Suas interações</h1>
 				<div class="div_fechar">
 					<h1 onclick="abrirModal(modal_dash)" class="">X</h1>
 				</div>
-				<h1 class="titulo_dash">Suas interações</h1>
 			</div>
 
 			<div class="div_grafico_dash">
 
 				<div class="div_util">
 
-					<h1 class="h1_titulo_info">Informções do usuario:</h1>
+					<div class="div_info">
 
-					<div id="div_info_user">
+						<h1 class="h1_titulo_info">Informções do usuario:</h1>
 
-						<p id="info_user"></p>
-						<p id="info_email"></p>
-						<p id="info_data"></p>
+						<div id="div_info_user">
 
+							<p id="info_user"></p>
+							<p id="info_email"></p>
+							<p id="info_data"></p>
+
+
+						</div>
 
 					</div>
 
-					<div class="div_trocar_cor">
+					<div class="div_trocar_corp">
 
-						<label for="cor">
-							<input type="color" name="cor" id="inp_cor" onchange="trocarCor()">
-						</label>
-						<!-- 
-						<button id="btn_alterar_modo"></button> -->
+						<h1>Cor do Usuario: </h1>
+
+
+						<input type="color" name="cor" id="inp_cor" onchange="trocarCor()">
+
+
+					</div>
+					<div class="div_trocar_tema">
+
 
 						<div id="alterar_modo_btn" onclick="alterar_modo()">
 
-							<div class="alterar_modo_bolinha">0</div>
+							<div class="alterar_modo_icone"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+									viewBox="0 -960 960 960" width="40px" fill="currentcolor" id="modo_icone">
+									<path
+										d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />
+								</svg></div>
 
 						</div>
 
@@ -394,6 +436,13 @@
 			sessionStorage.CORSECE
 		);
 
+		if (sessionStorage.CORSEC == "#f7e6ff") {
+			modo_icone.innerHTML = `<path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/>`
+		} else {
+			modo_icone.innerHTML = `<path
+										d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />`
+		}
+
 		nome_usuario_editar.value = nomeUsuario;
 
 		if (bioUsuario === "null") {
@@ -410,6 +459,14 @@
 		info_user.innerHTML = `user: @${userUsuario}`
 		info_email.innerHTML = `Email: ${emailUsuario}`
 		info_data.innerHTML = `Data de Incrição: ${dataInscricaoUser}`
+
+		img_perfil_nav_chok.src = `./assets/foto_perfil/${pfpUsuario}`
+
+		nomeUsuario_popup.textContent = nomeUsuario
+		userUsuario_popup.textContent = `@${userUsuario}`
+
+
+
 
 
 		div_nav_topo_comentario.innerHTML = `<img src="./assets/foto_perfil/${pfpUsuario}" alt="" id="img_perfil_nav">
@@ -858,7 +915,7 @@
 				.then((resposta) => {
 					console.log("Post realizado com sucesso!");
 					fechar_popup();
-					listarPosts(); // recarregar feed
+					listarPostsUsuario()(); // recarregar feed
 					foto.value = "";
 					descPostVar = undefined;
 				})
@@ -1238,6 +1295,9 @@
 
 			cortexto = "#ffffff"
 
+			modo_icone.innerHTML = `<path
+										d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />`
+
 			grafico()
 
 		} else {
@@ -1250,18 +1310,20 @@
 			document.documentElement.style.setProperty('--var-cor-terciaria', 'black');
 
 
-			document.documentElement.style.setProperty('--var-cor-secundaria-escura', '#ba9fc7');
+			document.documentElement.style.setProperty('--var-cor-secundaria-escura', 'white');
 
 
 			sessionStorage.CORSEC = corSec
 
 			sessionStorage.CORTERC = "black"
 
-			sessionStorage.CORSECE = "#ba9fc7"
+			sessionStorage.CORSECE = "white"
 
 			modo = "claro"
 
 			cortexto = "#000000"
+
+			modo_icone.innerHTML = `<path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/>`
 
 			grafico()
 		}
@@ -1291,6 +1353,7 @@
 		})
 			.then(() => {
 				console.log("trocou")
+
 			})
 			.catch(() => {
 				console.log("n trocou")
@@ -1306,40 +1369,62 @@
 			.then((response) => response.json())
 			.then((online) => {
 
+				const sec_pessoas_online = document.getElementById("sec_pessoas_online")
+
+				console.log("quem online" + online[0])
 
 
 				online.forEach((quemOnline) => {
 
-					const idConvidado = quemOnline.idQuemOnline
-					const div_curtiu_minipost = document.createElement('div')
-					div_curtiu_minipost.className = "div_quem_curtiu"
+					console.log("quem online" + quemOnline[0])
 
-					const img_curtiu = document.createElement("img")
-					img_curtiu.src = `assets/foto_perfil/${quemOnline.pfpUsuario}`
-					img_curtiu.className = `pfp_quem_curtiu`
-					img_curtiu.style.cursor = "pointer"
-					img_curtiu.onclick = () => buscarPerfil(idConvidado);
+					const idConvidado = quemOnline.idOnline
+					const div_online = document.createElement('div')
+					div_online.className = "div_quem_online"
 
-					div_curtiu_minipost.appendChild(img_curtiu)
+					const div_topo_online = document.createElement('div')
+					div_topo_online.className = "div_topo_online"
+
+					const img_online = document.createElement("img")
+					img_online.src = `assets/foto_perfil/${quemOnline.pfpQuemOnline}`
+					img_online.className = `pfp_quem_online`
+					img_online.style.cursor = "pointer"
+					img_online.onclick = () => buscarPerfil(idConvidado);
+
+					div_online.appendChild(img_online)
 
 					const div_info_usuario = document.createElement("div")
+					div_info_usuario.className = "div_info_online"
 
 					const nome_usuario = document.createElement("h1")
-					nome_usuario.textContent = `${quemOnline.nomeQuemOnline}`
+					nome_usuario.textContent = `${quemOnline.nomeOnline}`
 
 					const user_usuario = document.createElement("p")
-					user_usuario.textContent = `${quemOnline.userQuemOnline}`
-
-					const data_curtiu = document.createElement("p")
-					data_curtiu.textContent = `${quemOnline.diaQuemOnline}`
+					user_usuario.textContent = `@${quemOnline.userOnline}`
 
 					div_info_usuario.appendChild(nome_usuario)
 					div_info_usuario.appendChild(user_usuario)
-					div_info_usuario.appendChild(data_curtiu)
 
-					div_curtiu_minipost.appendChild(div_info_usuario)
+					const div_banner_online = document.createElement('div')
+					div_banner_online.className = "div_banner_online"
 
-					div_curtidas_minipost.appendChild(div_curtiu_minipost)
+					const img_banner_online = document.createElement('img')
+					img_banner_online.src = `assets/foto_perfil/${quemOnline.bannerQuemOnline}`
+					img_banner_online.id = `img_banner_online_${idConvidado}`
+
+					div_banner_online.appendChild(img_banner_online)
+
+
+
+					div_topo_online.appendChild(img_online)
+					div_topo_online.appendChild(div_info_usuario)
+
+					div_online.appendChild(div_topo_online)
+
+					div_online.appendChild(div_banner_online)
+
+					sec_pessoas_online.appendChild(div_online)
+
 
 
 

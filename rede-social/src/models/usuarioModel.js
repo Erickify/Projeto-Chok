@@ -173,6 +173,25 @@ LIMIT 1;;
 	return database.executar(instrucaoSql);
 }
 
+function dashPostMaisCurtidosCurtidas(idPost) {
+	console.log("ok");
+	var instrucaoSql = `
+SELECT 
+    u.idUsuario AS idQuemCurtiu,
+    u.nomeUsuario AS nomeQuemCurtiu,
+    u.userUsuario AS userQuemCurtiu,
+    u.pfpUsuario,
+    DATE_FORMAT(c.dataCurtida, '%d-%m-%Y') as diaQuemCurtiu
+FROM tbCurtidas c
+JOIN tbUsuario u ON c.fkUsuario = u.idUsuario
+WHERE c.fkPost = ${idPost};
+
+    `;
+	console.log("Executando a instrução SQL: \n" + instrucaoSql);
+	return database.executar(instrucaoSql);
+}
+
+
 function listarPessoasOnline(idUsuario) {
 	console.log("ok");
 	var instrucaoSql = `
@@ -181,14 +200,17 @@ SELECT
     nomeUsuario AS nomeOnline,
     userUsuario AS userOnline,
     pfpUsuario as pfpQuemOnline,
-	bannerUsuario as bannerQuemCurtiu
-FROM tbUser
-WHERE idUsuario != ${idUsuario} AND statusUsuario = 1;
+	bannerUsuario as bannerQuemOnline
+FROM tbUsuario
+WHERE idUsuario != ${idUsuario} AND statusUsuario = 1
+ORDER BY RAND()
+LIMIT 3;;
 
     `;
 	console.log("Executando a instrução SQL: \n" + instrucaoSql);
 	return database.executar(instrucaoSql);
 }
+
 
 function dashTotalCurtidas(idUsuario) {
 	console.log("ok");

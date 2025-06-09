@@ -190,30 +190,30 @@ main #sec_friends .div_img img {
 		background: var(--var-cor-secundaria);
 	}
 	1% {
-		background-image: url(../imgs/rudo_readpage.png);
+		background-image: url(../imgs/WhatsApp\ Image\ 2025-05-31\ at\ 3.05.32\ PM.jpeg);
 		background-position: center;
-		background-size: contain;
+		background-size: 80%;
 		background-repeat: no-repeat;
 	}
 	49% {
-		background-image: url(../imgs/rudo_readpage.png);
+		background-image: url(../imgs/WhatsApp\ Image\ 2025-05-31\ at\ 3.05.32\ PM.jpeg);
 		background-position: center;
-		background-size: contain;
+		background-size: 80%;
 		background-repeat: no-repeat;
 	}
 	50% {
 		background: var(--var-cor-secundaria);
 	}
 	51% {
-		background-image: url(../imgs/gachi_friends.jpg);
+		background-image: url(../imgs/0b6bff23-466e-4d65-916e-3a01172e5a68.jpg);
 		background-position: center;
-		background-size: contain;
+		background-size: 80%;
 		background-repeat: no-repeat;
 	}
 	99% {
-		background-image: url(../imgs/gachi_friends.jpg);
+		background-image: url(../imgs/0b6bff23-466e-4d65-916e-3a01172e5a68.jpg);
 		background-position: center;
-		background-size: contain;
+		background-size: 80%;
 		background-repeat: no-repeat;
 	}
 	100% {
