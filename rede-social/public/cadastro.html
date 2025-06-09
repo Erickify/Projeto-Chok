@@ -5,8 +5,10 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./imgs/chok 3.png" type="image/x-icon">
 
-  <title>Cadastro</title>
+
+  <title>Cadastro | Chokers</title>
 
   <script src="./js/sessao.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -16,75 +18,71 @@
 <body id="cadas">
 
 
-    <main id="main_cadas">
+  <main id="main_cadas">
 
     <div class="container">
-    
-      
-        <div class="formulario">
-          <div class="div_nome_user">
-          
-            <div class="campo">
-           
-              <span>Nome:</span>
-           
-              <input id="nome_input" type="text" placeholder="Seu nome" autocomplete="off" value="Kabru"/>
-           
-            </div>
-           
-            <div class="campo">
-           
-              <span>User:</span>
-           
-              <input id="user_input" type="text" placeholder="@user..." autocomplete="off" value="KabruDoMal2" oninput="verificarUser()"/>
-           
-            </div>
-          
-          </div>
+
+
+      <div class="formulario">
+        <div class="div_nome_user">
+
           <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" autocomplete="off" value="kabru@sptech.school" oninput="verificarUser()" />
+
+            <span>Nome:</span>
+
+            <input id="nome_input" type="text" placeholder="Seu nome" autocomplete="off" value="Kabru" />
+
           </div>
+
           <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" autocomplete="off" />
+
+            <span>User:</span>
+
+            <input id="user_input" type="text" placeholder="@user..." autocomplete="off" value="KabruDoMal2"
+              oninput="verificarUser()" />
+
           </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" autocomplete="off"/>
-          </div>
+
         </div>
-        <button class="botao" onclick="cadastrar()">Cadastrar</button>
-        <p style="cursor: pointer; font-weight: 100;"><a href="./login.html"><u>já tem uma conta?</u></a></p>
-         
+        <div class="campo">
+          <span>E-mail:</span>
+          <input id="email_input" type="text" placeholder="meuemail@provedor.com" autocomplete="off"
+            value="kabru@sptech.school" oninput="verificarUser()" />
+        </div>
+        <div class="campo">
+          <span>Senha:</span>
+          <input id="senha_input" type="password" placeholder="******" autocomplete="off" />
+        </div>
+        <div class="campo">
+          <span>Confirmação da Senha:</span>
+          <input id="confirmacao_senha_input" type="password" placeholder="******" autocomplete="off" />
+        </div>
+      </div>
+      <button class="botao" onclick="cadastrar()">Cadastrar</button>
+      <p style="cursor: pointer; font-weight: 100;"><a href="./login.html"><u>já tem uma conta?</u></a></p>
+
     </div>
-  </div>
+    </div>
 
   </main>
 
-	
-		<aside>
-			<section>
-				<a href="./index.html">
-				<div class="div_voltar">
-					<p>VOLTAR</p>
-					<div class="div_icone_voltar">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							height="24px"
-							viewBox="0 -960 960 960"
-							width="24px"
-							fill="currentcolor"
-						>
-							<path
-								d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"
-							/>
-						</svg>
-					</div>
-				</div>
-				</a>
-			</section>
-		</aside>
+
+  <aside>
+    <section>
+      <a href="./index.html">
+        <div class="div_voltar">
+          <p>VOLTAR</p>
+          <div class="div_icone_voltar">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="currentcolor">
+              <path
+                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+            </svg>
+          </div>
+        </div>
+      </a>
+    </section>
+  </aside>
 
 </body>
 
@@ -96,57 +94,57 @@
 
   var emailExiste = false
 
-  function verificarUser(){
+  function verificarUser() {
 
     var user = user_input.value
-    
+
     var email = email_input.value
 
     fetch(`/usuarios/verificarUser`)
-    .then((response) => response.json())
-    .then((users) => {
+      .then((response) => response.json())
+      .then((users) => {
 
 
-      for(let i = 0; i < users.length; i++) {
+        for (let i = 0; i < users.length; i++) {
 
-        if(users[i].userUsuario.toUpperCase() == user.toUpperCase()){
+          if (users[i].userUsuario.toUpperCase() == user.toUpperCase()) {
 
-        userExiste = true
+            userExiste = true
 
-        break
+            break
 
-        }else{
+          } else {
 
             userExiste = false
 
+          }
         }
-      }
 
-      for(let i = 0; i < users.length; i++) {
+        for (let i = 0; i < users.length; i++) {
 
-        if(users[i].emailUsuario.toUpperCase() == email.toUpperCase()){
-          
+          if (users[i].emailUsuario.toUpperCase() == email.toUpperCase()) {
 
-        emailExiste = true
 
-        break
+            emailExiste = true
 
-        }else{
+            break
+
+          } else {
 
             emailExiste = false
 
-        }
-        
-      };
+          }
+
+        };
 
 
 
-    })
-    .catch(() => {
+      })
+      .catch(() => {
 
-      console.log("erro : user n está em uso")
+        console.log("erro : user n está em uso")
 
-    })
+      })
 
   }
 
@@ -169,29 +167,29 @@
     ) {
       alert("Preencha todos os campos")
       return false;
-    }else if(!emailVar.includes("@")){
+    } else if (!emailVar.includes("@")) {
 
       alert("Insira um email válido")
       return false;
-    }else if(!(senhaVar.length >= 5)){
+    } else if (!(senhaVar.length >= 5)) {
 
       alert("A senha deve conter ao menos 5 caracteres")
       return false;
-    }else if(senhaVar != confirmacaoSenhaVar){
+    } else if (senhaVar != confirmacaoSenhaVar) {
 
       alert("As confirmação de senha está errada")
       return false;
-    
-    }else if(userExiste){
-      
+
+    } else if (userExiste) {
+
       alert("User já existe")
       return false
-    
-    }else if(emailExiste){
-    
+
+    } else if (emailExiste) {
+
       alert("email já existe")
       return false
-    
+
     }
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -229,7 +227,7 @@
 
     return false;
   }
-  
+
 
 
 

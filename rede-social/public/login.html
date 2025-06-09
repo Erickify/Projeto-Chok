@@ -1,70 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<title>login</title>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="./imgs/chok 3.png" type="image/x-icon">
 
-		<script src="./js/sessao.js"></script>
-		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<link rel="stylesheet" href="./css/styles-cadas-login.css" />
-	</head>
 
-	<aside>
-		<section>
-			<a href="./index.html">
-				<div class="div_voltar">
-					<p>VOLTAR</p>
-					<div class="div_icone_voltar">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							height="24px"
-							viewBox="0 -960 960 960"
-							width="24px"
-							fill="currentcolor"
-						>
-							<path
-								d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"
-							/>
-						</svg>
-					</div>
-				</div>
-			</a>
-		</section>
-	</aside>
+	<title>login | Chokers</title>
 
-	<body id="logas">
-		<main id="main_logas">
-			<div class="container">
-				<div class="formulario">
-					<div class="campo">
-						<span>E-mail:</span>
-						<input
-							id="email_input"
-							type="text"
-							placeholder="meuemail@provedor.com"
-							id="logar_email_input"
-						/>
-					</div>
-					<div class="campo">
-						<span>Senha:</span>
-						<input
-							id="senha_input"
-							type="password"
-							placeholder="******"
-							id="logar_senha_input"
-						/>
-					</div>
-					<button class="botao" onclick="autenticar()">Logar</button>
-					<p style="cursor: pointer; font-weight: 100">
-						<a href="./cadastro.html"><u>não tem uma conta?</u></a>
-					</p>
+	<script src="./js/sessao.js"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link rel="stylesheet" href="./css/styles-cadas-login.css" />
+</head>
+
+<aside>
+	<section>
+		<a href="./index.html">
+			<div class="div_voltar">
+				<p>VOLTAR</p>
+				<div class="div_icone_voltar">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+						fill="currentcolor">
+						<path
+							d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+					</svg>
 				</div>
 			</div>
-		</main>
-	</body>
+		</a>
+	</section>
+</aside>
+
+<body id="logas">
+	<main id="main_logas">
+		<div class="container">
+			<div class="formulario">
+				<div class="campo">
+					<span>E-mail:</span>
+					<input id="email_input" type="text" placeholder="meuemail@provedor.com" id="logar_email_input" />
+				</div>
+				<div class="campo">
+					<span>Senha:</span>
+					<input id="senha_input" type="password" placeholder="******" id="logar_senha_input" />
+				</div>
+				<button class="botao" onclick="autenticar()">Logar</button>
+				<p style="cursor: pointer; font-weight: 100">
+					<a href="./cadastro.html"><u>não tem uma conta?</u></a>
+				</p>
+			</div>
+		</div>
+	</main>
+</body>
+
 </html>
 
 <script>
