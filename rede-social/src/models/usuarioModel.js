@@ -166,7 +166,7 @@ LEFT JOIN tbCurtidas c ON p.idPost = c.fkPost
 WHERE p.fkUsuario = ${idUsuario}
 GROUP BY p.idPost
 ORDER BY totalCurtidas DESC
-LIMIT 1;;
+LIMIT 1;
 
     `;
 	console.log("Executando a instrução SQL: \n" + instrucaoSql);
