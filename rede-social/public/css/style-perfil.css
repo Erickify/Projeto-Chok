@@ -444,6 +444,15 @@ aside {
 	margin: 10px;
 }
 
+#div_criar_chok {
+	transition: 0.5s all;
+}
+
+#div_criar_chok:hover {
+	transform: scale(1.1);
+	background-color: var(--var-cor-primaria);
+}
+
 #div_criar_chok .icone_lista {
 	width: 30px;
 	height: 30px;
@@ -809,6 +818,10 @@ nav #sect_perfil_nav {
 	opacity: 50%;
 }
 
+.curtidas_post {
+	display: flex;
+}
+
 .div_corpo_popup {
 	display: flex;
 	flex-direction: column;
@@ -901,16 +914,40 @@ textarea:focus {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	gap: 10px;
 }
 
 .div_info {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 	gap: 30px;
+	background-color: var(--var-cor-secundaria-escura);
+	padding: 10px;
+	border-radius: 15px;
 }
 
 .div_info #div_info_user {
-	padding: 20px;
+	padding: 5px;
+	font-size: 2rem;
+	/* color: var(--var-cor-primaria); */
+}
+
+.span_cors{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(--var-cor-secundaria-escura);
+	padding: 10px;
+	border-radius: 15px;
+	height: 100%;
+}
+
+#alterar_modo_btn{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .div_trocar_corp input {
@@ -932,7 +969,6 @@ textarea:focus {
 	cursor: pointer;
 }
 
-
 /*Minipost*/
 #sec_dash_modal {
 	width: 80%;
@@ -946,6 +982,14 @@ textarea:focus {
 	color: var(--var-cor-terciaria);
 	transition: 0.5s all;
 }
+
+canvas#meuPineChart {
+    width: 100%;
+    background: var(--var-cor-secundaria-escura);
+    height: 100%;
+    border-radius: 15px;
+}
+
 
 .icone_dash {
 	width: 100px;

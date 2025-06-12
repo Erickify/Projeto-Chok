@@ -23,7 +23,7 @@ function cadastrar(nome, email, senha, user) {
 	);
 
 	var instrucaoSql = `
-        INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario, userUsuario, pfpUsuario, bannerUsuario, corUsuario) VALUES ("${nome}", "${email}", "${senha}", "${user}", "imagem_perfil_default.svg", "imagem_banner_default.svg", "#cb1c1c");
+        INSERT INTO tbUsuario (nomeUsuario, emailUsuario, senhaUsuario, userUsuario, bioUsuario, pfpUsuario, bannerUsuario, corUsuario) VALUES ("${nome}", "${email}", "${senha}", "${user}", " ", "imagem_perfil_default.svg", "imagem_banner_default.svg", "#cb1c1c");
     `;
 	console.log("Executando a instrução SQL: \n" + instrucaoSql);
 	return database.executar(instrucaoSql);

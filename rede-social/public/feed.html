@@ -133,7 +133,7 @@
 		</section>
 
 		<div id="div_criar_chok">
-			<button onclick="criar_popup()">
+			<button onclick="criar_popup()" class="btn_postar">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
 					fill="currentcolor" class="icone_lista">
 					<path
@@ -600,21 +600,21 @@
 
 			.then(console.log("deu bom"))
 
-			.then((listaAmigos) => { });
+			.then((listaAmigos) => { })
 	}
 
 	function criar_popup() {
-		div_popup.style.display = "block";
-		nav_feed.classList.add("blur");
-		main_feed.classList.add("blur");
-		aside_feed.classList.add("blur");
+		div_popup.style.display = "block"
+		nav_feed.classList.add("blur")
+		main_feed.classList.add("blur")
+		aside_feed.classList.add("blur")
 	}
 
 	function fechar_popup() {
-		div_popup.style.display = "none";
-		nav_feed.classList.remove("blur");
-		main_feed.classList.remove("blur");
-		aside_feed.classList.remove("blur");
+		div_popup.style.display = "none"
+		nav_feed.classList.remove("blur")
+		main_feed.classList.remove("blur")
+		aside_feed.classList.remove("blur")
 	}
 
 	function curtir(idPost) {
@@ -628,12 +628,15 @@
 			}),
 		}).then((res) => {
 			if (res.ok) {
-				var curtiu = true;
 
-				alert("curtida realizada");
-				contarCurtida(idPost, curtiu);
+				var curtiu = true
+
+				contarCurtida(idPost, curtiu)
+			
 			} else {
-				descurtir(idPost);
+			
+				descurtir(idPost)
+			
 			}
 		});
 	}
@@ -650,8 +653,8 @@
 		}).then(() => {
 			var curtiu = false;
 
-			alert("descurtida realizada");
-			contarCurtida(idPost, curtiu);
+			contarCurtida(idPost, curtiu)
+		
 		});
 	}
 

@@ -60,10 +60,9 @@
 						<h3>CONFIGURAÇÕES</h3>
 					</button>
 				</li>
-
-				<span id="span_sair" onclick="sair()">
+				<span id="span_sair">
 					<a href="#" id="a_sair">
-						<li>
+						<li onclick="sair()">
 							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
 								fill="currentcolor" class="icone_lista">
 								<path
@@ -290,29 +289,35 @@
 
 					</div>
 
-					<div class="div_trocar_corp">
+					<span class="span_cors">
 
-						<h1>Cor do Usuario: </h1>
+						<div class="div_trocar_corp">
 
-
-						<input type="color" name="cor" id="inp_cor" onchange="trocarCor()">
-
-
-					</div>
-					<div class="div_trocar_tema">
+							<h1>Cor do Usuario: </h1>
 
 
-						<div id="alterar_modo_btn" onclick="alterar_modo()">
+							<input type="color" name="cor" id="inp_cor" onchange="trocarCor()">
 
-							<div class="alterar_modo_icone"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
-									viewBox="0 -960 960 960" width="40px" fill="currentcolor" id="modo_icone">
-									<path
-										d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />
-								</svg></div>
+
+						</div>
+						<div class="div_trocar_tema">
+
+							<h1>Alterar Modo</h1>
+
+
+							<div id="alterar_modo_btn" onclick="alterar_modo()">
+
+								<div class="alterar_modo_icone"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+										viewBox="0 -960 960 960" width="40px" fill="currentcolor" id="modo_icone">
+										<path
+											d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />
+									</svg></div>
+
+							</div>
 
 						</div>
 
-					</div>
+					</span>
 
 				</div>
 				<!-- <canvas id="meuLineChart" width="1" height="1"></canvas> -->
@@ -1235,17 +1240,20 @@
 	function grafico() {
 		// console.log(varTotal_posts)
 
+
 		var graficoD = document.getElementById('meuPineChart');
 
+		if (window.meuGrafico) window.meuGrafico.destroy();
+
+		// graficoD.destroy()
 
 
-		new Chart(graficoD, {
+		window.meuGrafico = new Chart(graficoD, {
 			type: "doughnut",
 			data: {
 				labels: ['Curtidas', 'Comentarios', 'Posts'],
 				datasets: [
 					{
-						label: "Curtidas",
 						data: [varTotal_curtidas, varTotal_com, varTotal_posts],
 						backgroundColor: ['#7D1128', '#2b2d42', '#EDF2F4'],
 						borderRadius: 5

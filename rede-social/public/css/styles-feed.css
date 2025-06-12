@@ -199,6 +199,15 @@ aside {
 	align-items: center;
 }
 
+#div_criar_chok{
+	transition: 0.5s all;
+}
+
+#div_criar_chok:hover{
+	transform: scale(1.1);
+	background-color: var(--var-cor-primaria);
+}
+
 .div_post {
 	padding: 0 0 10px 0;
 }

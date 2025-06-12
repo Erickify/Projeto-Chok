@@ -95,7 +95,6 @@ function listarComentarios(idPost) {
 SELECT 
     c.idComentario,
     c.fkPost,
-    c.fkSubComentario,
     c.descComentario,
     c.fkUsuario,
     u.nomeUsuario,
